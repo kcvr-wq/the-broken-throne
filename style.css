@@ -410,3 +410,34 @@ main {
         grid-template-columns: 1fr;
     }
 }
+/* =========================================
+   زر الحرق
+   ========================================= */
+
+.spoiler-button {
+    margin-top: 12px;
+    padding: 8px 18px;
+
+    background: #111115;
+    color: #d8b36a;
+
+    border: 1px solid #3b3429;
+    border-radius: 6px;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.spoiler-button:hover {
+    background: #1b1a1e;
+    border-color: #d8b36a;
+    color: #eeeeee;
+}
