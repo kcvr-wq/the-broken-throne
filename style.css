@@ -552,3 +552,17 @@ main {
 .character-spoiler-section h2 {
     margin-bottom: 15px;
 }
+/* =========================================
+   تكبير صورة صفحة الشخصية
+========================================= */
+
+.character-profile .character-image {
+    flex: 0 0 340px;
+    width: 340px;
+}
+
+.character-profile .character-image img {
+    width: 340px;
+    max-width: 100%;
+    height: auto;
+}
