@@ -212,3 +212,62 @@ main {
         font-size: 16px;
     }
 }
+/* =========================================
+   قائمة الفصول
+   ========================================= */
+
+.chapter-list {
+    display: grid;
+    gap: 15px;
+    width: min(850px, 100%);
+    margin: 35px auto 0;
+}
+
+.chapter-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+
+    padding: 18px 22px;
+
+    text-decoration: none;
+    color: #eeeeee;
+
+    background: #151519;
+    border: 1px solid #302b24;
+    border-radius: 8px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease;
+}
+
+.chapter-card:hover {
+    transform: translateX(-4px);
+    border-color: #d8b36a;
+    background: #1a191d;
+}
+
+.chapter-number {
+    color: #d8b36a;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.chapter-title {
+    flex: 1;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+@media (max-width: 700px) {
+    .chapter-card {
+        padding: 16px;
+    }
+
+    .chapter-title {
+        font-size: 16px;
+    }
+}
