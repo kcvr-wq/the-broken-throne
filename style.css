@@ -623,3 +623,118 @@ main {
 .character-details strong {
     color: #d8b36a;
 }
+/* =========================================
+بطاقة الشخصيات — التصميم المطوّر
+========================================= */
+
+.character-list {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+gap: 25px;
+max-width: 1100px;
+margin: 30px auto 0;
+}
+
+.character-card {
+position: relative;
+overflow: hidden;
+background: #111115;
+border: 1px solid #2f2a24;
+border-radius: 10px;
+transition:
+transform 0.25s ease,
+border-color 0.25s ease,
+box-shadow 0.25s ease;
+}
+
+.character-card:hover {
+transform: translateY(-5px);
+border-color: #d8b36a;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.character-card-link {
+display: block;
+color: inherit;
+text-decoration: none;
+}
+
+.character-card .character-image {
+width: 100%;
+height: 360px;
+overflow: hidden;
+background: #0d0d10;
+}
+
+.character-card .character-image img {
+width: 100%;
+height: 100%;
+display: block;
+object-fit: cover;
+transition: transform 0.35s ease;
+}
+
+.character-card:hover .character-image img {
+transform: scale(1.04);
+}
+
+.character-card .character-info {
+padding: 20px 20px 12px;
+}
+
+.character-card .character-info h3 {
+margin: 0 0 6px;
+font-size: 26px;
+color: #eeeeee;
+}
+
+.character-card-title {
+margin: 0 0 18px;
+color: #d8b36a;
+font-weight: 700;
+}
+
+.character-card-details {
+padding-top: 14px;
+border-top: 1px solid #2f2a24;
+}
+
+.character-card-details p {
+margin: 8px 0;
+color: #cfcfcf;
+font-size: 14px;
+}
+
+.character-card-details strong {
+color: #d8b36a;
+}
+
+.character-card-spoiler {
+padding: 0 20px 20px;
+}
+
+.character-card-spoiler .spoiler-button {
+width: 100%;
+}
+
+.character-card-spoiler .spoiler-info {
+margin-top: 12px;
+}
+
+@media (max-width: 600px) {
+
+```
+.character-card .character-image {
+    height: 320px;
+}
+
+.character-card .character-info {
+    padding: 18px;
+}
+
+.character-card-spoiler {
+    padding: 0 18px 18px;
+}
+```
+
+}
