@@ -493,3 +493,62 @@ main {
     color: #eeeeee;
     transform: translateY(-2px);
 }
+/* =========================================
+   صفحة الشخصية
+========================================= */
+
+.character-profile {
+    display: flex;
+    align-items: flex-start;
+    gap: 35px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #111115;
+    border: 1px solid #2f2a24;
+    border-radius: 10px;
+}
+
+.character-profile .character-image {
+    flex: 0 0 260px;
+}
+
+.character-profile .character-image img {
+    width: 100%;
+    display: block;
+    border-radius: 8px;
+    border: 1px solid #3b3429;
+}
+
+.character-profile .character-info {
+    flex: 1;
+}
+
+.character-profile .character-info h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.character-title {
+    color: #d8b36a;
+    font-weight: 700;
+}
+
+.character-details {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #2f2a24;
+}
+
+.character-details p {
+    margin: 8px 0;
+}
+
+.character-spoiler-section {
+    max-width: 900px;
+    margin: 35px auto 0;
+}
+
+.character-spoiler-section h2 {
+    margin-bottom: 15px;
+}
