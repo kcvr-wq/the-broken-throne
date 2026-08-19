@@ -460,3 +460,36 @@ main {
 .spoiler-info.show {
     display: block;
 }
+/* =========================================
+   زر العودة إلى الشخصيات
+========================================= */
+
+.character-back {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.character-back a {
+    display: inline-block;
+    padding: 10px 24px;
+    background: #111115;
+    color: #d8b36a;
+    border: 1px solid #3b3429;
+    border-radius: 6px;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 700;
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.character-back a:hover {
+    background: #1b1a1e;
+    border-color: #d8b36a;
+    color: #eeeeee;
+    transform: translateY(-2px);
+}
