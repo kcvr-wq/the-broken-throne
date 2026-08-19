@@ -1,6 +1,6 @@
 /* =========================================
    العرش المكسور - التصميم الأساسي
-   ========================================= */
+========================================= */
 
 * {
     box-sizing: border-box;
@@ -21,7 +21,9 @@ body {
     line-height: 1.9;
 }
 
-/* الصفحة الرئيسية */
+/* =========================================
+   الصفحة الرئيسية
+========================================= */
 
 main {
     width: 100%;
@@ -30,9 +32,9 @@ main {
     padding: 40px 20px 80px;
 }
 
-/* -----------------------------------------
+/* =========================================
    القسم الرئيسي
-   ----------------------------------------- */
+========================================= */
 
 .hero {
     text-align: center;
@@ -55,9 +57,9 @@ main {
     font-size: clamp(16px, 2vw, 21px);
 }
 
-/* -----------------------------------------
+/* =========================================
    الغلاف
-   ----------------------------------------- */
+========================================= */
 
 .cover {
     width: min(360px, 85vw);
@@ -77,9 +79,9 @@ main {
     height: auto;
 }
 
-/* -----------------------------------------
+/* =========================================
    أزرار الأقسام
-   ----------------------------------------- */
+========================================= */
 
 .navigation {
     display: grid;
@@ -112,7 +114,7 @@ main {
     content: "";
     position: absolute;
     inset: 0;
-   pointer-events: none;
+    pointer-events: none;
     background:
         linear-gradient(
             90deg,
@@ -143,9 +145,9 @@ main {
     transform: translateX(100%);
 }
 
-/* -----------------------------------------
+/* =========================================
    النبذة
-   ----------------------------------------- */
+========================================= */
 
 .about {
     width: min(850px, 100%);
@@ -172,50 +174,11 @@ main {
 
 .about p:last-child {
     margin-bottom: 0;
-    text-align: center;
-    color: #e0c27f;
 }
 
-/* -----------------------------------------
-   الهاتف
-   ----------------------------------------- */
-
-@media (max-width: 700px) {
-
-    main {
-        padding: 25px 14px 60px;
-    }
-
-    .hero {
-        padding-top: 25px;
-    }
-
-    .navigation {
-        grid-template-columns: 1fr;
-        gap: 12px;
-        margin-top: 30px;
-    }
-
-    .menu-button {
-        min-height: 65px;
-    }
-
-    .menu-button span {
-        font-size: 18px;
-    }
-
-    .about {
-        margin-top: 45px;
-        padding: 25px 20px;
-    }
-
-    .about p {
-        font-size: 16px;
-    }
-}
 /* =========================================
    قائمة الفصول
-   ========================================= */
+========================================= */
 
 .chapter-list {
     display: grid;
@@ -229,16 +192,12 @@ main {
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-
     padding: 18px 22px;
-
     text-decoration: none;
     color: #eeeeee;
-
     background: #151519;
     border: 1px solid #302b24;
     border-radius: 8px;
-
     transition:
         transform 0.25s ease,
         border-color 0.25s ease,
@@ -263,22 +222,9 @@ main {
     font-weight: 600;
 }
 
-@media (max-width: 700px) {
-    .chapter-card {
-        padding: 16px;
-    }
-
-    .chapter-title {
-        font-size: 16px;
-    }
-}
 /* =========================================
    أزرار التنقل داخل الفصل
-   ========================================= */
-
-/* =========================================
-   أزرار التنقل داخل الفصل
-   ========================================= */
+========================================= */
 
 .chapter-navigation {
     display: flex;
@@ -291,24 +237,17 @@ main {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-
     width: 220px;
     min-height: 58px;
-
     padding: 12px 24px;
-
     background: #111115;
     color: #eeeeee;
-
     border: 1px solid #d8b36a;
     border-radius: 8px;
-
     text-decoration: none;
     font-size: 18px;
     font-weight: 700;
-
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-
     transition: all 0.25s ease;
 }
 
@@ -316,120 +255,121 @@ main {
     background: #19181c;
     color: #d8b36a;
     transform: translateY(-3px);
-
     box-shadow:
         0 12px 30px rgba(0, 0, 0, 0.45),
         0 0 15px rgba(216, 179, 106, 0.12);
 }
+
 /* =========================================
    قسم الشخصيات
-   ========================================= */
+========================================= */
 
 .character-list {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-    width: min(850px, 100%);
-    margin: 35px auto 0;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 25px;
+    width: min(1100px, 100%);
+    margin: 30px auto 0;
 }
 
 .character-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-
-    padding: 18px;
-
-    background: #151519;
-    border: 1px solid #302b24;
-    border-radius: 8px;
-
-    color: #eeeeee;
-    text-decoration: none;
-
-    text-align: center;
-
+    position: relative;
+    overflow: hidden;
+    background: #111115;
+    border: 1px solid #2f2a24;
+    border-radius: 10px;
     transition:
         transform 0.25s ease,
         border-color 0.25s ease,
-        background 0.25s ease;
+        box-shadow 0.25s ease;
 }
 
 .character-card:hover {
-    transform: translateY(-3px);
+    transform: translateY(-5px);
     border-color: #d8b36a;
-    background: #1a191d;
-
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
 }
 
-.character-card:hover {
-    transform: translateY(-3px);
-    border-color: #d8b36a;
-    background: #1a191d;
+.character-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
 }
 
-.character-image {
-    width: 80px;
-    height: 100px;
-
-    flex-shrink: 0;
+.character-card .character-image {
+    width: 100%;
+    height: 360px;
     overflow: hidden;
-
-    background: #101014;
-    border: 1px solid #3b3429;
-    border-radius: 6px;
+    background: #0d0d10;
 }
 
-.character-image img {
+.character-card .character-image img {
     width: 100%;
     height: 100%;
     display: block;
-
-    object-fit: contain;
+    object-fit: cover;
     object-position: center;
-
+    transition: transform 0.35s ease;
 }
+
+.character-card:hover .character-image img {
+    transform: scale(1.04);
 }
 
-.character-info h3 {
-    margin-top: 14px;
-    margin-bottom: 4px;
+.character-card .character-info {
+    padding: 20px 20px 12px;
+}
+
+.character-card .character-info h3 {
+    margin: 0 0 6px;
+    font-size: 26px;
+    color: #eeeeee;
+}
+
+.character-card-title {
+    margin: 0 0 18px;
     color: #d8b36a;
-    font-size: 21px;
+    font-weight: 700;
 }
 
-.character-info p {
-    margin: 0;
-    color: #aaaaad;
-    font-size: 16px;
+.character-card-details {
+    padding-top: 14px;
+    border-top: 1px solid #2f2a24;
 }
 
-@media (max-width: 700px) {
-    .character-list {
-        grid-template-columns: 1fr;
-    }
+.character-card-details p {
+    margin: 8px 0;
+    color: #cfcfcf;
+    font-size: 14px;
 }
+
+.character-card-details strong {
+    color: #d8b36a;
+}
+
+.character-card-spoiler {
+    padding: 0 20px 20px;
+}
+
+.character-card-spoiler .spoiler-button {
+    width: 100%;
+}
+
 /* =========================================
    زر الحرق
-   ========================================= */
+========================================= */
 
 .spoiler-button {
     margin-top: 12px;
     padding: 8px 18px;
-
     background: #111115;
     color: #d8b36a;
-
     border: 1px solid #3b3429;
     border-radius: 6px;
-
     font-family: inherit;
     font-size: 14px;
     font-weight: 700;
-
     cursor: pointer;
-
     transition:
         background 0.25s ease,
         border-color 0.25s ease,
@@ -441,6 +381,7 @@ main {
     border-color: #d8b36a;
     color: #eeeeee;
 }
+
 /* =========================================
    معلومات الحرق
 ========================================= */
@@ -460,6 +401,95 @@ main {
 .spoiler-info.show {
     display: block;
 }
+
+/* =========================================
+   صفحة الشخصية
+========================================= */
+
+.character-profile {
+    display: flex;
+    align-items: flex-start;
+    gap: 35px;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #111115;
+    border: 1px solid #2f2a24;
+    border-radius: 10px;
+    overflow: visible;
+}
+
+.character-profile .character-image {
+    flex: 0 0 340px;
+    width: 340px;
+    height: auto;
+    overflow: visible;
+}
+
+.character-profile .character-image img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-width: none;
+    border-radius: 8px;
+    border: 1px solid #3b3429;
+    object-fit: contain;
+}
+
+.character-profile .character-info {
+    flex: 1;
+    padding-top: 5px;
+}
+
+.character-profile .character-info h2 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 32px;
+    color: #eeeeee;
+}
+
+.character-profile .character-title {
+    display: inline-block;
+    margin-bottom: 20px;
+    padding: 5px 12px;
+    background: #1b1a1e;
+    border: 1px solid #3b3429;
+    border-radius: 5px;
+    color: #d8b36a;
+    font-weight: 700;
+}
+
+.character-profile .character-info > p:not(.character-title) {
+    line-height: 2;
+    color: #cfcfcf;
+}
+
+.character-details {
+    margin-top: 25px;
+    padding: 18px 20px;
+    background: #0d0d10;
+    border: 1px solid #2f2a24;
+    border-radius: 8px;
+}
+
+.character-details p {
+    margin: 10px 0;
+    color: #cfcfcf;
+}
+
+.character-details strong {
+    color: #d8b36a;
+}
+
+.character-spoiler-section {
+    max-width: 900px;
+    margin: 35px auto 0;
+}
+
+.character-spoiler-section h2 {
+    margin-bottom: 15px;
+}
+
 /* =========================================
    زر العودة إلى الشخصيات
 ========================================= */
@@ -493,235 +523,56 @@ main {
     color: #eeeeee;
     transform: translateY(-2px);
 }
-/* =========================================
-   صفحة الشخصية
-========================================= */
-
-.character-profile {
-    display: flex;
-    align-items: flex-start;
-    gap: 35px;
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 30px;
-    background: #111115;
-    border: 1px solid #2f2a24;
-    border-radius: 10px;
-}
-
-.character-profile .character-image {
-    flex: 0 0 260px;
-}
-
-.character-profile .character-image img {
-    width: 100%;
-    display: block;
-    border-radius: 8px;
-    border: 1px solid #3b3429;
-}
-
-.character-profile .character-info {
-    flex: 1;
-}
-
-.character-profile .character-info h2 {
-    margin-top: 0;
-    margin-bottom: 8px;
-}
-
-.character-title {
-    color: #d8b36a;
-    font-weight: 700;
-}
-
-.character-details {
-    margin-top: 25px;
-    padding-top: 15px;
-    border-top: 1px solid #2f2a24;
-}
-
-.character-details p {
-    margin: 8px 0;
-}
-
-.character-spoiler-section {
-    max-width: 900px;
-    margin: 35px auto 0;
-}
-
-.character-spoiler-section h2 {
-    margin-bottom: 15px;
-}
-/* =========================================
-   تكبير صورة صفحة الشخصية
-========================================= */
 
 /* =========================================
-   صورة صفحة الشخصية
+   الهاتف
 ========================================= */
 
-.character-profile {
-    overflow: visible;
-}
+@media (max-width: 700px) {
 
-.character-profile .character-image {
-    flex: 0 0 340px;
-    width: 340px;
-    height: auto;
-    overflow: visible;
-}
+    main {
+        padding: 25px 14px 60px;
+    }
 
-.character-profile .character-image img {
-    display: block;
-    width: 100%;
-    height: auto;
-    max-width: none;
-    object-fit: contain;
-}
-/* =========================================
-   تحسين معلومات الشخصية
-========================================= */
+    .hero {
+        padding-top: 25px;
+    }
 
-.character-profile .character-info {
-    padding-top: 5px;
-}
+    .navigation {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 30px;
+    }
 
-.character-profile .character-info h2 {
-    font-size: 32px;
-    margin-bottom: 10px;
-    color: #eeeeee;
-}
+    .menu-button {
+        min-height: 65px;
+    }
 
-.character-profile .character-title {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 5px 12px;
-    background: #1b1a1e;
-    border: 1px solid #3b3429;
-    border-radius: 5px;
-    color: #d8b36a;
-}
+    .menu-button span {
+        font-size: 18px;
+    }
 
-.character-profile .character-info > p:not(.character-title) {
-    line-height: 2;
-    color: #cfcfcf;
-}
+    .about {
+        margin-top: 45px;
+        padding: 25px 20px;
+    }
 
-.character-details {
-    margin-top: 25px;
-    padding: 18px 20px;
-    background: #0d0d10;
-    border: 1px solid #2f2a24;
-    border-radius: 8px;
-}
+    .about p {
+        font-size: 16px;
+    }
 
-.character-details p {
-    margin: 10px 0;
-    color: #cfcfcf;
-}
+    .chapter-card {
+        padding: 16px;
+    }
 
-.character-details strong {
-    color: #d8b36a;
-}
-/* =========================================
-بطاقة الشخصيات — التصميم المطوّر
-========================================= */
+    .chapter-title {
+        font-size: 16px;
+    }
 
-.character-list {
-display: grid;
-grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-gap: 25px;
-max-width: 1100px;
-margin: 30px auto 0;
-}
+    .character-list {
+        grid-template-columns: 1fr;
+    }
 
-.character-card {
-position: relative;
-overflow: hidden;
-background: #111115;
-border: 1px solid #2f2a24;
-border-radius: 10px;
-transition:
-transform 0.25s ease,
-border-color 0.25s ease,
-box-shadow 0.25s ease;
-}
-
-.character-card:hover {
-transform: translateY(-5px);
-border-color: #d8b36a;
-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-}
-
-.character-card-link {
-display: block;
-color: inherit;
-text-decoration: none;
-}
-
-.character-card .character-image {
-width: 100%;
-height: 360px;
-overflow: hidden;
-background: #0d0d10;
-}
-
-.character-card .character-image img {
-width: 100%;
-height: 100%;
-display: block;
-object-fit: cover;
-transition: transform 0.35s ease;
-}
-
-.character-card:hover .character-image img {
-transform: scale(1.04);
-}
-
-.character-card .character-info {
-padding: 20px 20px 12px;
-}
-
-.character-card .character-info h3 {
-margin: 0 0 6px;
-font-size: 26px;
-color: #eeeeee;
-}
-
-.character-card-title {
-margin: 0 0 18px;
-color: #d8b36a;
-font-weight: 700;
-}
-
-.character-card-details {
-padding-top: 14px;
-border-top: 1px solid #2f2a24;
-}
-
-.character-card-details p {
-margin: 8px 0;
-color: #cfcfcf;
-font-size: 14px;
-}
-
-.character-card-details strong {
-color: #d8b36a;
-}
-
-.character-card-spoiler {
-padding: 0 20px 20px;
-}
-
-.character-card-spoiler .spoiler-button {
-width: 100%;
-}
-
-.character-card-spoiler .spoiler-info {
-margin-top: 12px;
-}
-
-@media (max-width: 600px) {
     .character-card .character-image {
         height: 320px;
     }
@@ -732,5 +583,31 @@ margin-top: 12px;
 
     .character-card-spoiler {
         padding: 0 18px 18px;
+    }
+
+    .character-profile {
+        flex-direction: column;
+        gap: 25px;
+        padding: 20px;
+    }
+
+    .character-profile .character-image {
+        width: 100%;
+        max-width: 340px;
+        flex: none;
+        margin: 0 auto;
+    }
+
+    .character-profile .character-image img {
+        width: 100%;
+        height: auto;
+    }
+
+    .character-profile .character-info {
+        width: 100%;
+    }
+
+    .character-profile .character-info h2 {
+        font-size: 28px;
     }
 }
