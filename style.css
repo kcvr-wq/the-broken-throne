@@ -368,6 +368,7 @@ main {
     justify-content: center;
 
     flex-shrink: 0;
+    overflow: hidden;
 
     background: #101014;
     border: 1px solid #3b3429;
@@ -376,6 +377,7 @@ main {
     color: #d8b36a;
     text-align: center;
     font-weight: 700;
+}
 }
 
 .character-info h3 {
