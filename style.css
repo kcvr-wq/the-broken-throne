@@ -1,1 +1,214 @@
+/* =========================================
+   العرش المكسور - التصميم الأساسي
+   ========================================= */
 
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    direction: rtl;
+    min-height: 100vh;
+    background: #0b0b0d;
+    color: #eeeeee;
+    font-family: "Noto Naskh Arabic", "Segoe UI", Tahoma, sans-serif;
+    line-height: 1.9;
+}
+
+/* الصفحة الرئيسية */
+
+main {
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+}
+
+/* -----------------------------------------
+   القسم الرئيسي
+   ----------------------------------------- */
+
+.hero {
+    text-align: center;
+    padding: 40px 20px 30px;
+}
+
+.hero h1 {
+    font-size: clamp(42px, 7vw, 78px);
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #d8b36a;
+    text-shadow:
+        0 0 12px rgba(216, 179, 106, 0.18),
+        0 8px 30px rgba(0, 0, 0, 0.8);
+}
+
+.subtitle {
+    margin-top: 8px;
+    color: #a7a7aa;
+    font-size: clamp(16px, 2vw, 21px);
+}
+
+/* -----------------------------------------
+   الغلاف
+   ----------------------------------------- */
+
+.cover {
+    width: min(360px, 85vw);
+    margin: 35px auto 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #151519;
+    border: 1px solid #302b24;
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.55),
+        0 0 35px rgba(216, 179, 106, 0.08);
+}
+
+.cover img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* -----------------------------------------
+   أزرار الأقسام
+   ----------------------------------------- */
+
+.navigation {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    width: min(850px, 100%);
+    margin: 45px auto 0;
+}
+
+.menu-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 75px;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: #eeeeee;
+    background: linear-gradient(145deg, #17171b, #101014);
+    border: 1px solid #3b3429;
+    border-radius: 8px;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.menu-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(216, 179, 106, 0.08),
+            transparent
+        );
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
+}
+
+.menu-button span {
+    position: relative;
+    z-index: 1;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.menu-button:hover {
+    transform: translateY(-3px);
+    border-color: #d8b36a;
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.4),
+        0 0 18px rgba(216, 179, 106, 0.08);
+}
+
+.menu-button:hover::before {
+    transform: translateX(100%);
+}
+
+/* -----------------------------------------
+   النبذة
+   ----------------------------------------- */
+
+.about {
+    width: min(850px, 100%);
+    margin: 70px auto 0;
+    padding: 35px;
+    background: #111115;
+    border: 1px solid #2b2927;
+    border-radius: 10px;
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.25);
+}
+
+.about h2 {
+    margin-bottom: 25px;
+    text-align: center;
+    color: #d8b36a;
+    font-size: 30px;
+}
+
+.about p {
+    margin-bottom: 18px;
+    color: #d0d0d2;
+    font-size: 18px;
+}
+
+.about p:last-child {
+    margin-bottom: 0;
+    text-align: center;
+    color: #e0c27f;
+}
+
+/* -----------------------------------------
+   الهاتف
+   ----------------------------------------- */
+
+@media (max-width: 700px) {
+
+    main {
+        padding: 25px 14px 60px;
+    }
+
+    .hero {
+        padding-top: 25px;
+    }
+
+    .navigation {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 30px;
+    }
+
+    .menu-button {
+        min-height: 65px;
+    }
+
+    .menu-button span {
+        font-size: 18px;
+    }
+
+    .about {
+        margin-top: 45px;
+        padding: 25px 20px;
+    }
+
+    .about p {
+        font-size: 16px;
+    }
+}
