@@ -722,19 +722,15 @@ margin-top: 12px;
 }
 
 @media (max-width: 600px) {
+    .character-card .character-image {
+        height: 320px;
+    }
 
-```
-.character-card .character-image {
-    height: 320px;
-}
+    .character-card .character-info {
+        padding: 18px;
+    }
 
-.character-card .character-info {
-    padding: 18px;
-}
-
-.character-card-spoiler {
-    padding: 0 18px 18px;
-}
-```
-
+    .character-card-spoiler {
+        padding: 0 18px 18px;
+    }
 }
