@@ -556,13 +556,25 @@ main {
    تكبير صورة صفحة الشخصية
 ========================================= */
 
+/* =========================================
+   صورة صفحة الشخصية
+========================================= */
+
+.character-profile {
+    overflow: visible;
+}
+
 .character-profile .character-image {
     flex: 0 0 340px;
     width: 340px;
+    height: auto;
+    overflow: visible;
 }
 
 .character-profile .character-image img {
-    width: 340px;
-    max-width: 100%;
+    display: block;
+    width: 100%;
     height: auto;
+    max-width: none;
+    object-fit: contain;
 }
