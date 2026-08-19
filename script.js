@@ -26,3 +26,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 });
+/* =========================================
+   معلومات الحرق
+========================================= */
+
+.spoiler-info {
+    display: none;
+    margin-top: 12px;
+    padding: 12px;
+    background: #111115;
+    border: 1px solid #3b3429;
+    border-radius: 6px;
+    color: #cfcfcf;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+.spoiler-info.show {
+    display: block;
+}
