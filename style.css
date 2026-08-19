@@ -276,10 +276,15 @@ main {
    أزرار التنقل داخل الفصل
    ========================================= */
 
+/* =========================================
+   أزرار التنقل داخل الفصل
+   ========================================= */
+
 .chapter-navigation {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
+    align-items: center;
+    margin: 45px auto 10px;
 }
 
 .chapter-nav-button {
@@ -287,26 +292,32 @@ main {
     align-items: center;
     justify-content: center;
 
-    min-width: 180px;
-    padding: 14px 24px;
+    width: 220px;
+    min-height: 58px;
 
+    padding: 12px 24px;
+
+    background: #111115;
     color: #eeeeee;
-    text-decoration: none;
 
-    background: #151519;
-    border: 1px solid #3b3429;
+    border: 1px solid #d8b36a;
     border-radius: 8px;
 
+    text-decoration: none;
+    font-size: 18px;
     font-weight: 700;
 
-    transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        background 0.25s ease;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+
+    transition: all 0.25s ease;
 }
 
 .chapter-nav-button:hover {
+    background: #19181c;
+    color: #d8b36a;
     transform: translateY(-3px);
-    border-color: #d8b36a;
-    background: #1b1a1e;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.45),
+        0 0 15px rgba(216, 179, 106, 0.12);
 }
