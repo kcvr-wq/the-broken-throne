@@ -6740,3 +6740,566 @@ body.light-theme
     }
 
 }
+/* =========================================
+   صفحة التقنيات — الواجهة الرئيسية
+========================================= */
+
+.techniques-category-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 20px;
+
+    width: 100%;
+
+    margin-top: 35px;
+}
+
+
+/* =========================================
+   بطاقة التقنية
+========================================= */
+
+.techniques-category-card {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: flex-start;
+
+    min-height: 235px;
+
+    padding:
+        28px
+        28px
+        30px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #0c0c0c
+        );
+
+    border:
+        1px solid #401717;
+
+    border-radius: 12px;
+
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 14px 32px
+        rgba(0, 0, 0, 0.30);
+
+    transition:
+        transform 0.30s ease,
+        background 0.30s ease,
+        border-color 0.30s ease,
+        box-shadow 0.30s ease;
+}
+
+
+/* الخط الأحمر العلوي */
+
+.techniques-category-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            #b62121,
+            #8f1c1c,
+            transparent
+        );
+
+    opacity: 0.75;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+
+/* الدائرة الزخرفية */
+
+.techniques-category-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -105px;
+    bottom: -105px;
+
+    border:
+        1px solid
+        rgba(165, 29, 29, 0.10);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transition:
+        transform 0.45s ease,
+        border-color 0.45s ease;
+}
+
+
+/* =========================================
+   التفاعل
+========================================= */
+
+.techniques-category-card:hover {
+    transform:
+        translateY(-6px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d1010,
+            #100c0c
+        );
+
+    border-color:
+        #8f1c1c;
+
+    box-shadow:
+        0 20px 42px
+        rgba(0, 0, 0, 0.45),
+
+        0 0 24px
+        rgba(127, 17, 17, 0.12);
+}
+
+.techniques-category-card:hover::before {
+    opacity: 1;
+}
+
+.techniques-category-card:hover::after {
+    transform:
+        scale(1.35);
+
+    border-color:
+        rgba(165, 29, 29, 0.17);
+}
+
+
+/* =========================================
+   رقم القسم
+========================================= */
+
+.techniques-category-number {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    background:
+        #101010;
+
+    border:
+        1px solid #5b1919;
+
+    border-radius: 9px;
+
+    color:
+        #a51d1d;
+
+    font-family:
+        "Cairo",
+        "Segoe UI",
+        Tahoma,
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    line-height: 1;
+
+    direction: ltr;
+
+    z-index: 2;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
+}
+
+.techniques-category-card:hover
+.techniques-category-number {
+    background:
+        #1a1010;
+
+    border-color:
+        #a51d1d;
+
+    color:
+        #d02b2b;
+
+    box-shadow:
+        0 0 16px
+        rgba(165, 29, 29, 0.14);
+
+    transform:
+        scale(1.05);
+}
+
+
+/* =========================================
+   عنوان البطاقة
+========================================= */
+
+.techniques-category-title {
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    margin-top: 52px;
+
+    margin-bottom: 12px;
+
+    padding-left: 55px;
+
+    color:
+        #eeeeee;
+
+    font-size:
+        calc(
+            24px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 900;
+
+    line-height: 1.4;
+
+    transition:
+        color 0.3s ease;
+}
+
+.techniques-category-card:hover
+.techniques-category-title {
+    color:
+        #ffffff;
+}
+
+
+/* =========================================
+   وصف البطاقة
+========================================= */
+
+.techniques-category-text {
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    max-width: 92%;
+
+    color:
+        #9f9f9f;
+
+    font-size:
+        calc(
+            15px
+            * var(--site-text-scale)
+        );
+
+    line-height:
+        1.9;
+}
+
+
+/* =========================================
+   سهم البطاقة
+========================================= */
+
+.techniques-category-arrow {
+    position: absolute;
+
+    left: 22px;
+    bottom: 22px;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+
+    background:
+        #101010;
+
+    border:
+        1px solid #4b1717;
+
+    border-radius: 50%;
+
+    color:
+        #a51d1d;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.techniques-category-card:hover
+.techniques-category-arrow {
+    transform:
+        translateX(-5px);
+
+    background:
+        #1a1010;
+
+    border-color:
+        #a51d1d;
+
+    color:
+        #ffffff;
+
+    box-shadow:
+        0 0 14px
+        rgba(165, 29, 29, 0.10);
+}
+
+
+/* =========================================
+   تمييز البطاقات
+========================================= */
+
+.techniques-category-card:nth-child(1) {
+    border-top-color:
+        #5b1919;
+}
+
+.techniques-category-card:nth-child(2) {
+    border-top-color:
+        #6f1a1a;
+}
+
+.techniques-category-card:nth-child(3) {
+    border-top-color:
+        #7f1111;
+}
+
+.techniques-category-card:nth-child(4) {
+    border-top-color:
+        #8f1c1c;
+}
+
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.techniques-category-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color:
+        #d8c2c2;
+
+    box-shadow:
+        0 14px 32px
+        rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme
+.techniques-category-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf7f7
+        );
+
+    border-color:
+        #a98787;
+
+    box-shadow:
+        0 20px 40px
+        rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme
+.techniques-category-title {
+    color:
+        #222222;
+}
+
+body.light-theme
+.techniques-category-text {
+    color:
+        #555555;
+}
+
+body.light-theme
+.techniques-category-number,
+body.light-theme
+.techniques-category-arrow {
+    background:
+        #faf7f7;
+
+    border-color:
+        #d7bcbc;
+
+    color:
+        #8f1c1c;
+}
+
+body.light-theme
+.techniques-category-card:hover
+.techniques-category-title {
+    color:
+        #111111;
+}
+
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 760px) {
+
+    .techniques-category-grid {
+        grid-template-columns:
+            1fr;
+
+        gap: 15px;
+
+        margin-top: 28px;
+    }
+
+    .techniques-category-card {
+        min-height:
+            205px;
+
+        padding:
+            22px
+            20px
+            25px;
+    }
+
+    .techniques-category-number {
+        top: 16px;
+        right: 16px;
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 11px;
+    }
+
+    .techniques-category-title {
+        margin-top: 48px;
+
+        margin-bottom: 9px;
+
+        padding-left: 42px;
+
+        font-size:
+            calc(
+                21px
+                * var(--site-text-scale)
+            );
+    }
+
+    .techniques-category-text {
+        max-width: 100%;
+
+        font-size:
+            calc(
+                14px
+                * var(--site-text-scale)
+            );
+    }
+
+    .techniques-category-arrow {
+        left: 16px;
+        bottom: 16px;
+
+        width: 36px;
+        height: 36px;
+
+        font-size: 18px;
+    }
+}
+
+
+/* =========================================
+   الهاتف الأصغر
+========================================= */
+
+@media (max-width: 420px) {
+
+    .techniques-category-card {
+        min-height:
+            195px;
+
+        padding:
+            20px
+            18px
+            23px;
+    }
+
+    .techniques-category-title {
+        font-size:
+            19px;
+    }
+
+    .techniques-category-text {
+        font-size:
+            13px;
+    }
+
+}
