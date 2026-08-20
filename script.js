@@ -296,6 +296,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const READER_SETTINGS_KEY =
         "brokenThroneReaderSettings";
 
+    const LAST_CHAPTER_KEY =
+        "brokenThroneLastChapter";
+
 
     /* =========================================
        الإعدادات الافتراضية للموقع
@@ -411,6 +414,282 @@ document.addEventListener("DOMContentLoaded", () => {
             READER_SETTINGS_KEY,
             JSON.stringify(readerSettings)
         );
+
+    }
+
+
+    /* =========================================
+       نظام تابع القراءة
+    ========================================= */
+
+    function getCurrentChapterData() {
+
+        const chapterReader =
+            document.querySelector(".chapter-reader");
+
+        if (!chapterReader) {
+            return null;
+        }
+
+
+        const path =
+            window.location.pathname;
+
+
+        const chapterMatch =
+            path.match(/\/chapter-(\d+)\.html$/i);
+
+        if (!chapterMatch) {
+            return null;
+        }
+
+
+        const chapterNumber =
+            Number(chapterMatch[1]);
+
+
+        const titleElement =
+            document.querySelector(".hero h1");
+
+
+        const chapterTitle =
+            titleElement
+                ? titleElement.textContent.trim()
+                : `الفصل ${chapterNumber}`;
+
+
+        return {
+
+            number:
+                chapterNumber,
+
+            title:
+                chapterTitle,
+
+            url:
+                window.location.pathname,
+
+            updatedAt:
+                Date.now()
+
+        };
+
+    }
+
+
+    function saveLastChapter() {
+
+        const chapterData =
+            getCurrentChapterData();
+
+        if (!chapterData) {
+            return;
+        }
+
+
+        try {
+
+            localStorage.setItem(
+                LAST_CHAPTER_KEY,
+                JSON.stringify(chapterData)
+            );
+
+        } catch (error) {
+
+            console.warn(
+                "تعذر حفظ آخر فصل.",
+                error
+            );
+
+        }
+
+    }
+
+
+    function loadLastChapter() {
+
+        try {
+
+            const saved =
+                localStorage.getItem(
+                    LAST_CHAPTER_KEY
+                );
+
+            if (!saved) {
+                return null;
+            }
+
+
+            const data =
+                JSON.parse(saved);
+
+
+            if (
+                !data ||
+                !data.url ||
+                !data.number
+            ) {
+                return null;
+            }
+
+
+            return data;
+
+        } catch (error) {
+
+            return null;
+
+        }
+
+    }
+
+
+    function isHomePage() {
+
+        const path =
+            window.location.pathname;
+
+
+        const normalizedPath =
+            path.replace(/\/+$/, "");
+
+
+        return (
+            normalizedPath === "" ||
+            normalizedPath === "/the-broken-throne" ||
+            normalizedPath === "/the-broken-throne/index.html"
+        );
+
+    }
+
+
+    function createContinueReading() {
+
+        if (!isHomePage()) {
+            return;
+        }
+
+
+        if (
+            document.querySelector(
+                ".continue-reading-card"
+            )
+        ) {
+            return;
+        }
+
+
+        const navigation =
+            document.querySelector(".navigation");
+
+        if (!navigation) {
+            return;
+        }
+
+
+        const savedChapter =
+            loadLastChapter();
+
+
+        const card =
+            document.createElement("a");
+
+        card.className =
+            "continue-reading-card";
+
+
+        /* -----------------------------------------
+           إذا كان هناك فصل محفوظ
+        ----------------------------------------- */
+
+        if (
+            savedChapter &&
+            savedChapter.url
+        ) {
+
+            card.href =
+                savedChapter.url;
+
+
+            card.innerHTML = `
+
+                <span class="continue-reading-label">
+                    تابع القراءة
+                </span>
+
+                <span class="continue-reading-title">
+                    ${escapeHTML(
+                        savedChapter.title
+                    )}
+                </span>
+
+                <span class="continue-reading-number">
+                    الفصل ${String(
+                        savedChapter.number
+                    ).padStart(2, "0")}
+                </span>
+
+                <span class="continue-reading-arrow">
+                    ←
+                </span>
+
+            `;
+
+        }
+
+        /* -----------------------------------------
+           إذا لم يوجد فصل محفوظ
+        ----------------------------------------- */
+
+        else {
+
+            card.href =
+                "chapters/chapter-01.html";
+
+
+            card.innerHTML = `
+
+                <span class="continue-reading-label">
+                    ابدأ القراءة
+                </span>
+
+                <span class="continue-reading-title">
+                    الفصل الأول: الطفل الذي لم يخطئ
+                </span>
+
+                <span class="continue-reading-number">
+                    الفصل 01
+                </span>
+
+                <span class="continue-reading-arrow">
+                    ←
+                </span>
+
+            `;
+
+        }
+
+
+        navigation.parentNode.insertBefore(
+            card,
+            navigation
+        );
+
+    }
+
+
+    /* =========================================
+       حماية النص الذي يظهر داخل HTML
+    ========================================= */
+
+    function escapeHTML(text) {
+
+        return String(text)
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
 
     }
 
@@ -1494,5 +1773,9 @@ document.addEventListener("DOMContentLoaded", () => {
     applySiteSettings();
 
     applyReaderSettings();
+
+    saveLastChapter();
+
+    createContinueReading();
 
 });
