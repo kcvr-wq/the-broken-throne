@@ -10,6 +10,11 @@
 
 html {
     scroll-behavior: smooth;
+
+    width: 100%;
+    max-width: 100%;
+
+    overflow-x: hidden;
 }
 
 :root {
@@ -39,6 +44,9 @@ body {
     direction: rtl;
     min-height: 100vh;
 
+    width: 100%;
+    max-width: 100%;
+
     background: #080808;
     color: #eeeeee;
 
@@ -52,10 +60,13 @@ body {
 
     line-height: var(--site-line-height, 1.9);
 
+    overflow-x: hidden;
+
     transition:
         background-color 0.3s ease,
         color 0.3s ease;
 }
+
 
 /* =========================================
    الصفحة الرئيسية
@@ -69,6 +80,7 @@ main {
 
     padding: 40px 20px 80px;
 }
+
 
 /* =========================================
    العنوان الرئيسي
@@ -107,8 +119,9 @@ main {
         );
 }
 
+
 /* =========================================
-   عنوان الرواية — زر العودة للرئيسية
+   عنوان الرواية — زر العودة
 ========================================= */
 
 .site-title-link {
@@ -165,6 +178,7 @@ main {
         0 0 16px rgba(127, 17, 17, 0.15);
 }
 
+
 /* =========================================
    الغلاف
 ========================================= */
@@ -195,8 +209,9 @@ main {
     height: auto;
 }
 
+
 /* =========================================
-   أزرار الأقسام
+   أزرار الأقسام العامة
 ========================================= */
 
 .navigation {
@@ -301,8 +316,9 @@ main {
         translateX(100%);
 }
 
+
 /* =========================================
-   الأقسام
+   الأقسام العامة
 ========================================= */
 
 .about {
@@ -354,6 +370,7 @@ main {
 .about p:last-child {
     margin-bottom: 0;
 }
+
 
 /* =========================================
    الفصول
@@ -437,6 +454,7 @@ main {
 
     font-weight: 600;
 }
+
 
 /* =========================================
    مجلدات الفصول
@@ -692,10 +710,6 @@ main {
     width: 100%;
 }
 
-/* =========================================
-   تأثيرات إضافية للفصول داخل المجلد
-========================================= */
-
 .volume-folder[open] .chapter-card {
     animation:
         chapter-card-in 0.45s ease both;
@@ -749,8 +763,9 @@ main {
 
 }
 
+
 /* =========================================
-   خريطة العالم
+   عالم الرواية — البطاقات
 ========================================= */
 
 .world-map-page {
@@ -988,81 +1003,25 @@ main {
         var(--site-line-height);
 }
 
-/* =========================================
-   خريطة العالم — الوضع الفاتح
-========================================= */
+.world-region-card,
+.world-region-card:visited,
+.world-region-card:hover,
+.world-region-card:active {
+    color: #eeeeee;
 
-body.light-theme
-.world-intro {
-    color: #555555;
+    text-decoration: none;
 }
 
-body.light-theme
-.world-region-card {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f4f2
-        );
+.world-region-card .world-region-header h3 {
+    color: #eeeeee;
 
-    border-color: #d8c2c2;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.08);
+    text-decoration: none;
 }
 
-body.light-theme
-.world-region-card:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #faf7f7
-        );
-
-    border-color: #a98787;
-
-    box-shadow:
-        0 18px 35px rgba(0, 0, 0, 0.12);
+.world-region-card:hover .world-region-header h3 {
+    color: #ffffff;
 }
 
-body.light-theme
-.world-region-number {
-    background: #faf7f7;
-
-    border-color: #d7bcbc;
-}
-
-body.light-theme
-.world-region-card:hover
-.world-region-number {
-    background: #f3eeee;
-
-    border-color: #a51d1d;
-
-    color: #8f1c1c;
-}
-
-body.light-theme
-.world-region-header h3 {
-    color: #222222;
-}
-
-body.light-theme
-.world-region-line {
-    background:
-        linear-gradient(
-            90deg,
-            #c99f9f,
-            transparent
-        );
-}
-
-body.light-theme
-.world-region-card p {
-    color: #4a4a4a;
-}
 
 /* =========================================
    قراءة الفصول
@@ -1132,8 +1091,9 @@ body.light-theme
         0 0 15px rgba(127, 17, 17, 0.15);
 }
 
+
 /* =========================================
-   بطاقات الشخصيات
+   الشخصيات
 ========================================= */
 
 .character-list {
@@ -1289,6 +1249,7 @@ body.light-theme
     width: 100%;
 }
 
+
 /* =========================================
    زر الحرق
 ========================================= */
@@ -1328,10 +1289,6 @@ body.light-theme
     color: #eeeeee;
 }
 
-/* =========================================
-   معلومات الحرق
-========================================= */
-
 .spoiler-info {
     display: none;
 
@@ -1364,6 +1321,7 @@ body.light-theme
 .spoiler-info strong {
     color: #b62121;
 }
+
 
 /* =========================================
    صفحة الشخصية
@@ -1516,6 +1474,7 @@ body.light-theme
     margin-bottom: 15px;
 }
 
+
 /* =========================================
    زر العودة
 ========================================= */
@@ -1569,6 +1528,7 @@ body.light-theme
         translateY(-2px);
 }
 
+
 /* =========================================
    إعدادات الموقع
 ========================================= */
@@ -1579,6 +1539,9 @@ body.light-theme
     top: 20px;
     right: 20px;
 
+    width: auto;
+    max-width: none;
+
     z-index: 9999;
 }
 
@@ -1586,12 +1549,17 @@ body.light-theme
     width: 48px;
     height: 48px;
 
+    min-width: 48px;
+    max-width: 48px;
+
     display: flex;
 
     align-items: center;
     justify-content: center;
 
     padding: 0;
+
+    flex-shrink: 0;
 
     background: #111111;
 
@@ -1627,6 +1595,7 @@ body.light-theme
 
     color: #eeeeee;
 }
+
 
 /* =========================================
    لوحة الإعدادات
@@ -1698,6 +1667,7 @@ body.light-theme
         scale(1);
 }
 
+
 /* =========================================
    رأس الإعدادات
 ========================================= */
@@ -1765,6 +1735,7 @@ body.light-theme
     color: #eeeeee;
 }
 
+
 /* =========================================
    مجموعات الإعدادات
 ========================================= */
@@ -1780,6 +1751,7 @@ body.light-theme
 
     font-size: 16px;
 }
+
 
 /* =========================================
    خيارات الإعدادات
@@ -1846,6 +1818,7 @@ body.light-theme
         0 0 14px rgba(165, 29, 29, 0.15);
 }
 
+
 /* =========================================
    زر إعادة الإعدادات
 ========================================= */
@@ -1887,8 +1860,9 @@ body.light-theme
     color: #eeeeee;
 }
 
+
 /* =========================================
-   إعدادات القراءة داخل الفصل
+   إعدادات القراءة
 ========================================= */
 
 .reader-settings-wrapper {
@@ -1946,6 +1920,7 @@ body.light-theme
     color: #ffffff;
 }
 
+
 /* =========================================
    نص الفصل
 ========================================= */
@@ -1991,549 +1966,9 @@ body.light-theme
     margin-bottom: 0;
 }
 
-/* =========================================
-   الوضع الفاتح
-========================================= */
-
-body.light-theme {
-    background: #f2f0ed;
-
-    color: #222222;
-}
-
-body.light-theme .about {
-    background: #ffffff;
-
-    border-color: #dbc5c5;
-
-    box-shadow:
-        0 20px 45px rgba(0, 0, 0, 0.10);
-}
-
-body.light-theme .about p {
-    color: #444444;
-}
-
-body.light-theme .menu-button,
-body.light-theme .chapter-card,
-body.light-theme .chapter-nav-button,
-body.light-theme .character-card,
-body.light-theme .character-profile {
-    background: #ffffff;
-
-    border-color: #d8c2c2;
-}
-
-body.light-theme .menu-button,
-body.light-theme .chapter-card,
-body.light-theme .chapter-nav-button {
-    color: #222222;
-}
-
-body.light-theme .chapter-card:hover {
-    background: #faf7f7;
-}
-
-body.light-theme
-.character-card
-.character-info h3,
-body.light-theme
-.character-profile
-.character-info h2 {
-    color: #222222;
-}
-
-body.light-theme
-.character-card-details p,
-body.light-theme
-.character-profile
-.character-info
-> p:not(.character-title),
-body.light-theme
-.character-details p {
-    color: #444444;
-}
-
-body.light-theme .character-details {
-    background: #f7f4f2;
-
-    border-color: #dbc5c5;
-}
-
-body.light-theme
-.site-settings-button,
-body.light-theme
-.reader-settings-button,
-body.light-theme
-.site-title-link {
-    background: #ffffff;
-
-    border-color: #d7bcbc;
-}
-
-body.light-theme
-.site-settings-panel,
-body.light-theme
-.reader-settings-panel {
-    background: #ffffff;
-
-    border-color: #d7bcbc;
-
-    box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.18);
-}
-
-body.light-theme
-.settings-panel-header {
-    border-bottom-color:
-        #e4d6d6;
-}
-
-body.light-theme
-.settings-group h3 {
-    color: #2b2b2b;
-}
-
-body.light-theme
-.settings-option,
-body.light-theme
-.reader-option {
-    background: #f7f4f2;
-
-    color: #444444;
-
-    border-color: #dbc5c5;
-}
-
-body.light-theme
-.settings-option.active,
-body.light-theme
-.reader-option.active {
-    background: #8f1c1c;
-
-    border-color: #8f1c1c;
-
-    color: #ffffff;
-}
-
-body.light-theme
-.settings-reset {
-    background: #f7f4f2;
-}
-
-body.light-theme
-.chapter-reader p {
-    color: #444444;
-}
 
 /* =========================================
-   المجلدات — الوضع الفاتح
-========================================= */
-
-body.light-theme .volume-folder {
-    background: #ffffff;
-
-    border-color: #d8c2c2;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.10);
-}
-
-body.light-theme .volume-folder[open] {
-    border-color: #b88e8e;
-
-    box-shadow:
-        0 15px 35px rgba(0, 0, 0, 0.12),
-        0 0 20px rgba(127, 17, 17, 0.07);
-}
-
-body.light-theme .volume-folder summary {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f4f2
-        );
-
-    color: #222222;
-}
-
-body.light-theme .volume-folder summary:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #faf7f7,
-            #f3eeee
-        );
-
-    color: #222222;
-}
-
-body.light-theme .volume-folder[open] summary {
-    background:
-        linear-gradient(
-            145deg,
-            #fffafa,
-            #f5eeee
-        );
-}
-
-body.light-theme .volume-folder .chapter-list {
-    background:
-        linear-gradient(
-            180deg,
-            #faf8f6 0%,
-            #f7f4f2 100%
-        );
-
-    border-top-color: #e4d6d6;
-}
-
-body.light-theme .volume-arrow {
-    background: #ffffff;
-
-    border-color: #d7bcbc;
-
-    color: #8f1c1c;
-}
-
-body.light-theme .volume-folder[open] .volume-arrow {
-    background: #f3eeee;
-
-    border-color: #a51d1d;
-
-    color: #8f1c1c;
-}
-
-body.light-theme .volume-folder .chapter-card {
-    background: #ffffff;
-
-    border-color: #d8c2c2;
-}
-
-body.light-theme .volume-folder .chapter-card:hover {
-    background: #faf7f7;
-}
-
-/* =========================================
-   تقليل الحركة لمن يفضل ذلك
-========================================= */
-
-@media (prefers-reduced-motion: reduce) {
-
-    *,
-    *::before,
-    *::after {
-        scroll-behavior: auto !important;
-
-        transition-duration: 0.01ms !important;
-
-        animation-duration: 0.01ms !important;
-
-        animation-iteration-count: 1 !important;
-    }
-
-}
-
-/* =========================================
-   الهاتف
-========================================= */
-
-@media (max-width: 700px) {
-
-    main {
-        padding:
-            25px 14px 60px;
-    }
-
-    .hero {
-        padding-top: 25px;
-    }
-
-    .navigation {
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-
-        margin-top: 30px;
-    }
-
-    .menu-button {
-        min-height: 65px;
-    }
-
-    .menu-button span {
-        font-size:
-            calc(
-                18px
-                * var(--site-text-scale)
-            );
-    }
-
-    .about {
-        margin-top: 45px;
-
-        padding:
-            25px 20px;
-    }
-
-    .about p {
-        font-size:
-            calc(
-                16px
-                * var(--site-text-scale)
-            );
-    }
-
-    .chapter-card {
-        padding: 16px;
-    }
-
-    .chapter-title {
-        font-size:
-            calc(
-                16px
-                * var(--site-text-scale)
-            );
-    }
-
-    .chapter-list {
-        gap: 12px;
-    }
-
-    /* -------------------------
-       المجلدات
-    ------------------------- */
-
-    .volume-folder {
-        margin-top: 16px;
-    }
-
-    .volume-folder summary {
-        padding: 17px 18px;
-
-        font-size:
-            calc(
-                18px
-                * var(--site-text-scale)
-            );
-    }
-
-    .volume-folder .chapter-list {
-        padding: 12px;
-    }
-
-    .volume-arrow {
-        width: 30px;
-        height: 30px;
-
-        font-size: 18px;
-    }
-
-    /* -------------------------
-       خريطة العالم
-    ------------------------- */
-
-    .world-intro {
-        margin-bottom: 25px;
-    }
-
-    .world-region-grid {
-        grid-template-columns: 1fr;
-
-        gap: 15px;
-
-        margin-top: 25px;
-    }
-
-    .world-region-card {
-        min-height: auto;
-
-        padding: 20px;
-    }
-
-    .world-region-header {
-        gap: 12px;
-    }
-
-    .world-region-number {
-        width: 38px;
-        height: 38px;
-
-        font-size: 13px;
-    }
-
-    .world-region-header h3 {
-        font-size:
-            calc(
-                19px
-                * var(--site-text-scale)
-            );
-    }
-
-    .world-region-card p {
-        font-size:
-            calc(
-                15px
-                * var(--site-text-scale)
-            );
-    }
-
-    /* -------------------------
-       تنقل الفصول
-    ------------------------- */
-
-    .chapter-navigation {
-        flex-direction: column;
-    }
-
-    .chapter-nav-button {
-        width: 100%;
-    }
-
-    /* -------------------------
-       الشخصيات
-    ------------------------- */
-
-    .character-list {
-        grid-template-columns: 1fr;
-    }
-
-    .character-card
-    .character-image {
-        height: 320px;
-    }
-
-    .character-card
-    .character-info {
-        padding: 18px;
-    }
-
-    .character-card-spoiler {
-        padding:
-            0
-            18px
-            18px;
-    }
-
-    .character-profile {
-        flex-direction: column;
-
-        gap: 25px;
-
-        padding: 20px;
-    }
-
-    .character-profile
-    .character-image {
-        width: 100%;
-
-        max-width: 340px;
-
-        flex: none;
-
-        margin: 0 auto;
-    }
-
-    .character-profile
-    .character-image img {
-        width: 100%;
-
-        height: auto;
-    }
-
-    .character-profile
-    .character-info {
-        width: 100%;
-    }
-
-    .character-profile
-    .character-info h2 {
-        font-size:
-            calc(
-                28px
-                * var(--site-text-scale)
-            );
-    }
-
-    /* -------------------------
-       الإعدادات
-    ------------------------- */
-
-    .site-settings-wrapper {
-        top: 12px;
-
-        right: 12px;
-    }
-
-    .reader-settings-wrapper {
-        top: 12px;
-
-        left: 12px;
-    }
-
-    .site-settings-button,
-    .reader-settings-button {
-        width: 44px;
-
-        height: 44px;
-    }
-
-    .site-settings-panel,
-    .reader-settings-panel {
-        top: 52px;
-
-        width:
-            calc(
-                100vw - 24px
-            );
-
-        padding: 18px;
-    }
-
-    .site-settings-panel {
-        right: -12px;
-    }
-
-    .reader-settings-panel {
-        left: -12px;
-    }
-
-    .settings-group {
-        margin-top: 16px;
-    }
-
-    .settings-option,
-    .reader-option {
-        min-width: 65px;
-
-        font-size: 12px;
-
-        padding:
-            8px 9px;
-    }
-
-    .chapter-reader p {
-        font-size:
-            var(--reader-text-size);
-    }
-
-    .site-title-link {
-        min-width: 170px;
-
-        padding:
-            9px 20px;
-
-        font-size:
-            calc(
-                16px
-                * var(--site-text-scale)
-            );
-    }
-
-}
-/* =========================================
-   الثقافة والعادات — بطاقات ملونة
+   الثقافة والعادات
 ========================================= */
 
 .world-culture-grid {
@@ -2598,8 +2033,6 @@ body.light-theme .volume-folder .chapter-card:hover {
             transparent
         );
 }
-
-/* ألوان مختلفة للبطاقات */
 
 .world-culture-card:nth-child(1) {
     border-color: #5b1919;
@@ -2702,93 +2135,9 @@ body.light-theme .volume-folder .chapter-card:hover {
         var(--site-line-height);
 }
 
-/* =========================================
-   الثقافة — الوضع الفاتح
-========================================= */
-
-body.light-theme .world-culture-card {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f4f2
-        );
-
-    border-color: #d8c2c2;
-
-    box-shadow:
-        0 12px 30px rgba(0, 0, 0, 0.08);
-}
-
-body.light-theme .world-culture-card:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #faf7f7
-        );
-
-    border-color: #a98787;
-}
-
-body.light-theme .world-culture-icon {
-    background:
-        linear-gradient(
-            145deg,
-            #fff5f5,
-            #f5eeee
-        );
-
-    border-color: #c99f9f;
-
-    color: #8f1c1c;
-}
-
-body.light-theme .world-culture-card h3 {
-    color: #222222;
-}
-
-body.light-theme .world-culture-card p {
-    color: #4a4a4a;
-}
 
 /* =========================================
-   الثقافة — الهاتف
-========================================= */
-
-@media (max-width: 700px) {
-
-    .world-culture-grid {
-        grid-template-columns: 1fr;
-
-        gap: 15px;
-    }
-
-    .world-culture-card {
-        min-height: auto;
-
-        padding: 21px;
-    }
-
-    .world-culture-card h3 {
-        font-size:
-            calc(
-                19px
-                * var(--site-text-scale)
-            );
-    }
-
-    .world-culture-card p {
-        font-size:
-            calc(
-                15px
-                * var(--site-text-scale)
-            );
-    }
-
-}
-/* =========================================
-   الصفحة الرئيسية لعالم الموريم
+   عالم الموريم الرئيسي
 ========================================= */
 
 .world-hero {
@@ -2874,10 +2223,6 @@ body.light-theme .world-culture-card p {
         var(--site-line-height);
 }
 
-/* =========================================
-   بطاقات أقسام عالم الموريم
-========================================= */
-
 .world-sections-grid {
     display: grid;
 
@@ -2943,9 +2288,6 @@ body.light-theme .world-culture-card p {
         );
 
     opacity: 0.6;
-
-    transition:
-        opacity 0.3s ease;
 }
 
 .world-main-card:hover {
@@ -2964,10 +2306,6 @@ body.light-theme .world-culture-card p {
     box-shadow:
         0 18px 38px rgba(0, 0, 0, 0.42),
         0 0 22px rgba(127, 17, 17, 0.10);
-}
-
-.world-main-card:hover::before {
-    opacity: 1;
 }
 
 .world-main-card-number {
@@ -2995,20 +2333,6 @@ body.light-theme .world-culture-card p {
     font-size: 13px;
 
     font-weight: 800;
-
-    transition:
-        background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease;
-}
-
-.world-main-card:hover
-.world-main-card-number {
-    background: #1a1010;
-
-    border-color: #a51d1d;
-
-    color: #d02b2b;
 }
 
 .world-main-card-title {
@@ -3067,160 +2391,18 @@ body.light-theme .world-culture-card p {
     color: #a51d1d;
 
     font-size: 18px;
-
-    transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease;
 }
 
-.world-main-card:hover
-.world-main-card-arrow {
-    transform:
-        translateX(-4px);
-
-    background: #1a1010;
-
-    border-color: #a51d1d;
-
-    color: #eeeeee;
-}
 
 /* =========================================
-   الوضع الفاتح
-========================================= */
-
-body.light-theme .world-overview {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f4f2
-        );
-
-    border-color: #dbc5c5;
-
-    box-shadow:
-        0 25px 55px rgba(0, 0, 0, 0.10);
-}
-
-body.light-theme .world-overview-header h2 {
-    color: #222222;
-}
-
-body.light-theme .world-overview-header p {
-    color: #555555;
-}
-
-body.light-theme .world-main-card {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f4f2
-        );
-
-    border-color: #d8c2c2;
-
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.06);
-}
-
-body.light-theme .world-main-card:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #faf7f7
-        );
-
-    border-color: #a98787;
-}
-
-body.light-theme .world-main-card-number,
-body.light-theme .world-main-card-arrow {
-    background: #faf7f7;
-
-    border-color: #d7bcbc;
-}
-
-body.light-theme .world-main-card-title {
-    color: #222222;
-}
-
-body.light-theme .world-main-card-text {
-    color: #555555;
-}
-
-/* =========================================
-   الهاتف
-========================================= */
-
-@media (max-width: 700px) {
-
-    .world-overview {
-        margin-top: 30px;
-
-        padding: 25px 18px;
-    }
-
-    .world-overview-header {
-        margin-bottom: 28px;
-    }
-
-    .world-overview-header h2 {
-        font-size:
-            calc(
-                27px
-                * var(--site-text-scale)
-            );
-    }
-
-    .world-sections-grid {
-        grid-template-columns: 1fr;
-
-        gap: 14px;
-    }
-
-    .world-main-card {
-        min-height: 175px;
-
-        padding:
-            22px
-            24px
-            22px
-            52px;
-    }
-
-    .world-main-card-title {
-        font-size:
-            calc(
-                19px
-                * var(--site-text-scale)
-            );
-    }
-
-    .world-main-card-text {
-        font-size:
-            calc(
-                14px
-                * var(--site-text-scale)
-            );
-    }
-
-}
-/* =========================================
-   صفحات التقنيات والمهارات
+   التقنيات والمهارات
 ========================================= */
 
 .world-technique-profile {
+    width: 100%;
+
     margin-top: 25px;
 }
-
-/* =========================================
-   معلومات الطائفة
-========================================= */
 
 .world-technique-info {
     display: grid;
@@ -3234,6 +2416,8 @@ body.light-theme .world-main-card-text {
 }
 
 .world-technique-info-item {
+    position: relative;
+
     padding: 22px;
 
     background:
@@ -3247,8 +2431,30 @@ body.light-theme .world-main-card-text {
 
     border-radius: 10px;
 
+    overflow: hidden;
+
     box-shadow:
         0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.world-technique-info-item::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
 }
 
 .world-technique-info-item strong {
@@ -3276,10 +2482,6 @@ body.light-theme .world-main-card-text {
         var(--site-line-height);
 }
 
-/* =========================================
-   قائمة التقنيات
-========================================= */
-
 .world-techniques-list {
     display: grid;
 
@@ -3296,6 +2498,8 @@ body.light-theme .world-main-card-text {
     justify-content: space-between;
 
     gap: 20px;
+
+    min-height: 70px;
 
     padding: 18px 22px;
 
@@ -3370,7 +2574,7 @@ body.light-theme .world-main-card-text {
 
     min-width: 145px;
 
-    color: #a51d1d;
+    color: #b62121;
 
     font-size: 14px;
 
@@ -3394,12 +2598,8 @@ body.light-theme .world-main-card-text {
 
     font-weight: 700;
 
-    text-align: left;
+    text-align: right;
 }
-
-/* =========================================
-   التقنية السرية
-========================================= */
 
 .world-technique-item:nth-child(5) {
     border-right-color: #8f1c1c;
@@ -3416,10 +2616,6 @@ body.light-theme .world-main-card-text {
 .world-technique-level {
     color: #c52a2a;
 }
-
-/* =========================================
-   التقنية النهائية
-========================================= */
 
 .world-technique-final {
     margin-top: 6px;
@@ -3460,512 +2656,15 @@ body.light-theme .world-main-card-text {
         );
 }
 
-/* =========================================
-   منع الأزرق في روابط الصفحات
-========================================= */
-
 .world-technique-profile a {
     color: inherit;
 
     text-decoration: none;
 }
 
-/* =========================================
-   الوضع الفاتح
-========================================= */
-
-body.light-theme
-.world-technique-info-item,
-body.light-theme
-.world-technique-item {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f4f2
-        );
-
-    border-color: #d8c2c2;
-
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.07);
-}
-
-body.light-theme
-.world-technique-info-item span,
-body.light-theme
-.world-technique-name {
-    color: #333333;
-}
-
-body.light-theme
-.world-technique-item:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #faf7f7
-        );
-
-    border-color: #a98787;
-}
-
-body.light-theme
-.world-technique-item:nth-child(5) {
-    background:
-        linear-gradient(
-            145deg,
-            #fff8f8,
-            #f7f4f2
-        );
-
-    border-right-color: #a51d1d;
-}
-
-body.light-theme
-.world-technique-final {
-    background:
-        linear-gradient(
-            135deg,
-            #fff7f7,
-            #f7f1f1
-        );
-
-    border-color: #c59b9b;
-
-    border-right-color: #a51d1d;
-}
-
-body.light-theme
-.world-technique-final
-.world-technique-name {
-    color: #222222;
-}
 
 /* =========================================
-   الهاتف
-========================================= */
-
-@media (max-width: 700px) {
-
-    .world-technique-info {
-        grid-template-columns: 1fr;
-
-        gap: 12px;
-    }
-
-    .world-technique-info-item {
-        padding: 18px;
-    }
-
-    .world-technique-item {
-        align-items: flex-start;
-
-        flex-direction: column;
-
-        gap: 6px;
-
-        padding: 17px 18px;
-    }
-
-    .world-technique-level {
-        min-width: auto;
-
-        font-size: 13px;
-    }
-
-    .world-technique-name {
-        width: 100%;
-
-        text-align: right;
-
-        font-size:
-            calc(
-                17px
-                * var(--site-text-scale)
-            );
-    }
-
-    .world-technique-final
-    .world-technique-name {
-        font-size:
-            calc(
-                18px
-                * var(--site-text-scale)
-            );
-    }
-
-}
-/* =========================================
-   تحسين نهائي لقسم التقنيات
-========================================= */
-
-/* منع اللون الأزرق من روابط قسم التقنيات */
-
-.techniques-category-card,
-.world-technique-profile a,
-.world-technique-profile a:visited,
-.world-technique-profile a:hover,
-.world-technique-profile a:active {
-    color: inherit;
-    text-decoration: none;
-}
-
-/* صفحة الطوائف الرئيسية */
-
-.techniques-category-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 18px;
-
-    margin-top: 30px;
-}
-
-.techniques-category-card {
-    position: relative;
-
-    display: block;
-
-    min-height: 190px;
-
-    padding: 28px 60px 26px 28px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #161616,
-            #0d0d0d
-        );
-
-    border: 1px solid #401717;
-
-    border-radius: 10px;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.25);
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
-}
-
-.techniques-category-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    right: 0;
-
-    width: 100%;
-    height: 2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #8f1c1c,
-            transparent
-        );
-}
-
-.techniques-category-card:hover {
-    transform:
-        translateY(-5px);
-
-    background:
-        linear-gradient(
-            145deg,
-            #1b1010,
-            #111111
-        );
-
-    border-color: #8f1c1c;
-
-    box-shadow:
-        0 18px 38px rgba(0, 0, 0, 0.42),
-        0 0 20px rgba(127, 17, 17, 0.10);
-}
-
-.techniques-category-number {
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 42px;
-    height: 42px;
-
-    background: #101010;
-
-    border: 1px solid #5b1919;
-
-    border-radius: 8px;
-
-    color: #a51d1d;
-
-    font-size: 13px;
-
-    font-weight: 800;
-}
-
-.techniques-category-title {
-    display: block;
-
-    margin-top: 38px;
-    margin-bottom: 10px;
-
-    color: #eeeeee;
-
-    font-size:
-        calc(
-            21px
-            * var(--site-text-scale)
-        );
-
-    font-weight: 800;
-}
-
-.techniques-category-text {
-    display: block;
-
-    color: #aaaaaa;
-
-    font-size:
-        calc(
-            15px
-            * var(--site-text-scale)
-        );
-
-    line-height:
-        var(--site-line-height);
-}
-
-.techniques-category-arrow {
-    position: absolute;
-
-    left: 22px;
-    bottom: 20px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 34px;
-    height: 34px;
-
-    background: #101010;
-
-    border: 1px solid #4b1717;
-
-    border-radius: 50%;
-
-    color: #a51d1d;
-
-    font-size: 18px;
-}
-
-
-/* =========================================
-   تحسين صفحة التقنية نفسها
-========================================= */
-
-.world-technique-profile {
-    width: 100%;
-}
-
-.world-technique-info-item {
-    position: relative;
-
-    overflow: hidden;
-}
-
-.world-technique-info-item::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    right: 0;
-
-    width: 100%;
-    height: 2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #8f1c1c,
-            transparent
-        );
-}
-
-.world-technique-item {
-    min-height: 70px;
-}
-
-.world-technique-level {
-    color: #b62121;
-}
-
-.world-technique-name {
-    text-align: right;
-}
-
-.world-technique-final {
-    transform: none;
-}
-
-.world-technique-final:hover {
-    transform:
-        translateX(-4px);
-}
-
-
-/* =========================================
-   إزالة أي ألوان روابط افتراضية
-========================================= */
-
-.techniques-category-card:visited {
-    color: inherit;
-}
-
-.techniques-category-card:hover {
-    color: #eeeeee;
-}
-
-.techniques-category-card:active {
-    color: #eeeeee;
-}
-
-
-/* =========================================
-   الوضع الفاتح
-========================================= */
-
-body.light-theme
-.techniques-category-card {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f4f2
-        );
-
-    border-color: #d8c2c2;
-
-    box-shadow:
-        0 10px 25px rgba(0, 0, 0, 0.06);
-}
-
-body.light-theme
-.techniques-category-card:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #faf7f7
-        );
-
-    border-color: #a98787;
-}
-
-body.light-theme
-.techniques-category-title {
-    color: #222222;
-}
-
-body.light-theme
-.techniques-category-text {
-    color: #555555;
-}
-
-body.light-theme
-.techniques-category-number,
-body.light-theme
-.techniques-category-arrow {
-    background: #faf7f7;
-
-    border-color: #d7bcbc;
-
-    color: #8f1c1c;
-}
-
-
-/* =========================================
-   الهاتف
-========================================= */
-
-@media (max-width: 700px) {
-
-    .techniques-category-grid {
-        grid-template-columns: 1fr;
-
-        gap: 14px;
-    }
-
-    .techniques-category-card {
-        min-height: 170px;
-
-        padding:
-            24px
-            52px
-            22px
-            24px;
-    }
-
-    .techniques-category-title {
-        font-size:
-            calc(
-                19px
-                * var(--site-text-scale)
-            );
-    }
-
-    .techniques-category-text {
-        font-size:
-            calc(
-                14px
-                * var(--site-text-scale)
-            );
-    }
-
-}
-/* =========================================
-   منع لون وخط الروابط في بطاقات عالم الرواية
-========================================= */
-
-.world-region-card,
-.world-region-card:visited,
-.world-region-card:hover,
-.world-region-card:active {
-    color: #eeeeee;
-    text-decoration: none;
-}
-
-.world-region-card .world-region-header h3 {
-    color: #eeeeee;
-    text-decoration: none;
-}
-
-.world-region-card:hover .world-region-header h3 {
-    color: #ffffff;
-}
-/* =========================================
-   نظام تابع القراءة
+   تابع القراءة
 ========================================= */
 
 .continue-reading-card {
@@ -4118,107 +2817,6 @@ body.light-theme
 
 
 /* =========================================
-   تابع القراءة — الوضع الفاتح
-========================================= */
-
-body.light-theme
-.continue-reading-card {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f0f0
-        );
-
-    border-color: #c99f9f;
-
-    border-right-color: #8f1c1c;
-
-    box-shadow:
-        0 14px 32px rgba(0, 0, 0, 0.10);
-}
-
-body.light-theme
-.continue-reading-card:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #faf7f7
-        );
-
-    border-color: #a98787;
-}
-
-body.light-theme
-.continue-reading-title {
-    color: #222222;
-}
-
-body.light-theme
-.continue-reading-number {
-    color: #666666;
-}
-
-body.light-theme
-.continue-reading-arrow {
-    background: #faf7f7;
-
-    border-color: #d7bcbc;
-
-    color: #8f1c1c;
-}
-
-
-/* =========================================
-   تابع القراءة — الهاتف
-========================================= */
-
-@media (max-width: 700px) {
-
-    .continue-reading-card {
-        min-height: 135px;
-
-        margin-top: 25px;
-
-        padding:
-            22px
-            55px
-            22px
-            20px;
-    }
-
-    .continue-reading-label {
-        font-size: 13px;
-    }
-
-    .continue-reading-title {
-        font-size:
-            calc(
-                18px
-                * var(--site-text-scale)
-            );
-    }
-
-    .continue-reading-number {
-        font-size:
-            calc(
-                13px
-                * var(--site-text-scale)
-            );
-    }
-
-    .continue-reading-arrow {
-        left: 16px;
-
-        width: 38px;
-        height: 38px;
-
-        font-size: 18px;
-    }
-
-}
-/* =========================================
    شريط تقدم القراءة
 ========================================= */
 
@@ -4319,47 +2917,7 @@ body.light-theme
     font-weight: 800;
 }
 
-/* =========================================
-   الوضع الفاتح
-========================================= */
 
-body.light-theme
-.reading-progress-bar {
-    background: #e6dfdf;
-}
-
-body.light-theme
-.reading-progress-info {
-    background:
-        rgba(255, 255, 255, 0.92);
-
-    border-color: #d7bcbc;
-
-    color: #555555;
-}
-
-/* =========================================
-   الهاتف
-========================================= */
-
-@media (max-width: 700px) {
-
-    .reading-progress-bar {
-        height: 3px;
-    }
-
-    .reading-progress-info {
-        top: 7px;
-
-        right: 10px;
-
-        font-size: 10px;
-
-        padding:
-            3px 8px;
-    }
-
-}
 /* =========================================
    البحث الشامل
 ========================================= */
@@ -4370,6 +2928,9 @@ body.light-theme
     top: 20px;
     right: 78px;
 
+    width: auto;
+    max-width: none;
+
     z-index: 10001;
 }
 
@@ -4377,12 +2938,17 @@ body.light-theme
     width: 48px;
     height: 48px;
 
+    min-width: 48px;
+    max-width: 48px;
+
     display: flex;
 
     align-items: center;
     justify-content: center;
 
     padding: 0;
+
+    flex-shrink: 0;
 
     background: #111111;
 
@@ -4421,11 +2987,6 @@ body.light-theme
     color: #eeeeee;
 }
 
-
-/* =========================================
-   لوحة البحث
-========================================= */
-
 .site-search-panel {
     position: absolute;
 
@@ -4435,14 +2996,10 @@ body.light-theme
     width: 430px;
 
     max-width:
-        calc(
-            100vw - 28px
-        );
+        calc(100vw - 28px);
 
     max-height:
-        calc(
-            100vh - 100px
-        );
+        calc(100vh - 100px);
 
     overflow: hidden;
 
@@ -4487,11 +3044,6 @@ body.light-theme
         translateY(0)
         scale(1);
 }
-
-
-/* =========================================
-   رأس البحث
-========================================= */
 
 .site-search-header {
     display: flex;
@@ -4560,11 +3112,6 @@ body.light-theme
     color: #eeeeee;
 }
 
-
-/* =========================================
-   حقل البحث
-========================================= */
-
 .site-search-input-wrapper {
     margin-bottom: 14px;
 }
@@ -4605,11 +3152,6 @@ body.light-theme
     box-shadow:
         0 0 15px rgba(165, 29, 29, 0.10);
 }
-
-
-/* =========================================
-   النتائج
-========================================= */
 
 .site-search-results {
     overflow-y: auto;
@@ -4699,112 +3241,7 @@ body.light-theme
 
 
 /* =========================================
-   الوضع الفاتح
-========================================= */
-
-body.light-theme
-.site-search-button {
-    background: #ffffff;
-
-    border-color: #d7bcbc;
-
-    color: #8f1c1c;
-}
-
-body.light-theme
-.site-search-panel {
-    background: #ffffff;
-
-    border-color: #d7bcbc;
-
-    box-shadow:
-        0 25px 60px rgba(0, 0, 0, 0.18);
-}
-
-body.light-theme
-.site-search-header {
-    border-bottom-color: #e4d6d6;
-}
-
-body.light-theme
-.site-search-close {
-    background: #f7f4f2;
-
-    border-color: #dbc5c5;
-
-    color: #8f1c1c;
-}
-
-body.light-theme
-.site-search-input {
-    background: #f7f4f2;
-
-    color: #222222;
-
-    border-color: #dbc5c5;
-}
-
-body.light-theme
-.site-search-result {
-    background: #faf8f6;
-
-    border-color: #dbc5c5;
-}
-
-body.light-theme
-.site-search-result:hover {
-    background: #fffafa;
-
-    border-color: #a98787;
-}
-
-body.light-theme
-.site-search-result-title {
-    color: #222222;
-}
-
-body.light-theme
-.site-search-result-snippet {
-    color: #555555;
-}
-
-
-/* =========================================
-   الهاتف
-========================================= */
-
-@media (max-width: 700px) {
-
-    .site-search-wrapper {
-        top: 12px;
-
-        right: 64px;
-    }
-
-    .site-search-button {
-        width: 44px;
-        height: 44px;
-
-        font-size: 12px;
-    }
-
-    .site-search-panel {
-        top: 52px;
-
-        right: -52px;
-
-        width:
-            calc(
-                100vw - 24px
-            );
-
-        padding: 18px;
-    }
-
-}
-```css
-/* =========================================
-   الصفحة الرئيسية — الواجهة الجديدة
+   الصفحة الرئيسية — الواجهة
 ========================================= */
 
 .home-hero {
@@ -5145,33 +3582,61 @@ body.light-theme
 
 
 /* =========================================
-   أقسام الصفحة الرئيسية
+   أقسام الصفحة الرئيسية — ترتيب احترافي
 ========================================= */
 
 .home-sections {
     width: min(1000px, 100%);
 
-    margin: 20px auto 0;
+    margin:
+        45px auto 0;
 }
 
 .home-section-heading {
+    position: relative;
+
     text-align: center;
 
-    margin-bottom: 25px;
+    margin-bottom: 28px;
+
+    padding-bottom: 18px;
+}
+
+.home-section-heading::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    right: 50%;
+
+    width: 90px;
+    height: 2px;
+
+    transform:
+        translateX(50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
 }
 
 .home-section-heading > span {
-    display: inline-block;
+    display: block;
 
-    margin-bottom: 8px;
+    margin-bottom: 5px;
 
     color: #a51d1d;
 
-    font-size: 13px;
+    font-size: 12px;
 
     font-weight: 800;
 
-    letter-spacing: 1px;
+    letter-spacing: 2px;
 }
 
 .home-section-heading h2 {
@@ -5181,12 +3646,21 @@ body.light-theme
 
     font-size:
         calc(
-            28px
+            29px
             * var(--site-text-scale)
         );
+
+    font-weight: 800;
 }
 
 .home-navigation {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
     width: 100%;
 
     margin: 0;
@@ -5197,71 +3671,209 @@ body.light-theme
 
     display: flex;
 
-    align-items: center;
+    align-items: flex-end;
 
     justify-content: flex-start;
 
-    gap: 18px;
+    width: 100%;
 
-    min-height: 125px;
+    min-width: 0;
+
+    min-height: 185px;
 
     padding:
-        22px
-        55px
-        22px
-        50px;
+        30px
+        28px
+        27px
+        70px;
 
-    text-align: right;
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #0c0c0c
+        );
+
+    border:
+        1px solid #3d1717;
+
+    border-radius: 12px;
+
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 28px
+        rgba(0, 0, 0, 0.28);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.home-menu-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
+
+    opacity: 0.8;
+}
+
+.home-menu-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    left: -105px;
+    bottom: -105px;
+
+    border:
+        1px solid
+        rgba(165, 29, 29, 0.08);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transition:
+        transform 0.45s ease,
+        border-color 0.45s ease;
+}
+
+.home-menu-card:hover {
+    transform:
+        translateY(-6px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d1010,
+            #100d0d
+        );
+
+    border-color:
+        #8f1c1c;
+
+    box-shadow:
+        0 20px 42px
+        rgba(0, 0, 0, 0.42),
+        0 0 22px
+        rgba(127, 17, 17, 0.10);
+}
+
+.home-menu-card:hover::after {
+    transform:
+        scale(1.35);
+
+    border-color:
+        rgba(165, 29, 29, 0.14);
 }
 
 .home-menu-number {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
 
-    width: 43px;
-    height: 43px;
+    background:
+        #101010;
 
-    background: #101010;
+    border:
+        1px solid #5b1919;
 
-    border: 1px solid #5b1919;
-
-    border-radius: 8px;
+    border-radius: 9px;
 
     color: #a51d1d;
 
-    font-size: 13px;
+    font-size: 12px;
 
-    font-weight: 800;
+    font-weight: 900;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.home-menu-card:hover
+.home-menu-number {
+    background:
+        #1a1010;
+
+    border-color:
+        #a51d1d;
+
+    color:
+        #d02b2b;
+
+    box-shadow:
+        0 0 14px
+        rgba(165, 29, 29, 0.12);
 }
 
 .home-menu-content {
+    position: relative;
+
+    z-index: 2;
+
     display: block;
 
-    flex: 1;
+    width: 100%;
 }
 
 .home-menu-title {
     display: block;
 
-    margin-bottom: 5px;
+    margin-bottom: 7px;
 
     color: #eeeeee;
 
     font-size:
         calc(
-            21px
+            23px
             * var(--site-text-scale)
         );
 
     font-weight: 800;
+
+    line-height: 1.35;
 }
 
 .home-menu-description {
     display: block;
+
+    max-width: 92%;
 
     color: #999999;
 
@@ -5271,51 +3883,153 @@ body.light-theme
             * var(--site-text-scale)
         );
 
-    line-height: 1.7;
+    line-height: 1.8;
 }
 
 .home-menu-arrow {
     position: absolute;
 
-    left: 18px;
+    left: 22px;
+    bottom: 22px;
+
+    z-index: 2;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    width: 34px;
-    height: 34px;
+    width: 38px;
+    height: 38px;
 
-    background: #101010;
+    background:
+        #101010;
 
-    border: 1px solid #4b1717;
+    border:
+        1px solid #4b1717;
 
     border-radius: 50%;
 
-    color: #a51d1d;
+    color:
+        #a51d1d;
 
-    font-size: 17px;
+    font-size: 18px;
 
     transition:
-        transform 0.25s ease,
-        border-color 0.25s ease,
-        color 0.25s ease;
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .home-menu-card:hover
 .home-menu-arrow {
     transform:
-        translateX(-4px);
+        translateX(-5px);
 
-    border-color: #a51d1d;
+    background:
+        #1a1010;
 
-    color: #eeeeee;
+    border-color:
+        #a51d1d;
+
+    color:
+        #ffffff;
 }
 
 
 /* =========================================
-   نبذة الرواية الجديدة
+   تابع القراءة داخل الرئيسية
+========================================= */
+
+.home-sections
+.continue-reading-card {
+    width: 100%;
+
+    min-width: 0;
+
+    min-height: 155px;
+
+    margin:
+        0 0 28px;
+
+    padding:
+        29px
+        88px
+        28px
+        30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #241010,
+            #0f0b0b
+        );
+
+    border:
+        1px solid #7f1111;
+
+    border-right:
+        4px solid #b62121;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.42),
+        0 0 24px
+        rgba(165, 29, 29, 0.07);
+}
+
+.home-sections
+.continue-reading-card:hover {
+    transform:
+        translateY(-5px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #2a1111,
+            #120c0c
+        );
+
+    border-color:
+        #a51d1d;
+
+    box-shadow:
+        0 24px 48px
+        rgba(0, 0, 0, 0.48),
+        0 0 30px
+        rgba(165, 29, 29, 0.11);
+}
+
+.home-sections
+.continue-reading-label {
+    color: #d02b2b;
+}
+
+.home-sections
+.continue-reading-title {
+    color: #ffffff;
+
+    font-size:
+        calc(
+            24px
+            * var(--site-text-scale)
+        );
+
+    line-height: 1.45;
+}
+
+.home-sections
+.continue-reading-arrow {
+    width: 46px;
+    height: 46px;
+}
+
+
+/* =========================================
+   نبذة الرواية
 ========================================= */
 
 .home-about {
@@ -5420,6 +4134,390 @@ body.light-theme
    الوضع الفاتح
 ========================================= */
 
+body.light-theme {
+    background: #f2f0ed;
+
+    color: #222222;
+}
+
+body.light-theme .about {
+    background: #ffffff;
+
+    border-color: #dbc5c5;
+
+    box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.10);
+}
+
+body.light-theme .about p {
+    color: #444444;
+}
+
+body.light-theme .menu-button,
+body.light-theme .chapter-card,
+body.light-theme .chapter-nav-button,
+body.light-theme .character-card,
+body.light-theme .character-profile {
+    background: #ffffff;
+
+    border-color: #d8c2c2;
+}
+
+body.light-theme .menu-button,
+body.light-theme .chapter-card,
+body.light-theme .chapter-nav-button {
+    color: #222222;
+}
+
+body.light-theme .chapter-card:hover {
+    background: #faf7f7;
+}
+
+body.light-theme
+.character-card
+.character-info h3,
+body.light-theme
+.character-profile
+.character-info h2 {
+    color: #222222;
+}
+
+body.light-theme
+.character-card-details p,
+body.light-theme
+.character-profile
+.character-info
+> p:not(.character-title),
+body.light-theme
+.character-details p {
+    color: #444444;
+}
+
+body.light-theme .character-details {
+    background: #f7f4f2;
+
+    border-color: #dbc5c5;
+}
+
+body.light-theme
+.site-settings-button,
+body.light-theme
+.reader-settings-button,
+body.light-theme
+.site-title-link,
+body.light-theme
+.site-search-button {
+    background: #ffffff;
+
+    border-color: #d7bcbc;
+}
+
+body.light-theme
+.site-settings-panel,
+body.light-theme
+.reader-settings-panel,
+body.light-theme
+.site-search-panel {
+    background: #ffffff;
+
+    border-color: #d7bcbc;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.18);
+}
+
+body.light-theme
+.settings-panel-header,
+body.light-theme
+.site-search-header {
+    border-bottom-color:
+        #e4d6d6;
+}
+
+body.light-theme
+.settings-group h3 {
+    color: #2b2b2b;
+}
+
+body.light-theme
+.settings-option,
+body.light-theme
+.reader-option {
+    background: #f7f4f2;
+
+    color: #444444;
+
+    border-color: #dbc5c5;
+}
+
+body.light-theme
+.settings-option.active,
+body.light-theme
+.reader-option.active {
+    background: #8f1c1c;
+
+    border-color: #8f1c1c;
+
+    color: #ffffff;
+}
+
+body.light-theme
+.settings-reset {
+    background: #f7f4f2;
+}
+
+body.light-theme
+.chapter-reader p {
+    color: #444444;
+}
+
+body.light-theme
+.world-region-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #d8c2c2;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+body.light-theme
+.world-region-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf7f7
+        );
+
+    border-color: #a98787;
+}
+
+body.light-theme
+.world-region-number {
+    background: #faf7f7;
+
+    border-color: #d7bcbc;
+}
+
+body.light-theme
+.world-region-header h3 {
+    color: #222222;
+}
+
+body.light-theme
+.world-region-line {
+    background:
+        linear-gradient(
+            90deg,
+            #c99f9f,
+            transparent
+        );
+}
+
+body.light-theme
+.world-region-card p {
+    color: #4a4a4a;
+}
+
+body.light-theme
+.world-culture-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #d8c2c2;
+}
+
+body.light-theme
+.world-culture-icon {
+    background:
+        linear-gradient(
+            145deg,
+            #fff5f5,
+            #f5eeee
+        );
+
+    border-color: #c99f9f;
+
+    color: #8f1c1c;
+}
+
+body.light-theme
+.world-culture-card h3 {
+    color: #222222;
+}
+
+body.light-theme
+.world-culture-card p {
+    color: #4a4a4a;
+}
+
+body.light-theme
+.world-overview {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #dbc5c5;
+}
+
+body.light-theme
+.world-overview-header h2 {
+    color: #222222;
+}
+
+body.light-theme
+.world-overview-header p {
+    color: #555555;
+}
+
+body.light-theme
+.world-main-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #d8c2c2;
+}
+
+body.light-theme
+.world-main-card-title {
+    color: #222222;
+}
+
+body.light-theme
+.world-main-card-text {
+    color: #555555;
+}
+
+body.light-theme
+.world-technique-info-item,
+body.light-theme
+.world-technique-item {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #d8c2c2;
+}
+
+body.light-theme
+.world-technique-info-item span,
+body.light-theme
+.world-technique-name {
+    color: #333333;
+}
+
+body.light-theme
+.world-technique-final {
+    background:
+        linear-gradient(
+            135deg,
+            #fff7f7,
+            #f7f1f1
+        );
+
+    border-color: #c59b9b;
+}
+
+body.light-theme
+.world-technique-final
+.world-technique-name {
+    color: #222222;
+}
+
+body.light-theme
+.continue-reading-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f0f0
+        );
+
+    border-color: #c99f9f;
+
+    border-right-color: #8f1c1c;
+}
+
+body.light-theme
+.continue-reading-title {
+    color: #222222;
+}
+
+body.light-theme
+.continue-reading-number {
+    color: #666666;
+}
+
+body.light-theme
+.continue-reading-arrow {
+    background: #faf7f7;
+
+    border-color: #d7bcbc;
+
+    color: #8f1c1c;
+}
+
+body.light-theme
+.reading-progress-bar {
+    background: #e6dfdf;
+}
+
+body.light-theme
+.reading-progress-info {
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    border-color: #d7bcbc;
+
+    color: #555555;
+}
+
+body.light-theme
+.site-search-input {
+    background: #f7f4f2;
+
+    color: #222222;
+
+    border-color: #dbc5c5;
+}
+
+body.light-theme
+.site-search-result {
+    background: #faf8f6;
+
+    border-color: #dbc5c5;
+}
+
+body.light-theme
+.site-search-result-title {
+    color: #222222;
+}
+
+body.light-theme
+.site-search-result-snippet {
+    color: #555555;
+}
+
 body.light-theme
 .home-tagline {
     color: #222222;
@@ -5468,747 +4566,6 @@ body.light-theme
 .home-menu-number,
 body.light-theme
 .home-menu-arrow {
-    background: #faf7f7;
-
-    border-color: #d7bcbc;
-}
-
-
-/* =========================================
-   الهاتف
-========================================= */
-
-@media (max-width: 760px) {
-
-    .home-hero {
-        grid-template-columns: 1fr;
-
-        gap: 35px;
-
-        min-height: auto;
-
-        padding:
-            30px 10px
-            40px;
-    }
-
-    .home-hero-content {
-        text-align: center;
-    }
-
-    .home-intro {
-        margin-right: auto;
-        margin-left: auto;
-    }
-
-    .home-actions {
-        justify-content: center;
-    }
-
-    .home-cover-wrapper {
-        order: -1;
-    }
-
-    .home-cover {
-        width:
-            min(
-                320px,
-                78vw
-            );
-    }
-
-    .home-tagline {
-        font-size: 22px;
-    }
-
-    .home-sections {
-        margin-top: 10px;
-    }
-
-    .home-navigation {
-        grid-template-columns: 1fr;
-    }
-
-    .home-menu-card {
-        min-height: 110px;
-
-        padding:
-            20px
-            52px
-            20px
-            20px;
-    }
-
-    .home-menu-title {
-        font-size:
-            calc(
-                19px
-                * var(--site-text-scale)
-            );
-    }
-
-    .home-menu-description {
-        font-size:
-            calc(
-                13px
-                * var(--site-text-scale)
-            );
-    }
-
-    .home-about {
-        margin-top: 45px;
-
-        padding:
-            30px 22px;
-    }
-
-    .home-about h2 {
-        font-size:
-            calc(
-                27px
-                * var(--site-text-scale)
-            );
-    }
-
-    .home-about-lead {
-        font-size:
-            calc(
-                18px
-                * var(--site-text-scale)
-            ) !important;
-    }
-
-}
-```
-/* =========================================
-   الصفحة الرئيسية — الترتيب النهائي
-========================================= */
-
-.home-sections {
-    width: min(1000px, 100%);
-
-    margin:
-        45px auto 0;
-}
-
-
-/* =========================================
-   عنوان قسم الأقسام
-========================================= */
-
-.home-section-heading {
-    position: relative;
-
-    text-align: center;
-
-    margin-bottom: 28px;
-
-    padding-bottom: 18px;
-}
-
-.home-section-heading::after {
-    content: "";
-
-    position: absolute;
-
-    bottom: 0;
-    right: 50%;
-
-    width: 90px;
-    height: 2px;
-
-    transform:
-        translateX(50%);
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #8f1c1c,
-            transparent
-        );
-}
-
-.home-section-heading > span {
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #a51d1d;
-
-    font-size: 12px;
-
-    font-weight: 800;
-
-    letter-spacing: 2px;
-}
-
-.home-section-heading h2 {
-    margin: 0;
-
-    color: #eeeeee;
-
-    font-size:
-        calc(
-            29px
-            * var(--site-text-scale)
-        );
-
-    font-weight: 800;
-}
-
-
-/* =========================================
-   شبكة الأقسام
-========================================= */
-
-.home-navigation {
-    display: grid;
-
-    grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-    gap: 18px;
-
-    width: 100%;
-
-    margin: 0;
-}
-
-
-/* =========================================
-   بطاقة القسم
-========================================= */
-
-.home-menu-card {
-    position: relative;
-
-    display: flex;
-
-    align-items: flex-end;
-
-    justify-content: flex-start;
-
-    width: 100%;
-
-    min-height: 185px;
-
-    padding:
-        30px
-        28px
-        27px
-        70px;
-
-    background:
-        linear-gradient(
-            145deg,
-            #171717,
-            #0c0c0c
-        );
-
-    border:
-        1px solid #3d1717;
-
-    border-radius: 12px;
-
-    color: #eeeeee;
-
-    text-decoration: none;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 12px 28px
-        rgba(0, 0, 0, 0.28);
-
-    transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-
-/* الخط العلوي */
-
-.home-menu-card::before {
-    content: "";
-
-    position: absolute;
-
-    top: 0;
-    right: 0;
-
-    width: 100%;
-    height: 2px;
-
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #8f1c1c,
-            transparent
-        );
-
-    opacity: 0.8;
-}
-
-
-/* الزخرفة الدائرية */
-
-.home-menu-card::after {
-    content: "";
-
-    position: absolute;
-
-    width: 170px;
-    height: 170px;
-
-    left: -105px;
-    bottom: -105px;
-
-    border:
-        1px solid
-        rgba(165, 29, 29, 0.08);
-
-    border-radius: 50%;
-
-    pointer-events: none;
-
-    transition:
-        transform 0.45s ease,
-        border-color 0.45s ease;
-}
-
-
-/* الحركة */
-
-.home-menu-card:hover {
-    transform:
-        translateY(-6px);
-
-    background:
-        linear-gradient(
-            145deg,
-            #1d1010,
-            #100d0d
-        );
-
-    border-color:
-        #8f1c1c;
-
-    box-shadow:
-        0 20px 42px
-        rgba(0, 0, 0, 0.42),
-        0 0 22px
-        rgba(127, 17, 17, 0.10);
-}
-
-.home-menu-card:hover::after {
-    transform:
-        scale(1.35);
-
-    border-color:
-        rgba(165, 29, 29, 0.14);
-}
-
-
-/* =========================================
-   رقم البطاقة
-========================================= */
-
-.home-menu-number {
-    position: absolute;
-
-    top: 20px;
-    right: 20px;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 44px;
-    height: 44px;
-
-    background:
-        #101010;
-
-    border:
-        1px solid #5b1919;
-
-    border-radius: 9px;
-
-    color: #a51d1d;
-
-    font-size: 12px;
-
-    font-weight: 900;
-
-    transition:
-        background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease,
-        box-shadow 0.3s ease;
-}
-
-.home-menu-card:hover
-.home-menu-number {
-    background:
-        #1a1010;
-
-    border-color:
-        #a51d1d;
-
-    color:
-        #d02b2b;
-
-    box-shadow:
-        0 0 14px
-        rgba(165, 29, 29, 0.12);
-}
-
-
-/* =========================================
-   محتوى البطاقة
-========================================= */
-
-.home-menu-content {
-    position: relative;
-
-    z-index: 2;
-
-    display: block;
-
-    width: 100%;
-}
-
-.home-menu-title {
-    display: block;
-
-    margin-bottom: 7px;
-
-    color: #eeeeee;
-
-    font-size:
-        calc(
-            23px
-            * var(--site-text-scale)
-        );
-
-    font-weight: 800;
-
-    line-height: 1.35;
-}
-
-.home-menu-description {
-    display: block;
-
-    max-width: 92%;
-
-    color: #999999;
-
-    font-size:
-        calc(
-            14px
-            * var(--site-text-scale)
-        );
-
-    line-height: 1.8;
-}
-
-
-/* =========================================
-   سهم البطاقة
-========================================= */
-
-.home-menu-arrow {
-    position: absolute;
-
-    left: 22px;
-    bottom: 22px;
-
-    z-index: 2;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 38px;
-    height: 38px;
-
-    background:
-        #101010;
-
-    border:
-        1px solid #4b1717;
-
-    border-radius: 50%;
-
-    color:
-        #a51d1d;
-
-    font-size: 18px;
-
-    transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease;
-}
-
-.home-menu-card:hover
-.home-menu-arrow {
-    transform:
-        translateX(-5px);
-
-    background:
-        #1a1010;
-
-    border-color:
-        #a51d1d;
-
-    color:
-        #ffffff;
-}
-
-
-/* =========================================
-   تابع القراءة — البطاقة الرئيسية
-========================================= */
-
-.home-sections
-.continue-reading-card {
-    position: relative;
-
-    width: 100%;
-
-    min-height: 155px;
-
-    margin:
-        0 0 28px;
-
-    padding:
-        29px
-        88px
-        28px
-        30px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #241010,
-            #0f0b0b
-        );
-
-    border:
-        1px solid #7f1111;
-
-    border-right:
-        4px solid #b62121;
-
-    border-radius: 14px;
-
-    color: #eeeeee;
-
-    text-decoration: none;
-
-    overflow: hidden;
-
-    box-shadow:
-        0 18px 40px
-        rgba(0, 0, 0, 0.42),
-        0 0 24px
-        rgba(165, 29, 29, 0.07);
-
-    transition:
-        transform 0.3s ease,
-        border-color 0.3s ease,
-        box-shadow 0.3s ease,
-        background 0.3s ease;
-}
-
-.home-sections
-.continue-reading-card:hover {
-    transform:
-        translateY(-5px);
-
-    background:
-        linear-gradient(
-            135deg,
-            #2a1111,
-            #120c0c
-        );
-
-    border-color:
-        #a51d1d;
-
-    box-shadow:
-        0 24px 48px
-        rgba(0, 0, 0, 0.48),
-        0 0 30px
-        rgba(165, 29, 29, 0.11);
-}
-
-.home-sections
-.continue-reading-label {
-    display: block;
-
-    margin-bottom: 5px;
-
-    color: #d02b2b;
-
-    font-size: 13px;
-
-    font-weight: 800;
-
-    letter-spacing: 1px;
-}
-
-.home-sections
-.continue-reading-title {
-    display: block;
-
-    color: #ffffff;
-
-    font-size:
-        calc(
-            24px
-            * var(--site-text-scale)
-        );
-
-    font-weight: 800;
-
-    line-height: 1.45;
-}
-
-.home-sections
-.continue-reading-number {
-    display: block;
-
-    margin-top: 7px;
-
-    color: #999999;
-
-    font-size:
-        calc(
-            13px
-            * var(--site-text-scale)
-        );
-}
-
-.home-sections
-.continue-reading-arrow {
-    position: absolute;
-
-    left: 26px;
-    top: 50%;
-
-    transform:
-        translateY(-50%);
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    width: 46px;
-    height: 46px;
-
-    background:
-        #120c0c;
-
-    border:
-        1px solid #6f1a1a;
-
-    border-radius: 50%;
-
-    color:
-        #d02b2b;
-
-    font-size: 20px;
-
-    transition:
-        transform 0.3s ease,
-        background 0.3s ease,
-        border-color 0.3s ease,
-        color 0.3s ease;
-}
-
-.home-sections
-.continue-reading-card:hover
-.continue-reading-arrow {
-    transform:
-        translateY(-50%)
-        translateX(-5px);
-
-    background:
-        #1d0e0e;
-
-    border-color:
-        #b62121;
-
-    color:
-        #ffffff;
-}
-
-
-/* =========================================
-   الوضع الفاتح
-========================================= */
-
-body.light-theme
-.home-section-heading h2 {
-    color: #222222;
-}
-
-body.light-theme
-.home-menu-card {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #f7f4f2
-        );
-
-    border-color:
-        #d8c2c2;
-
-    box-shadow:
-        0 12px 28px
-        rgba(0, 0, 0, 0.07);
-}
-
-body.light-theme
-.home-menu-card:hover {
-    background:
-        linear-gradient(
-            145deg,
-            #ffffff,
-            #faf7f7
-        );
-
-    border-color:
-        #a98787;
-}
-
-body.light-theme
-.home-menu-title {
-    color:
-        #222222;
-}
-
-body.light-theme
-.home-menu-description {
-    color:
-        #555555;
-}
-
-body.light-theme
-.home-menu-number,
-body.light-theme
-.home-menu-arrow {
     background:
         #faf7f7;
 
@@ -6234,30 +4591,102 @@ body.light-theme
 
     border-right-color:
         #8f1c1c;
-
-    box-shadow:
-        0 18px 40px
-        rgba(0, 0, 0, 0.10);
 }
 
 body.light-theme
 .home-sections
 .continue-reading-title {
-    color:
-        #222222;
+    color: #222222;
 }
 
-body.light-theme
-.home-sections
-.continue-reading-arrow {
+
+/* =========================================
+   المجلدات — الوضع الفاتح
+========================================= */
+
+body.light-theme .volume-folder {
+    background: #ffffff;
+
+    border-color: #d8c2c2;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+body.light-theme .volume-folder[open] {
+    border-color: #b88e8e;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.12),
+        0 0 20px rgba(127, 17, 17, 0.07);
+}
+
+body.light-theme .volume-folder summary {
     background:
-        #faf7f7;
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
 
-    border-color:
-        #d7bcbc;
+    color: #222222;
+}
 
-    color:
-        #8f1c1c;
+body.light-theme .volume-folder summary:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #faf7f7,
+            #f3eeee
+        );
+
+    color: #222222;
+}
+
+body.light-theme .volume-folder[open] summary {
+    background:
+        linear-gradient(
+            145deg,
+            #fffafa,
+            #f5eeee
+        );
+}
+
+body.light-theme .volume-folder .chapter-list {
+    background:
+        linear-gradient(
+            180deg,
+            #faf8f6 0%,
+            #f7f4f2 100%
+        );
+
+    border-top-color: #e4d6d6;
+}
+
+body.light-theme .volume-arrow {
+    background: #ffffff;
+
+    border-color: #d7bcbc;
+
+    color: #8f1c1c;
+}
+
+body.light-theme .volume-folder[open] .volume-arrow {
+    background: #f3eeee;
+
+    border-color: #a51d1d;
+
+    color: #8f1c1c;
+}
+
+body.light-theme .volume-folder .chapter-card {
+    background: #ffffff;
+
+    border-color: #d8c2c2;
+}
+
+body.light-theme .volume-folder .chapter-card:hover {
+    background: #faf7f7;
 }
 
 
@@ -6267,7 +4696,578 @@ body.light-theme
 
 @media (max-width: 760px) {
 
+    main {
+        width: 100%;
+        max-width: 100%;
+
+        padding:
+            25px 14px 60px;
+    }
+
+    .hero {
+        padding-top: 25px;
+    }
+
+    .navigation {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+
+        margin-top: 30px;
+    }
+
+    .menu-button {
+        min-height: 65px;
+    }
+
+    .menu-button span {
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            );
+    }
+
+    .about {
+        margin-top: 45px;
+
+        padding:
+            25px 20px;
+    }
+
+    .about p {
+        font-size:
+            calc(
+                16px
+                * var(--site-text-scale)
+            );
+    }
+
+    .chapter-card {
+        padding: 16px;
+    }
+
+    .chapter-title {
+        font-size:
+            calc(
+                16px
+                * var(--site-text-scale)
+            );
+    }
+
+    .chapter-list {
+        gap: 12px;
+    }
+
+
+    /* -------------------------
+       المجلدات
+    ------------------------- */
+
+    .volume-folder {
+        margin-top: 16px;
+    }
+
+    .volume-folder summary {
+        padding: 17px 18px;
+
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            );
+    }
+
+    .volume-folder .chapter-list {
+        padding: 12px;
+    }
+
+    .volume-arrow {
+        width: 30px;
+        height: 30px;
+
+        font-size: 18px;
+    }
+
+
+    /* -------------------------
+       عالم الرواية
+    ------------------------- */
+
+    .world-intro {
+        margin-bottom: 25px;
+    }
+
+    .world-region-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+
+        margin-top: 25px;
+    }
+
+    .world-region-card {
+        min-height: auto;
+
+        padding: 20px;
+    }
+
+    .world-region-header {
+        gap: 12px;
+    }
+
+    .world-region-number {
+        width: 38px;
+        height: 38px;
+
+        font-size: 13px;
+    }
+
+    .world-region-header h3 {
+        font-size:
+            calc(
+                19px
+                * var(--site-text-scale)
+            );
+    }
+
+    .world-region-card p {
+        font-size:
+            calc(
+                15px
+                * var(--site-text-scale)
+            );
+    }
+
+    .world-culture-grid {
+        grid-template-columns: 1fr;
+
+        gap: 15px;
+    }
+
+    .world-culture-card {
+        min-height: auto;
+
+        padding: 21px;
+    }
+
+
+    /* -------------------------
+       عالم الموريم
+    ------------------------- */
+
+    .world-overview {
+        margin-top: 30px;
+
+        padding: 25px 18px;
+    }
+
+    .world-overview-header {
+        margin-bottom: 28px;
+    }
+
+    .world-overview-header h2 {
+        font-size:
+            calc(
+                27px
+                * var(--site-text-scale)
+            );
+    }
+
+    .world-sections-grid {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .world-main-card {
+        min-height: 175px;
+
+        padding:
+            22px
+            24px
+            22px
+            52px;
+    }
+
+    .world-main-card-title {
+        font-size:
+            calc(
+                19px
+                * var(--site-text-scale)
+            );
+    }
+
+    .world-main-card-text {
+        font-size:
+            calc(
+                14px
+                * var(--site-text-scale)
+            );
+    }
+
+
+    /* -------------------------
+       التقنيات
+    ------------------------- */
+
+    .world-technique-info {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .world-technique-info-item {
+        padding: 18px;
+    }
+
+    .world-technique-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+        padding: 17px 18px;
+    }
+
+    .world-technique-level {
+        min-width: auto;
+
+        font-size: 13px;
+    }
+
+    .world-technique-name {
+        width: 100%;
+
+        text-align: right;
+
+        font-size:
+            calc(
+                17px
+                * var(--site-text-scale)
+            );
+    }
+
+    .world-technique-final
+    .world-technique-name {
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            );
+    }
+
+
+    /* -------------------------
+       تنقل الفصول
+    ------------------------- */
+
+    .chapter-navigation {
+        flex-direction: column;
+    }
+
+    .chapter-nav-button {
+        width: 100%;
+    }
+
+
+    /* -------------------------
+       الشخصيات
+    ------------------------- */
+
+    .character-list {
+        grid-template-columns: 1fr;
+    }
+
+    .character-card
+    .character-image {
+        height: 320px;
+    }
+
+    .character-card
+    .character-info {
+        padding: 18px;
+    }
+
+    .character-card-spoiler {
+        padding:
+            0
+            18px
+            18px;
+    }
+
+    .character-profile {
+        flex-direction: column;
+
+        gap: 25px;
+
+        padding: 20px;
+    }
+
+    .character-profile
+    .character-image {
+        width: 100%;
+
+        max-width: 340px;
+
+        flex: none;
+
+        margin: 0 auto;
+    }
+
+    .character-profile
+    .character-image img {
+        width: 100%;
+
+        height: auto;
+    }
+
+    .character-profile
+    .character-info {
+        width: 100%;
+    }
+
+    .character-profile
+    .character-info h2 {
+        font-size:
+            calc(
+                28px
+                * var(--site-text-scale)
+            );
+    }
+
+
+    /* -------------------------
+       الإعدادات
+    ------------------------- */
+
+    .site-settings-wrapper {
+        top: 12px;
+
+        right: 12px;
+
+        width: auto;
+    }
+
+    .reader-settings-wrapper {
+        top: 12px;
+
+        left: 12px;
+    }
+
+    .site-settings-button,
+    .reader-settings-button {
+        width: 44px;
+
+        height: 44px;
+    }
+
+    .site-settings-button {
+        min-width: 44px;
+        max-width: 44px;
+    }
+
+    .site-settings-panel,
+    .reader-settings-panel {
+        top: 52px;
+
+        width:
+            calc(
+                100vw - 24px
+            );
+
+        max-width:
+            calc(
+                100vw - 24px
+            );
+
+        padding: 18px;
+    }
+
+    .site-settings-panel {
+        right: -12px;
+    }
+
+    .reader-settings-panel {
+        left: -12px;
+    }
+
+    .settings-group {
+        margin-top: 16px;
+    }
+
+    .settings-option,
+    .reader-option {
+        min-width: 65px;
+
+        font-size: 12px;
+
+        padding:
+            8px 9px;
+    }
+
+
+    /* -------------------------
+       البحث
+    ------------------------- */
+
+    .site-search-wrapper {
+        top: 12px;
+
+        right: 64px;
+
+        width: auto;
+    }
+
+    .site-search-button {
+        width: 44px;
+        height: 44px;
+
+        min-width: 44px;
+        max-width: 44px;
+
+        font-size: 12px;
+    }
+
+    .site-search-panel {
+        top: 52px;
+
+        right: -52px;
+
+        width:
+            calc(
+                100vw - 24px
+            );
+
+        max-width:
+            calc(
+                100vw - 24px
+            );
+
+        padding: 18px;
+    }
+
+
+    /* -------------------------
+       تابع القراءة
+    ------------------------- */
+
+    .continue-reading-card {
+        min-height: 135px;
+
+        margin-top: 25px;
+
+        padding:
+            22px
+            55px
+            22px
+            20px;
+    }
+
+    .continue-reading-label {
+        font-size: 13px;
+    }
+
+    .continue-reading-title {
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            );
+    }
+
+    .continue-reading-number {
+        font-size:
+            calc(
+                13px
+                * var(--site-text-scale)
+            );
+    }
+
+    .continue-reading-arrow {
+        left: 16px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 18px;
+    }
+
+
+    /* -------------------------
+       شريط التقدم
+    ------------------------- */
+
+    .reading-progress-bar {
+        height: 3px;
+    }
+
+    .reading-progress-info {
+        top: 7px;
+
+        right: 10px;
+
+        font-size: 10px;
+
+        padding:
+            3px 8px;
+    }
+
+
+    /* -------------------------
+       الصفحة الرئيسية
+    ------------------------- */
+
+    .home-hero {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        width: 100%;
+        max-width: 100%;
+
+        min-height: auto;
+
+        padding:
+            30px 10px
+            40px;
+    }
+
+    .home-hero-content {
+        text-align: center;
+    }
+
+    .home-intro {
+        margin-right: auto;
+
+        margin-left: auto;
+    }
+
+    .home-actions {
+        justify-content: center;
+    }
+
+    .home-cover-wrapper {
+        order: -1;
+    }
+
+    .home-cover {
+        width:
+            min(
+                320px,
+                78vw
+            );
+    }
+
+    .home-tagline {
+        font-size: 22px;
+    }
+
     .home-sections {
+        width: 100%;
+        max-width: 100%;
+
         margin-top: 30px;
     }
 
@@ -6275,9 +5275,14 @@ body.light-theme
         grid-template-columns: 1fr;
 
         gap: 14px;
+
+        width: 100%;
     }
 
     .home-menu-card {
+        width: 100%;
+        max-width: 100%;
+
         min-height: 155px;
 
         padding:
@@ -6343,49 +5348,102 @@ body.light-theme
         height: 40px;
     }
 
+    .home-about {
+        margin-top: 45px;
+
+        padding:
+            30px 22px;
+    }
+
+    .home-about h2 {
+        font-size:
+            calc(
+                27px
+                * var(--site-text-scale)
+            );
+    }
+
+    .home-about-lead {
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            ) !important;
+    }
+
+    .site-title-link {
+        min-width: 170px;
+
+        padding:
+            9px 20px;
+
+        font-size:
+            calc(
+                16px
+                * var(--site-text-scale)
+            );
+    }
+
 }
+
+
 /* =========================================
-   منع الحركة الأفقية للصفحة
+   الهاتف الأصغر
 ========================================= */
 
-html,
-body {
-    width: 100%;
-
-    max-width: 100%;
-
-    overflow-x: hidden;
-}
-/* منع العناصر الكبيرة من تجاوز الشاشة */
-
-main,
-.home-hero,
-.home-sections,
-.home-navigation,
-.home-menu-card,
-.continue-reading-card,
-.site-search-panel,
-.site-settings-panel {
-    max-width: 100%;
-}
-@media (max-width: 760px) {
-
-    html,
-    body {
-        overflow-x: hidden;
-    }
+@media (max-width: 420px) {
 
     .home-hero {
-        width: 100%;
-
-        max-width: 100vw;
+        padding-left: 4px;
+        padding-right: 4px;
     }
 
-    .home-menu-card,
-    .continue-reading-card {
-        width: 100%;
+    .home-menu-card {
+        padding-left: 18px;
+        padding-right: 52px;
+    }
 
-        max-width: 100%;
+    .home-menu-title {
+        font-size: 18px;
+    }
+
+    .home-menu-description {
+        font-size: 12px;
+    }
+
+    .home-primary-button,
+    .home-secondary-button {
+        width: 100%;
+    }
+
+    .site-search-panel {
+        right: -54px;
+    }
+
+}
+
+
+/* =========================================
+   تقليل الحركة
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior:
+            auto !important;
+
+        transition-duration:
+            0.01ms !important;
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
     }
 
 }
