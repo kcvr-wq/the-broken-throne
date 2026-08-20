@@ -1,4 +1,3 @@
-```javascript
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
@@ -14,7 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
             return;
         }
 
-
         folders.forEach((folder) => {
 
             const summary =
@@ -29,36 +27,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /* -----------------------------------------
-               الحالة الابتدائية
+               منع السلوك الافتراضي لـ details
             ----------------------------------------- */
 
             folder.removeAttribute("open");
 
             content.style.overflow = "hidden";
-
             content.style.maxHeight = "0px";
-
             content.style.opacity = "0";
-
-            content.style.transform =
-                "translateY(-10px)";
-
+            content.style.transform = "translateY(-10px)";
             content.style.paddingTop = "0px";
-
             content.style.paddingBottom = "0px";
 
-            content.style.borderTopColor =
-                "transparent";
-
             content.style.transition =
-                "max-height 0.45s ease, " +
-                "opacity 0.30s ease, " +
-                "transform 0.45s ease, " +
-                "padding 0.45s ease, " +
-                "border-color 0.30s ease";
+                "max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), " +
+                "opacity 0.35s ease, " +
+                "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), " +
+                "padding 0.5s ease";
 
-
-            let animationTimer = null;
+            let closeTimer = null;
+            let isAnimating = false;
 
 
             /* -----------------------------------------
@@ -67,35 +55,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             function openFolder() {
 
-                if (animationTimer) {
-                    clearTimeout(animationTimer);
+                if (closeTimer) {
+                    clearTimeout(closeTimer);
+                    closeTimer = null;
                 }
 
+                isAnimating = true;
 
-                folder.setAttribute(
-                    "open",
-                    ""
-                );
+                folder.setAttribute("open", "");
 
-
-                content.style.maxHeight =
-                    "0px";
-
-                content.style.opacity =
-                    "0";
-
-                content.style.transform =
-                    "translateY(-10px)";
-
-                content.style.paddingTop =
-                    "0px";
-
-                content.style.paddingBottom =
-                    "0px";
-
-                content.style.borderTopColor =
-                    "transparent";
-
+                content.style.maxHeight = "0px";
+                content.style.opacity = "0";
+                content.style.transform = "translateY(-10px)";
+                content.style.paddingTop = "0px";
+                content.style.paddingBottom = "0px";
 
                 requestAnimationFrame(() => {
 
@@ -104,24 +77,30 @@ document.addEventListener("DOMContentLoaded", () => {
                         content.style.maxHeight =
                             content.scrollHeight + "px";
 
-                        content.style.opacity =
-                            "1";
+                        content.style.opacity = "1";
 
                         content.style.transform =
                             "translateY(0)";
 
-                        content.style.paddingTop =
-                            "18px";
+                        content.style.paddingTop = "18px";
 
-                        content.style.paddingBottom =
-                            "18px";
-
-                        content.style.borderTopColor =
-                            "#351616";
+                        content.style.paddingBottom = "18px";
 
                     });
 
                 });
+
+                setTimeout(() => {
+
+                    if (folder.hasAttribute("open")) {
+
+                        content.style.maxHeight = "none";
+
+                    }
+
+                    isAnimating = false;
+
+                }, 520);
 
             }
 
@@ -132,67 +111,57 @@ document.addEventListener("DOMContentLoaded", () => {
 
             function closeFolder() {
 
-                if (animationTimer) {
-                    clearTimeout(animationTimer);
+                if (closeTimer) {
+                    clearTimeout(closeTimer);
+                    closeTimer = null;
                 }
 
+                isAnimating = true;
 
                 content.style.maxHeight =
                     content.scrollHeight + "px";
 
-                content.style.opacity =
-                    "1";
+                content.style.opacity = "1";
 
                 content.style.transform =
                     "translateY(0)";
 
-                content.style.paddingTop =
-                    "18px";
+                content.style.paddingTop = "18px";
 
-                content.style.paddingBottom =
-                    "18px";
-
+                content.style.paddingBottom = "18px";
 
                 requestAnimationFrame(() => {
 
                     requestAnimationFrame(() => {
 
-                        content.style.maxHeight =
-                            "0px";
+                        content.style.maxHeight = "0px";
 
-                        content.style.opacity =
-                            "0";
+                        content.style.opacity = "0";
 
                         content.style.transform =
                             "translateY(-10px)";
 
-                        content.style.paddingTop =
-                            "0px";
+                        content.style.paddingTop = "0px";
 
-                        content.style.paddingBottom =
-                            "0px";
-
-                        content.style.borderTopColor =
-                            "transparent";
+                        content.style.paddingBottom = "0px";
 
                     });
 
                 });
 
+                closeTimer = setTimeout(() => {
 
-                animationTimer = setTimeout(() => {
+                    folder.removeAttribute("open");
 
-                    folder.removeAttribute(
-                        "open"
-                    );
+                    isAnimating = false;
 
-                }, 450);
+                }, 500);
 
             }
 
 
             /* -----------------------------------------
-               الضغط على عنوان المجلد
+               الضغط على المجلد
             ----------------------------------------- */
 
             summary.addEventListener(
@@ -201,11 +170,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     event.preventDefault();
 
-                    const isOpen =
-                        folder.hasAttribute("open");
+                    if (isAnimating) {
+                        return;
+                    }
 
-
-                    if (isOpen) {
+                    if (folder.hasAttribute("open")) {
 
                         closeFolder();
 
@@ -220,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
             /* -----------------------------------------
-               تحديث الارتفاع إذا تغير المحتوى
+               تحديث الارتفاع عند تغيير حجم الشاشة
             ----------------------------------------- */
 
             window.addEventListener(
@@ -228,7 +197,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 () => {
 
                     if (
-                        folder.hasAttribute("open")
+                        folder.hasAttribute("open") &&
+                        !isAnimating
                     ) {
 
                         content.style.maxHeight =
@@ -312,6 +282,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap";
 
         document.head.appendChild(fontLink);
+
     }
 
 
@@ -1525,4 +1496,3 @@ document.addEventListener("DOMContentLoaded", () => {
     applyReaderSettings();
 
 });
-```
