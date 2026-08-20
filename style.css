@@ -3944,3 +3944,23 @@ body.light-theme
     }
 
 }
+/* =========================================
+   منع لون وخط الروابط في بطاقات عالم الرواية
+========================================= */
+
+.world-region-card,
+.world-region-card:visited,
+.world-region-card:hover,
+.world-region-card:active {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+.world-region-card .world-region-header h3 {
+    color: #eeeeee;
+    text-decoration: none;
+}
+
+.world-region-card:hover .world-region-header h3 {
+    color: #ffffff;
+}
