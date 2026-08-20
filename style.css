@@ -3210,3 +3210,389 @@ body.light-theme .world-main-card-text {
     }
 
 }
+/* =========================================
+   صفحات التقنيات والمهارات
+========================================= */
+
+.world-technique-profile {
+    margin-top: 25px;
+}
+
+/* =========================================
+   معلومات الطائفة
+========================================= */
+
+.world-technique-info {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 16px;
+
+    margin-bottom: 25px;
+}
+
+.world-technique-info-item {
+    padding: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #0d0d0d
+        );
+
+    border: 1px solid #401717;
+
+    border-radius: 10px;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+.world-technique-info-item strong {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #a51d1d;
+
+    font-size: 15px;
+}
+
+.world-technique-info-item span {
+    display: block;
+
+    color: #d0d0d0;
+
+    font-size:
+        calc(
+            16px
+            * var(--site-text-scale)
+        );
+
+    line-height:
+        var(--site-line-height);
+}
+
+/* =========================================
+   قائمة التقنيات
+========================================= */
+
+.world-techniques-list {
+    display: grid;
+
+    gap: 12px;
+}
+
+.world-technique-item {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 18px 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0d0d0d
+        );
+
+    border: 1px solid #351616;
+
+    border-right: 3px solid #5b1919;
+
+    border-radius: 9px;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        background 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.world-technique-item::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    right: 0;
+
+    width: 0;
+
+    background:
+        rgba(165, 29, 29, 0.08);
+
+    transition:
+        width 0.3s ease;
+}
+
+.world-technique-item:hover {
+    transform:
+        translateX(-4px);
+
+    border-color: #7f1a1a;
+
+    border-right-color: #a51d1d;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a1010,
+            #111111
+        );
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.30),
+        0 0 14px rgba(127, 17, 17, 0.08);
+}
+
+.world-technique-item:hover::before {
+    width: 100%;
+}
+
+.world-technique-level {
+    position: relative;
+
+    z-index: 1;
+
+    min-width: 145px;
+
+    color: #a51d1d;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.world-technique-name {
+    position: relative;
+
+    z-index: 1;
+
+    flex: 1;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            18px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 700;
+
+    text-align: left;
+}
+
+/* =========================================
+   التقنية السرية
+========================================= */
+
+.world-technique-item:nth-child(5) {
+    border-right-color: #8f1c1c;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a0f0f,
+            #0d0d0d
+        );
+}
+
+.world-technique-item:nth-child(5)
+.world-technique-level {
+    color: #c52a2a;
+}
+
+/* =========================================
+   التقنية النهائية
+========================================= */
+
+.world-technique-final {
+    margin-top: 6px;
+
+    padding:
+        21px
+        22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #211010,
+            #100b0b
+        );
+
+    border-color: #6f1a1a;
+
+    border-right: 4px solid #b62121;
+
+    box-shadow:
+        0 12px 28px rgba(0, 0, 0, 0.35),
+        0 0 18px rgba(165, 29, 29, 0.08);
+}
+
+.world-technique-final
+.world-technique-level {
+    color: #d02b2b;
+}
+
+.world-technique-final
+.world-technique-name {
+    color: #ffffff;
+
+    font-size:
+        calc(
+            20px
+            * var(--site-text-scale)
+        );
+}
+
+/* =========================================
+   منع الأزرق في روابط الصفحات
+========================================= */
+
+.world-technique-profile a {
+    color: inherit;
+
+    text-decoration: none;
+}
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.world-technique-info-item,
+body.light-theme
+.world-technique-item {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #d8c2c2;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.07);
+}
+
+body.light-theme
+.world-technique-info-item span,
+body.light-theme
+.world-technique-name {
+    color: #333333;
+}
+
+body.light-theme
+.world-technique-item:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf7f7
+        );
+
+    border-color: #a98787;
+}
+
+body.light-theme
+.world-technique-item:nth-child(5) {
+    background:
+        linear-gradient(
+            145deg,
+            #fff8f8,
+            #f7f4f2
+        );
+
+    border-right-color: #a51d1d;
+}
+
+body.light-theme
+.world-technique-final {
+    background:
+        linear-gradient(
+            135deg,
+            #fff7f7,
+            #f7f1f1
+        );
+
+    border-color: #c59b9b;
+
+    border-right-color: #a51d1d;
+}
+
+body.light-theme
+.world-technique-final
+.world-technique-name {
+    color: #222222;
+}
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 700px) {
+
+    .world-technique-info {
+        grid-template-columns: 1fr;
+
+        gap: 12px;
+    }
+
+    .world-technique-info-item {
+        padding: 18px;
+    }
+
+    .world-technique-item {
+        align-items: flex-start;
+
+        flex-direction: column;
+
+        gap: 6px;
+
+        padding: 17px 18px;
+    }
+
+    .world-technique-level {
+        min-width: auto;
+
+        font-size: 13px;
+    }
+
+    .world-technique-name {
+        width: 100%;
+
+        text-align: right;
+
+        font-size:
+            calc(
+                17px
+                * var(--site-text-scale)
+            );
+    }
+
+    .world-technique-final
+    .world-technique-name {
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            );
+    }
+
+}
