@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =========================================
-       نظام الحرق — كما كان
+       نظام الحرق
     ========================================= */
 
-    const spoilerButtons = document.querySelectorAll(".spoiler-button");
+    const spoilerButtons =
+        document.querySelectorAll(".spoiler-button");
 
     spoilerButtons.forEach((button) => {
 
@@ -13,14 +14,19 @@ document.addEventListener("DOMContentLoaded", () => {
             event.preventDefault();
             event.stopPropagation();
 
-            const characterCard = button.closest(".character-card");
-            const spoilerSection = button.closest(".character-spoiler-section");
+            const characterCard =
+                button.closest(".character-card");
 
-            let container = characterCard || spoilerSection;
+            const spoilerSection =
+                button.closest(".character-spoiler-section");
+
+            let container =
+                characterCard || spoilerSection;
 
             if (!container) return;
 
-            const spoilerInfo = container.querySelector(".spoiler-info");
+            const spoilerInfo =
+                container.querySelector(".spoiler-info");
 
             if (!spoilerInfo) return;
 
@@ -38,15 +44,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       الخطوط
+       تحميل الخطوط
     ========================================= */
 
     if (!document.querySelector("#broken-throne-fonts")) {
 
-        const fontLink = document.createElement("link");
+        const fontLink =
+            document.createElement("link");
 
-        fontLink.id = "broken-throne-fonts";
-        fontLink.rel = "stylesheet";
+        fontLink.id =
+            "broken-throne-fonts";
+
+        fontLink.rel =
+            "stylesheet";
+
         fontLink.href =
             "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap";
 
@@ -58,8 +69,11 @@ document.addEventListener("DOMContentLoaded", () => {
        مفاتيح التخزين
     ========================================= */
 
-    const SITE_SETTINGS_KEY = "brokenThroneSiteSettings";
-    const READER_SETTINGS_KEY = "brokenThroneReaderSettings";
+    const SITE_SETTINGS_KEY =
+        "brokenThroneSiteSettings";
+
+    const READER_SETTINGS_KEY =
+        "brokenThroneReaderSettings";
 
 
     /* =========================================
@@ -67,23 +81,36 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================================= */
 
     const defaultSiteSettings = {
+
         theme: "dark",
+
         font: "naskh",
+
         size: "medium",
+
         spacing: "medium"
+
     };
 
 
     /* =========================================
-       الإعدادات الافتراضية للقراءة
+       الإعدادات الافتراضية للفصل
     ========================================= */
 
     const defaultReaderSettings = {
+
+        font: "naskh",
+
         size: "medium",
+
         spacing: "medium",
+
         width: "medium",
+
         paragraph: "medium",
+
         align: "right"
+
     };
 
 
@@ -95,15 +122,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
         try {
 
-            const saved = localStorage.getItem(key);
+            const saved =
+                localStorage.getItem(key);
 
             if (!saved) {
-                return { ...defaults };
+
+                return {
+                    ...defaults
+                };
+
             }
 
             return {
+
                 ...defaults,
+
                 ...JSON.parse(saved)
+
             };
 
         } catch (error) {
@@ -132,7 +167,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       حفظ الإعدادات
+       حفظ إعدادات الموقع
     ========================================= */
 
     function saveSiteSettings() {
@@ -144,6 +179,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     }
 
+
+    /* =========================================
+       حفظ إعدادات الفصل
+    ========================================= */
 
     function saveReaderSettings() {
 
@@ -161,15 +200,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function createSiteSettings() {
 
-        if (document.querySelector(".site-settings-wrapper")) {
+        if (
+            document.querySelector(
+                ".site-settings-wrapper"
+            )
+        ) {
             return;
         }
 
-        const wrapper = document.createElement("div");
 
-        wrapper.className = "site-settings-wrapper";
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className =
+            "site-settings-wrapper";
+
 
         wrapper.innerHTML = `
+
             <button
                 type="button"
                 class="site-settings-button"
@@ -178,6 +226,7 @@ document.addEventListener("DOMContentLoaded", () => {
             >
                 ⚙
             </button>
+
 
             <div
                 class="site-settings-panel"
@@ -376,16 +425,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const openButton =
-            wrapper.querySelector(".site-settings-button");
+            wrapper.querySelector(
+                ".site-settings-button"
+            );
 
         const panel =
-            wrapper.querySelector(".site-settings-panel");
+            wrapper.querySelector(
+                ".site-settings-panel"
+            );
 
         const closeButton =
-            wrapper.querySelector(".settings-panel-close");
+            wrapper.querySelector(
+                ".settings-panel-close"
+            );
 
         const resetButton =
-            wrapper.querySelector("[data-reset-site]");
+            wrapper.querySelector(
+                "[data-reset-site]"
+            );
 
 
         function closePanel() {
@@ -405,24 +462,27 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        openButton.addEventListener("click", (event) => {
+        openButton.addEventListener(
+            "click",
+            (event) => {
 
-            event.stopPropagation();
+                event.stopPropagation();
 
-            const isOpen =
-                panel.classList.toggle("show");
+                const isOpen =
+                    panel.classList.toggle("show");
 
-            panel.setAttribute(
-                "aria-hidden",
-                String(!isOpen)
-            );
+                panel.setAttribute(
+                    "aria-hidden",
+                    String(!isOpen)
+                );
 
-            openButton.setAttribute(
-                "aria-expanded",
-                String(isOpen)
-            );
+                openButton.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
 
-        });
+            }
+        );
 
 
         closeButton.addEventListener(
@@ -431,49 +491,61 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        document.addEventListener("click", (event) => {
+        document.addEventListener(
+            "click",
+            (event) => {
 
-            if (!wrapper.contains(event.target)) {
-                closePanel();
+                if (!wrapper.contains(event.target)) {
+                    closePanel();
+                }
+
             }
-
-        });
+        );
 
 
         wrapper
-            .querySelectorAll("[data-site-setting]")
+            .querySelectorAll(
+                "[data-site-setting]"
+            )
             .forEach((button) => {
 
-                button.addEventListener("click", () => {
+                button.addEventListener(
+                    "click",
+                    () => {
 
-                    const setting =
-                        button.dataset.siteSetting;
+                        const setting =
+                            button.dataset.siteSetting;
 
-                    const value =
-                        button.dataset.value;
+                        const value =
+                            button.dataset.value;
 
-                    siteSettings[setting] = value;
+                        siteSettings[setting] =
+                            value;
 
-                    saveSiteSettings();
+                        saveSiteSettings();
 
-                    applySiteSettings();
+                        applySiteSettings();
 
-                });
+                    }
+                );
 
             });
 
 
-        resetButton.addEventListener("click", () => {
+        resetButton.addEventListener(
+            "click",
+            () => {
 
-            siteSettings = {
-                ...defaultSiteSettings
-            };
+                siteSettings = {
+                    ...defaultSiteSettings
+                };
 
-            saveSiteSettings();
+                saveSiteSettings();
 
-            applySiteSettings();
+                applySiteSettings();
 
-        });
+            }
+        );
 
     }
 
@@ -511,8 +583,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const sizes = {
 
             small: "0.92",
+
             medium: "1",
+
             large: "1.10",
+
             xlarge: "1.20"
 
         };
@@ -521,7 +596,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const spacings = {
 
             tight: "1.75",
-            medium: "1.9",
+
+            medium: "1.90",
+
             wide: "2.15"
 
         };
@@ -558,7 +635,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         document
-            .querySelectorAll("[data-site-setting]")
+            .querySelectorAll(
+                "[data-site-setting]"
+            )
             .forEach((button) => {
 
                 const setting =
@@ -578,14 +657,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       إعدادات القراءة
-       تظهر فقط داخل الفصل
+       إنشاء إعدادات الفصل
+       تظهر فقط في صفحات الفصول
     ========================================= */
 
     function createReaderSettings() {
 
         const reader =
-            document.querySelector(".chapter-reader");
+            document.querySelector(
+                ".chapter-reader"
+            );
 
         if (!reader) {
             return;
@@ -613,7 +694,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <button
                 type="button"
                 class="reader-settings-button"
-                aria-label="إعدادات القراءة"
+                aria-label="إعدادات الفصل"
                 aria-expanded="false"
             >
                 Aa
@@ -627,7 +708,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-panel-header">
 
-                    <h2>إعدادات القراءة</h2>
+                    <h2>إعدادات الفصل</h2>
 
                     <button
                         type="button"
@@ -636,6 +717,53 @@ document.addEventListener("DOMContentLoaded", () => {
                     >
                         ×
                     </button>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>نوع الخط</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="font"
+                            data-value="naskh"
+                        >
+                            Noto Naskh
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="font"
+                            data-value="cairo"
+                        >
+                            Cairo
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="font"
+                            data-value="tajawal"
+                        >
+                            Tajawal
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="font"
+                            data-value="amiri"
+                        >
+                            Amiri
+                        </button>
+
+                    </div>
 
                 </div>
 
@@ -844,7 +972,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     class="settings-reset"
                     data-reset-reader
                 >
-                    إعادة إعدادات القراءة
+                    إعادة إعدادات الفصل
                 </button>
 
             </div>
@@ -859,18 +987,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 ".reader-settings-button"
             );
 
-
         const panel =
             wrapper.querySelector(
                 ".reader-settings-panel"
             );
 
-
         const closeButton =
             wrapper.querySelector(
                 ".reader-settings-close"
             );
-
 
         const resetButton =
             wrapper.querySelector(
@@ -924,17 +1049,22 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-        document.addEventListener("click", (event) => {
+        document.addEventListener(
+            "click",
+            (event) => {
 
-            if (!wrapper.contains(event.target)) {
-                closePanel();
+                if (!wrapper.contains(event.target)) {
+                    closePanel();
+                }
+
             }
-
-        });
+        );
 
 
         wrapper
-            .querySelectorAll("[data-reader-setting]")
+            .querySelectorAll(
+                "[data-reader-setting]"
+            )
             .forEach((button) => {
 
                 button.addEventListener(
@@ -979,24 +1109,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       تطبيق إعدادات القراءة
+       تطبيق إعدادات الفصل
     ========================================= */
 
     function applyReaderSettings() {
 
         const reader =
-            document.querySelector(".chapter-reader");
+            document.querySelector(
+                ".chapter-reader"
+            );
 
         if (!reader) {
             return;
         }
 
 
+        const fonts = {
+
+            naskh:
+                '"Noto Naskh Arabic", "Segoe UI", Tahoma, sans-serif',
+
+            cairo:
+                '"Cairo", "Segoe UI", Tahoma, sans-serif',
+
+            tajawal:
+                '"Tajawal", "Segoe UI", Tahoma, sans-serif',
+
+            amiri:
+                '"Amiri", "Noto Naskh Arabic", serif'
+
+        };
+
+
         const sizes = {
 
             small: "16px",
+
             medium: "18px",
+
             large: "20px",
+
             xlarge: "22px"
 
         };
@@ -1005,7 +1157,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const spacings = {
 
             tight: "1.75",
+
             medium: "2",
+
             wide: "2.25"
 
         };
@@ -1014,7 +1168,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const widths = {
 
             narrow: "680px",
+
             medium: "760px",
+
             wide: "900px"
 
         };
@@ -1023,7 +1179,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const paragraphSpacing = {
 
             small: "12px",
+
             medium: "18px",
+
             large: "26px"
 
         };
@@ -1032,10 +1190,18 @@ document.addEventListener("DOMContentLoaded", () => {
         const alignments = {
 
             right: "right",
+
             center: "center",
+
             justify: "justify"
 
         };
+
+
+        reader.style.setProperty(
+            "--reader-font",
+            fonts[readerSettings.font]
+        );
 
 
         reader.style.setProperty(
