@@ -1908,6 +1908,264 @@ function createReadingProgress() {
 
 /* تشغيل شريط القراءة */
 
-createReadingProgress(); 
+createReadingProgress();
+    /* =========================================
+   حفظ موضع القراءة داخل الفصل
+========================================= */
+
+const READING_POSITION_KEY =
+    "brokenThroneReadingPositions";
+
+
+function getCurrentChapterPath() {
+
+    const reader =
+        document.querySelector(".chapter-reader");
+
+    if (!reader) {
+        return null;
+    }
+
+    const path =
+        window.location.pathname;
+
+    const match =
+        path.match(/\/chapter-(\d+)\.html$/i);
+
+    if (!match) {
+        return null;
+    }
+
+    return path;
+
+}
+
+
+function loadReadingPositions() {
+
+    try {
+
+        const saved =
+            localStorage.getItem(
+                READING_POSITION_KEY
+            );
+
+        if (!saved) {
+            return {};
+        }
+
+        const data =
+            JSON.parse(saved);
+
+        if (
+            !data ||
+            typeof data !== "object"
+        ) {
+            return {};
+        }
+
+        return data;
+
+    } catch (error) {
+
+        return {};
+
+    }
+
+}
+
+
+function saveReadingPosition() {
+
+    const chapterPath =
+        getCurrentChapterPath();
+
+    if (!chapterPath) {
+        return;
+    }
+
+
+    const documentHeight =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+
+    if (documentHeight <= 0) {
+        return;
+    }
+
+
+    const scrollTop =
+        window.scrollY;
+
+
+    const progress =
+        Math.min(
+            Math.max(
+                scrollTop / documentHeight,
+                0
+            ),
+            1
+        );
+
+
+    const positions =
+        loadReadingPositions();
+
+
+    positions[chapterPath] = {
+
+        progress:
+            progress,
+
+        savedAt:
+            Date.now()
+
+    };
+
+
+    try {
+
+        localStorage.setItem(
+            READING_POSITION_KEY,
+            JSON.stringify(positions)
+        );
+
+    } catch (error) {
+
+        console.warn(
+            "تعذر حفظ موضع القراءة.",
+            error
+        );
+
+    }
+
+}
+
+
+function restoreReadingPosition() {
+
+    const chapterPath =
+        getCurrentChapterPath();
+
+    if (!chapterPath) {
+        return;
+    }
+
+
+    const positions =
+        loadReadingPositions();
+
+
+    const saved =
+        positions[chapterPath];
+
+
+    if (
+        !saved ||
+        typeof saved.progress !== "number"
+    ) {
+        return;
+    }
+
+
+    const restore =
+        () => {
+
+            const documentHeight =
+                document.documentElement.scrollHeight -
+                window.innerHeight;
+
+
+            if (documentHeight <= 0) {
+                return;
+            }
+
+
+            const target =
+                saved.progress *
+                documentHeight;
+
+
+            window.scrollTo({
+                top: target,
+                behavior: "auto"
+            });
+
+        };
+
+
+    /*
+       ننتظر قليلًا حتى يكتمل تحميل
+       النص والخطوط وحساب ارتفاع الصفحة.
+    */
+
+    requestAnimationFrame(() => {
+
+        requestAnimationFrame(() => {
+
+            setTimeout(
+                restore,
+                100
+            );
+
+        });
+
+    });
+
+}
+
+
+/* -----------------------------------------
+   حفظ الموضع عند التمرير
+----------------------------------------- */
+
+let readingSaveTimer = null;
+
+
+window.addEventListener(
+    "scroll",
+    () => {
+
+        if (readingSaveTimer) {
+            return;
+        }
+
+
+        readingSaveTimer =
+            setTimeout(() => {
+
+                saveReadingPosition();
+
+                readingSaveTimer = null;
+
+            }, 250);
+
+    },
+    {
+        passive: true
+    }
+);
+
+
+/* -----------------------------------------
+   حفظ الموضع عند مغادرة الصفحة
+----------------------------------------- */
+
+window.addEventListener(
+    "beforeunload",
+    () => {
+
+        saveReadingPosition();
+
+    }
+);
+
+
+/* -----------------------------------------
+   استعادة الموضع عند فتح الفصل
+----------------------------------------- */
+
+restoreReadingPosition();
 
 });
