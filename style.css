@@ -6344,3 +6344,48 @@ body.light-theme
     }
 
 }
+/* =========================================
+   منع الحركة الأفقية للصفحة
+========================================= */
+
+html,
+body {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow-x: hidden;
+}
+/* منع العناصر الكبيرة من تجاوز الشاشة */
+
+main,
+.home-hero,
+.home-sections,
+.home-navigation,
+.home-menu-card,
+.continue-reading-card,
+.site-search-panel,
+.site-settings-panel {
+    max-width: 100%;
+}
+@media (max-width: 760px) {
+
+    html,
+    body {
+        overflow-x: hidden;
+    }
+
+    .home-hero {
+        width: 100%;
+
+        max-width: 100vw;
+    }
+
+    .home-menu-card,
+    .continue-reading-card {
+        width: 100%;
+
+        max-width: 100%;
+    }
+
+}
