@@ -1,92 +1,313 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>العرش المكسور</title>
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        العرش المكسور
+    </title>
 
     <meta
         name="description"
-        content="العرش المكسور — رواية تدور في عالمٍ تحكمه القوة."
+        content="العرش المكسور — رواية تدور في عالمٍ تحكمه القوة، وتتشابك فيه الممالك والطوائف والعشائر والأسرار القديمة."
     >
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 <body>
 
     <main>
 
-        <!-- عنوان الرواية -->
-        <section class="hero">
+        <!-- =========================================
+             الواجهة الرئيسية
+        ========================================== -->
 
-            <h1>العرش المكسور</h1>
+        <section class="home-hero">
 
-            <p class="subtitle">
-                حكاية في عالمٍ تحكمه القوة
-            </p>
+            <div class="home-hero-content">
 
-            <!-- الغلاف -->
-            <div class="cover">
-    <img src="assets/images/cover.jpg" alt="غلاف رواية العرش المكسور">
-</div>
+                <span class="home-eyebrow">
+                    رواية موريم
+                </span>
+
+                <h1>
+                    العرش المكسور
+                </h1>
+
+                <p class="home-tagline">
+                    في عالمٍ تحكمه القوة...
+                    كل سقوط يترك أثرًا.
+                </p>
+
+                <p class="home-intro">
+                    عالم تتصارع فيه الممالك والطوائف والعشائر،
+                    بينما تخفي السنوات الماضية أسرارًا لم تُكشف بعد.
+                </p>
+
+
+                <div class="home-actions">
+
+                    <a
+                        href="chapters/chapter-01.html"
+                        class="home-primary-button"
+                    >
+                        <span>
+                            ابدأ القراءة
+                        </span>
+
+                        <span class="home-button-arrow">
+                            ←
+                        </span>
+                    </a>
+
+
+                    <a
+                        href="chapters/index.html"
+                        class="home-secondary-button"
+                    >
+                        جميع الفصول
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="home-cover-wrapper">
+
+                <div class="home-cover-glow"></div>
+
+                <div class="cover home-cover">
+
+                    <img
+                        src="assets/images/cover.jpg"
+                        alt="غلاف رواية العرش المكسور"
+                    >
+
+                </div>
+
+                <span class="home-cover-caption">
+                    العرش المكسور
+                </span>
+
+            </div>
 
         </section>
 
 
-        <!-- أزرار الأقسام -->
-        <section class="navigation">
+        <!-- =========================================
+             تابع القراءة
+             يتم إنشاؤه تلقائيًا بواسطة script.js
+        ========================================== -->
 
-            <a href="chapters/index.html" class="menu-button">
-    <span>الفصول</span>
-</a>
+        <!-- =========================================
+             الأقسام الرئيسية
+        ========================================== -->
 
-            <a href="characters/" class="menu-button">
-                <span>الشخصيات</span>
-            </a>
+        <section class="home-sections">
 
-            <a href="world/" class="menu-button">
-                <span>عالم الرواية</span>
-            </a>
+            <div class="home-section-heading">
 
-            <a href="techniques/" class="menu-button">
-                <span>التقنيات</span>
-            </a>
+                <span>
+                    استكشف الرواية
+                </span>
+
+                <h2>
+                    ادخل إلى عالم العرش المكسور
+                </h2>
+
+            </div>
+
+
+            <div class="navigation home-navigation">
+
+
+                <a
+                    href="chapters/index.html"
+                    class="menu-button home-menu-card"
+                >
+
+                    <span class="home-menu-number">
+                        01
+                    </span>
+
+                    <span class="home-menu-content">
+
+                        <span class="home-menu-title">
+                            الفصول
+                        </span>
+
+                        <span class="home-menu-description">
+                            اقرأ أحداث الرواية من الفصل الأول وما بعده.
+                        </span>
+
+                    </span>
+
+                    <span class="home-menu-arrow">
+                        ←
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="characters/"
+                    class="menu-button home-menu-card"
+                >
+
+                    <span class="home-menu-number">
+                        02
+                    </span>
+
+                    <span class="home-menu-content">
+
+                        <span class="home-menu-title">
+                            الشخصيات
+                        </span>
+
+                        <span class="home-menu-description">
+                            تعرف على شخصيات الرواية وتفاصيلها.
+                        </span>
+
+                    </span>
+
+                    <span class="home-menu-arrow">
+                        ←
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="world/"
+                    class="menu-button home-menu-card"
+                >
+
+                    <span class="home-menu-number">
+                        03
+                    </span>
+
+                    <span class="home-menu-content">
+
+                        <span class="home-menu-title">
+                            عالم الرواية
+                        </span>
+
+                        <span class="home-menu-description">
+                            اكتشف الممالك والمناطق والطوائف والتاريخ والأساطير.
+                        </span>
+
+                    </span>
+
+                    <span class="home-menu-arrow">
+                        ←
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="techniques/"
+                    class="menu-button home-menu-card"
+                >
+
+                    <span class="home-menu-number">
+                        04
+                    </span>
+
+                    <span class="home-menu-content">
+
+                        <span class="home-menu-title">
+                            التقنيات والمهارات
+                        </span>
+
+                        <span class="home-menu-description">
+                            تعرف على أساليب القتال والتقنيات الخاصة بالقوى المختلفة.
+                        </span>
+
+                    </span>
+
+                    <span class="home-menu-arrow">
+                        ←
+                    </span>
+
+                </a>
+
+
+            </div>
 
         </section>
 
 
-        <!-- نبذة الرواية -->
-        <section class="about">
+        <!-- =========================================
+             نبذة الرواية
+        ========================================== -->
 
-            <h2>عن الرواية</h2>
+        <section class="home-about about">
 
-            <p>
-                في عالمٍ تحكمه القوة، لا مكان للضعفاء… ولا رحمة لمن يسقط.
+            <div class="home-about-label">
+                عن الرواية
+            </div>
+
+            <h2>
+                حكاية تبدأ من القاع
+            </h2>
+
+            <p class="home-about-lead">
+                في عالمٍ تحكمه القوة، لا مكان للضعفاء... ولا رحمة لمن يسقط.
             </p>
 
             <p>
-                رين، طفل صغير يجد نفسه وحيدًا في عالمٍ قاسٍ، يحاول أن يشق
-                طريقه بنفسه وسط الحياة والصراعات من حوله. وبينما يكبر، يبدأ
-                في فهم العالم من خلال ما يراه ويعيشه، خطوةً بعد أخرى.
+                رين، طفل صغير يجد نفسه وحيدًا في عالمٍ قاسٍ،
+                يحاول أن يشق طريقه بنفسه وسط الحياة والصراعات
+                من حوله. وبينما يكبر، يبدأ في فهم العالم من خلال
+                ما يراه ويعيشه، خطوةً بعد أخرى.
             </p>
 
             <p>
-                لكن الماضي لا يترك أحدًا خلفه، وبعض الأبواب التي أُغلقت
-                منذ سنوات قد تُفتح من جديد.
+                لكن الماضي لا يترك أحدًا خلفه، وبعض الأبواب
+                التي أُغلقت منذ سنوات قد تُفتح من جديد.
             </p>
 
             <p>
-                ففي عالمٍ تتغير فيه موازين القوة، قد يكون الطريق نحو القمة
-                أطول وأقسى مما يتخيل رين.
+                ففي عالمٍ تتغير فيه موازين القوة، قد يكون الطريق
+                نحو القمة أطول وأقسى مما يتخيل رين.
             </p>
 
-            <p>
-                وهذه… حكاية <strong>العرش المكسور</strong>.
-            </p>
+            <div class="home-about-ending">
+                وهذه... حكاية
+                <strong>
+                    العرش المكسور
+                </strong>.
+            </div>
 
         </section>
+
+
+        <!-- =========================================
+             نهاية الصفحة
+        ========================================== -->
+
+        <div class="character-back home-back">
+
+            <a href="#top">
+                العودة إلى الأعلى
+            </a>
+
+        </div>
 
     </main>
 
@@ -94,4 +315,6 @@
     <script src="script.js"></script>
 
 </body>
+
 </html>
+```
