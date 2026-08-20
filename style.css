@@ -434,6 +434,174 @@ main {
 }
 
 /* =========================================
+   مجلدات الفصول
+========================================= */
+
+.volume-folder {
+    width: min(850px, 100%);
+
+    margin: 22px auto 0;
+
+    background: #0d0d0d;
+
+    border: 1px solid #431818;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.30);
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.volume-folder:hover {
+    border-color: #6f1a1a;
+
+    box-shadow:
+        0 15px 35px rgba(0, 0, 0, 0.40);
+}
+
+.volume-folder summary {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 20px 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #151515,
+            #0e0e0e
+        );
+
+    color: #eeeeee;
+
+    cursor: pointer;
+
+    list-style: none;
+
+    user-select: none;
+
+    font-size:
+        calc(
+            21px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 700;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease;
+}
+
+.volume-folder summary::-webkit-details-marker {
+    display: none;
+}
+
+.volume-folder summary:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #1a1010,
+            #111111
+        );
+
+    color: #ffffff;
+}
+
+.volume-title {
+    color: #b62121;
+}
+
+.volume-arrow {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    color: #b62121;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 50%;
+
+    font-size: 20px;
+
+    line-height: 1;
+
+    transition:
+        transform 0.3s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease;
+}
+
+.volume-folder[open] {
+    border-color: #7f1a1a;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.45),
+        0 0 20px rgba(127, 17, 17, 0.08);
+}
+
+.volume-folder[open] .volume-arrow {
+    transform: rotate(180deg);
+
+    background: #1a1010;
+
+    color: #eeeeee;
+
+    border-color: #a51d1d;
+}
+
+.volume-folder .chapter-list {
+    width: 100%;
+
+    margin: 0;
+
+    padding: 18px;
+
+    background: #101010;
+
+    border-top: 1px solid #351616;
+
+    animation:
+        volume-open 0.25s ease;
+}
+
+.volume-folder .chapter-card {
+    width: 100%;
+}
+
+@keyframes volume-open {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(-6px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+
+}
+
+/* =========================================
    قراءة الفصول
 ========================================= */
 
@@ -1496,6 +1664,63 @@ body.light-theme
 }
 
 /* =========================================
+   المجلدات — الوضع الفاتح
+========================================= */
+
+body.light-theme .volume-folder {
+    background: #ffffff;
+
+    border-color: #d8c2c2;
+
+    box-shadow:
+        0 12px 30px rgba(0, 0, 0, 0.10);
+}
+
+body.light-theme .volume-folder summary {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    color: #222222;
+}
+
+body.light-theme .volume-folder summary:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #faf7f7,
+            #f3eeee
+        );
+
+    color: #222222;
+}
+
+body.light-theme .volume-folder .chapter-list {
+    background: #faf8f6;
+
+    border-top-color: #e4d6d6;
+}
+
+body.light-theme .volume-arrow {
+    background: #ffffff;
+
+    border-color: #d7bcbc;
+
+    color: #8f1c1c;
+}
+
+body.light-theme .volume-folder[open] .volume-arrow {
+    background: #f3eeee;
+
+    border-color: #a51d1d;
+
+    color: #8f1c1c;
+}
+
+/* =========================================
    الهاتف
 ========================================= */
 
@@ -1561,6 +1786,39 @@ body.light-theme
         gap: 12px;
     }
 
+    /* -------------------------
+       المجلدات
+    ------------------------- */
+
+    .volume-folder {
+        margin-top: 16px;
+    }
+
+    .volume-folder summary {
+        padding: 17px 18px;
+
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            );
+    }
+
+    .volume-arrow {
+        width: 30px;
+        height: 30px;
+
+        font-size: 18px;
+    }
+
+    .volume-folder .chapter-list {
+        padding: 12px;
+    }
+
+    /* -------------------------
+       تنقل الفصول
+    ------------------------- */
+
     .chapter-navigation {
         flex-direction: column;
     }
@@ -1568,6 +1826,10 @@ body.light-theme
     .chapter-nav-button {
         width: 100%;
     }
+
+    /* -------------------------
+       الشخصيات
+    ------------------------- */
 
     .character-list {
         grid-template-columns: 1fr;
@@ -1629,6 +1891,10 @@ body.light-theme
                 * var(--site-text-scale)
             );
     }
+
+    /* -------------------------
+       الإعدادات
+    ------------------------- */
 
     .site-settings-wrapper {
         top: 12px;
