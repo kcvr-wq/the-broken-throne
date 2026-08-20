@@ -13,10 +13,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const LAST_CHAPTER_KEY =
         "brokenThroneLastChapter";
 
-    const RECENT_CHAPTERS_KEY =
-        "brokenThroneRecentChapters";
+    const READING_PROGRESS_KEY =
+        "brokenThroneChapterProgress";
 
-    const RECENT_CHAPTERS_LIMIT = 5;
+    const COMPLETED_CHAPTERS_KEY =
+        "brokenThroneCompletedChapters";
 
 
     /* =========================================
@@ -35,18 +36,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function safeLocalStorageGet(key) {
+    function safeGet(key) {
 
         try {
 
             return localStorage.getItem(key);
 
         } catch (error) {
-
-            console.warn(
-                "تعذر قراءة التخزين المحلي:",
-                error
-            );
 
             return null;
 
@@ -55,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function safeLocalStorageSet(key, value) {
+    function safeSet(key, value) {
 
         try {
 
@@ -64,16 +60,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 value
             );
 
-            return true;
-
         } catch (error) {
 
             console.warn(
-                "تعذر حفظ البيانات:",
+                "تعذر حفظ البيانات.",
                 error
             );
-
-            return false;
 
         }
 
@@ -129,6 +121,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
+    function getCurrentChapterURL() {
+
+        return window.location.pathname;
+
+    }
+
+
     /* =========================================
        تحميل الخطوط
     ========================================= */
@@ -145,7 +144,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const fontLink =
-            document.createElement("link");
+            document.createElement(
+                "link"
+            );
 
 
         fontLink.id =
@@ -247,8 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         closeTimer
                     );
 
-                    closeTimer = null;
-
                 }
 
 
@@ -328,8 +327,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     clearTimeout(
                         closeTimer
                     );
-
-                    closeTimer = null;
 
                 }
 
@@ -506,21 +503,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     );
 
 
-                    if (
+                    button.textContent =
                         spoilerInfo.classList.contains(
                             "show"
                         )
-                    ) {
-
-                        button.textContent =
-                            "إخفاء الحرق";
-
-                    } else {
-
-                        button.textContent =
-                            "حرق";
-
-                    }
+                            ? "إخفاء الحرق"
+                            : "حرق";
 
                 }
             );
@@ -531,7 +519,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       الإعدادات الافتراضية
+       إعدادات الموقع
     ========================================= */
 
     const defaultSiteSettings = {
@@ -572,7 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
 
             const saved =
-                safeLocalStorageGet(key);
+                safeGet(key);
 
 
             if (!saved) {
@@ -626,14 +614,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function saveSiteSettings() {
 
-        safeLocalStorageSet(
-
+        safeSet(
             SITE_SETTINGS_KEY,
-
             JSON.stringify(
                 siteSettings
             )
-
         );
 
     }
@@ -641,14 +626,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function saveReaderSettings() {
 
-        safeLocalStorageSet(
-
+        safeSet(
             READER_SETTINGS_KEY,
-
             JSON.stringify(
                 readerSettings
             )
-
         );
 
     }
@@ -670,7 +652,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const wrapper =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         wrapper.className =
@@ -1025,13 +1009,10 @@ document.addEventListener("DOMContentLoaded", () => {
                                 .siteSetting;
 
 
-                        const value =
-                            button.dataset.value;
-
-
                         siteSettings[
                             setting
-                        ] = value;
+                        ] =
+                            button.dataset.value;
 
 
                         saveSiteSettings();
@@ -1049,9 +1030,7 @@ document.addEventListener("DOMContentLoaded", () => {
             () => {
 
                 siteSettings = {
-
                     ...defaultSiteSettings
-
                 };
 
 
@@ -1163,15 +1142,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         .siteSetting;
 
 
-                const value =
-                    button.dataset.value;
-
-
                 button.classList.toggle(
                     "active",
                     siteSettings[
                         setting
-                    ] === value
+                    ] === button.dataset.value
                 );
 
             });
@@ -1206,7 +1181,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const wrapper =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
 
 
         wrapper.className =
@@ -1652,18 +1629,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     "click",
                     () => {
 
-                        const setting =
-                            button.dataset
-                                .readerSetting;
-
-
-                        const value =
-                            button.dataset.value;
-
-
                         readerSettings[
-                            setting
-                        ] = value;
+                            button.dataset
+                                .readerSetting
+                        ] =
+                            button.dataset.value;
 
 
                         saveReaderSettings();
@@ -1681,9 +1651,7 @@ document.addEventListener("DOMContentLoaded", () => {
             () => {
 
                 readerSettings = {
-
                     ...defaultReaderSettings
-
                 };
 
 
@@ -1843,15 +1811,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         .readerSetting;
 
 
-                const value =
-                    button.dataset.value;
-
-
                 button.classList.toggle(
                     "active",
                     readerSettings[
                         setting
-                    ] === value
+                    ] === button.dataset.value
                 );
 
             });
@@ -1863,12 +1827,12 @@ document.addEventListener("DOMContentLoaded", () => {
        تابع القراءة
     ========================================= */
 
-    function loadContinueReading() {
+    function loadLastChapter() {
 
         try {
 
             const saved =
-                safeLocalStorageGet(
+                safeGet(
                     LAST_CHAPTER_KEY
                 );
 
@@ -1878,20 +1842,19 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            const data =
+            const parsed =
                 JSON.parse(saved);
 
 
             if (
-                !data ||
-                typeof data !== "object" ||
-                !data.url
+                !parsed ||
+                !parsed.url
             ) {
                 return null;
             }
 
 
-            return data;
+            return parsed;
 
         } catch (error) {
 
@@ -1902,43 +1865,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function saveContinueReading(
-        title,
-        url
-    ) {
-
-        safeLocalStorageSet(
-
-            LAST_CHAPTER_KEY,
-
-            JSON.stringify({
-
-                title: title,
-
-                url: url,
-
-                updatedAt:
-                    Date.now()
-
-            })
-
-        );
-
-    }
-
-
-    function saveCurrentChapter() {
+    function saveLastChapter() {
 
         if (!isChapterPage()) {
             return;
         }
 
 
-        saveContinueReading(
+        safeSet(
 
-            getCurrentChapterTitle(),
+            LAST_CHAPTER_KEY,
 
-            window.location.pathname
+            JSON.stringify({
+
+                title:
+                    getCurrentChapterTitle(),
+
+                url:
+                    getCurrentChapterURL(),
+
+                updatedAt:
+                    Date.now()
+
+            })
 
         );
 
@@ -1959,7 +1908,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const saved =
-            loadContinueReading();
+            loadLastChapter();
 
 
         if (
@@ -2029,7 +1978,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 class="continue-reading-title"
             >
                 ${escapeHTML(
-                    saved.title || "الفصل"
+                    saved.title
                 )}
             </span>
 
@@ -2037,7 +1986,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span
                 class="continue-reading-number"
             >
-                آخر فصل قرأته
+                آخر فصل فتحته
             </span>
 
 
@@ -2053,16 +2002,276 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       سجل آخر الفصول
+       حفظ مكان القراءة
     ========================================= */
 
-    function loadRecentChapters() {
+    let progressSaveTimer = null;
+
+    let progressSavePending = false;
+
+
+    function getReadingProgressData() {
+
+        const total =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+
+        if (total <= 0) {
+
+            return {
+
+                top: 0,
+
+                percent: 0
+
+            };
+
+        }
+
+
+        const top =
+            Math.max(
+                0,
+                window.scrollY || 0
+            );
+
+
+        const percent =
+            Math.max(
+                0,
+                Math.min(
+                    100,
+                    (top / total) * 100
+                )
+            );
+
+
+        return {
+
+            top: top,
+
+            percent: percent
+
+        };
+
+    }
+
+
+    function loadChapterProgress() {
 
         try {
 
             const saved =
-                safeLocalStorageGet(
-                    RECENT_CHAPTERS_KEY
+                safeGet(
+                    READING_PROGRESS_KEY
+                );
+
+
+            if (!saved) {
+                return {};
+            }
+
+
+            const parsed =
+                JSON.parse(saved);
+
+
+            return (
+                parsed &&
+                typeof parsed === "object"
+            )
+                ? parsed
+                : {};
+
+        } catch (error) {
+
+            return {};
+
+        }
+
+    }
+
+
+    function saveChapterProgress() {
+
+        if (!isChapterPage()) {
+            return;
+        }
+
+
+        const data =
+            loadChapterProgress();
+
+
+        const url =
+            getCurrentChapterURL();
+
+
+        const progress =
+            getReadingProgressData();
+
+
+        data[url] = {
+
+            top:
+                Math.round(
+                    progress.top
+                ),
+
+            percent:
+                Number(
+                    progress.percent.toFixed(
+                        2
+                    )
+                ),
+
+            updatedAt:
+                Date.now()
+
+        };
+
+
+        safeSet(
+
+            READING_PROGRESS_KEY,
+
+            JSON.stringify(data)
+
+        );
+
+    }
+
+
+    function saveChapterProgressThrottled() {
+
+        if (!isChapterPage()) {
+            return;
+        }
+
+
+        progressSavePending = true;
+
+
+        if (progressSaveTimer) {
+            return;
+        }
+
+
+        progressSaveTimer =
+            setTimeout(() => {
+
+                if (
+                    progressSavePending
+                ) {
+
+                    saveChapterProgress();
+
+                }
+
+
+                progressSavePending =
+                    false;
+
+
+                progressSaveTimer =
+                    null;
+
+            }, 250);
+
+    }
+
+
+    function restoreChapterProgress() {
+
+        if (!isChapterPage()) {
+            return;
+        }
+
+
+        const data =
+            loadChapterProgress();
+
+
+        const current =
+            data[
+                getCurrentChapterURL()
+            ];
+
+
+        if (
+            !current ||
+            typeof current.top !== "number" ||
+            current.top <= 5
+        ) {
+            return;
+        }
+
+
+        /*
+           ننتظر حتى يكتمل تحميل محتوى الفصل.
+        */
+
+        const restore =
+            () => {
+
+                const maxScroll =
+                    Math.max(
+                        0,
+                        document.documentElement
+                            .scrollHeight -
+                        window.innerHeight
+                    );
+
+
+                const target =
+                    Math.min(
+                        current.top,
+                        maxScroll
+                    );
+
+
+                window.scrollTo(
+                    0,
+                    target
+                );
+
+            };
+
+
+        requestAnimationFrame(() => {
+
+            requestAnimationFrame(() => {
+
+                restore();
+
+            });
+
+        });
+
+
+        window.addEventListener(
+            "load",
+            restore,
+            {
+                once: true
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       تحديد الفصل كمقروء
+    ========================================= */
+
+    function loadCompletedChapters() {
+
+        try {
+
+            const saved =
+                safeGet(
+                    COMPLETED_CHAPTERS_KEY
                 );
 
 
@@ -2071,20 +2280,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
 
 
-            const data =
+            const parsed =
                 JSON.parse(saved);
 
 
-            if (!Array.isArray(data)) {
+            if (!Array.isArray(parsed)) {
                 return [];
             }
 
 
-            return data.filter(
-                (chapter) =>
-                    chapter &&
-                    chapter.url
-            );
+            return parsed;
 
         } catch (error) {
 
@@ -2095,13 +2300,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function saveRecentChapters(
+    function saveCompletedChapters(
         chapters
     ) {
 
-        safeLocalStorageSet(
+        safeSet(
 
-            RECENT_CHAPTERS_KEY,
+            COMPLETED_CHAPTERS_KEY,
 
             JSON.stringify(
                 chapters
@@ -2112,220 +2317,59 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    function addCurrentChapterToRecent() {
+    function markCurrentChapterCompleted() {
 
         if (!isChapterPage()) {
             return;
         }
 
 
-        const currentUrl =
-            window.location.pathname;
+        const url =
+            getCurrentChapterURL();
 
 
-        const currentTitle =
-            getCurrentChapterTitle();
+        let completed =
+            loadCompletedChapters();
 
 
-        let chapters =
-            loadRecentChapters();
+        if (
+            completed.includes(url)
+        ) {
+            return;
+        }
 
 
-        chapters =
-            chapters.filter(
-                (chapter) =>
-                    chapter.url !==
-                    currentUrl
-            );
+        completed.push(url);
 
 
-        chapters.unshift({
-
-            url:
-                currentUrl,
-
-            title:
-                currentTitle,
-
-            visitedAt:
-                Date.now()
-
-        });
-
-
-        chapters =
-            chapters.slice(
-                0,
-                RECENT_CHAPTERS_LIMIT
-            );
-
-
-        saveRecentChapters(
-            chapters
+        saveCompletedChapters(
+            completed
         );
 
     }
 
 
-    function createRecentChapters() {
+    function checkChapterCompletion() {
 
-        const homeSections =
-            document.querySelector(
-                ".home-sections"
-            );
-
-
-        if (!homeSections) {
+        if (!isChapterPage()) {
             return;
         }
 
 
-        const existing =
-            homeSections.querySelector(
-                ".recent-chapters-section"
-            );
-
-
-        if (existing) {
-
-            existing.remove();
-
-        }
-
-
-        const chapters =
-            loadRecentChapters();
-
-
-        if (!chapters.length) {
-            return;
-        }
-
-
-        const section =
-            document.createElement(
-                "section"
-            );
-
-
-        section.className =
-            "recent-chapters-section";
-
-
-        section.innerHTML = `
-
-            <div
-                class="recent-chapters-heading"
-            >
-
-                <span>
-                    سجل القراءة
-                </span>
-
-
-                <h2>
-                    آخر الفصول
-                </h2>
-
-            </div>
-
-
-            <div
-                class="recent-chapters-list"
-            >
-
-                ${chapters
-                    .map(
-                        (
-                            chapter,
-                            index
-                        ) => {
-
-                            return `
-
-                                <a
-                                    href="${escapeHTML(
-                                        chapter.url
-                                    )}"
-                                    class="recent-chapter-card"
-                                >
-
-                                    <span
-                                        class="recent-chapter-number"
-                                    >
-                                        ${String(
-                                            index + 1
-                                        ).padStart(
-                                            2,
-                                            "0"
-                                        )}
-                                    </span>
-
-
-                                    <span
-                                        class="recent-chapter-content"
-                                    >
-
-                                        <span
-                                            class="recent-chapter-title"
-                                        >
-                                            ${escapeHTML(
-                                                chapter.title
-                                            )}
-                                        </span>
-
-
-                                        <span
-                                            class="recent-chapter-path"
-                                        >
-                                            ${escapeHTML(
-                                                chapter.url
-                                            )}
-                                        </span>
-
-                                    </span>
-
-
-                                    <span
-                                        class="recent-chapter-arrow"
-                                    >
-                                        ←
-                                    </span>
-
-                                </a>
-
-                            `;
-
-                        }
-                    )
-                    .join("")}
-
-            </div>
-        `;
+        const progress =
+            getReadingProgressData();
 
 
         /*
-           يوضع السجل بعد بطاقة
-           تابع القراءة إن وجدت.
+           نعتبر الفصل مكتملًا عند
+           الوصول إلى 97% من القراءة.
         */
 
-        const continueCard =
-            homeSections.querySelector(
-                ".continue-reading-card"
-            );
+        if (
+            progress.percent >= 97
+        ) {
 
-
-        if (continueCard) {
-
-            continueCard.after(
-                section
-            );
-
-        } else {
-
-            homeSections.prepend(
-                section
-            );
+            markCurrentChapterCompleted();
 
         }
 
@@ -2333,8 +2377,122 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
+       علامات الفصول المقروءة
+    ========================================= */
+
+    function updateCompletedChapterMarks() {
+
+        const completed =
+            loadCompletedChapters();
+
+
+        const chapterCards =
+            document.querySelectorAll(
+                ".chapter-card"
+            );
+
+
+        if (!chapterCards.length) {
+            return;
+        }
+
+
+        chapterCards.forEach((card) => {
+
+            const href =
+                card.getAttribute(
+                    "href"
+                );
+
+
+            if (!href) {
+                return;
+            }
+
+
+            let path;
+
+
+            try {
+
+                path =
+                    new URL(
+                        href,
+                        window.location.href
+                    ).pathname;
+
+            } catch (error) {
+
+                path =
+                    href;
+
+            }
+
+
+            const isCompleted =
+                completed.includes(
+                    path
+                );
+
+
+            let check =
+                card.querySelector(
+                    ".chapter-read-check"
+                );
+
+
+            if (
+                isCompleted &&
+                !check
+            ) {
+
+                check =
+                    document.createElement(
+                        "span"
+                    );
+
+
+                check.className =
+                    "chapter-read-check";
+
+
+                check.setAttribute(
+                    "aria-label",
+                    "تمت القراءة"
+                );
+
+
+                check.textContent =
+                    "✓";
+
+
+                card.appendChild(
+                    check
+                );
+
+            }
+
+
+            if (
+                !isCompleted &&
+                check
+            ) {
+
+                check.remove();
+
+            }
+
+        });
+
+    }
+
+
+    /* =========================================
        شريط تقدم القراءة
     ========================================= */
+
+    let progressFrame = null;
+
 
     function createReadingProgress() {
 
@@ -2391,6 +2549,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 </span>
 
             </div>
+
         `;
 
 
@@ -2413,65 +2572,47 @@ document.addEventListener("DOMContentLoaded", () => {
 
         function updateProgress() {
 
-            const totalHeight =
-                document.documentElement
-                    .scrollHeight -
-                window.innerHeight;
+            progressFrame = null;
 
 
-            if (totalHeight <= 0) {
-
-                fill.style.width =
-                    "0%";
-
-
-                percent.textContent =
-                    "0%";
-
-
-                return;
-
-            }
-
-
-            const scrollTop =
-                window.scrollY ||
-                window.pageYOffset ||
-                0;
-
-
-            let progress =
-                (
-                    scrollTop /
-                    totalHeight
-                ) * 100;
-
-
-            progress =
-                Math.max(
-                    0,
-                    Math.min(
-                        100,
-                        progress
-                    )
-                );
+            const progress =
+                getReadingProgressData();
 
 
             fill.style.width =
-                progress + "%";
+                progress.percent + "%";
 
 
             percent.textContent =
                 Math.round(
-                    progress
+                    progress.percent
                 ) + "%";
+
+        }
+
+
+        function onScroll() {
+
+            if (!progressFrame) {
+
+                progressFrame =
+                    requestAnimationFrame(
+                        updateProgress
+                    );
+
+            }
+
+
+            saveChapterProgressThrottled();
+
+            checkChapterCompletion();
 
         }
 
 
         window.addEventListener(
             "scroll",
-            updateProgress,
+            onScroll,
             {
                 passive: true
             }
@@ -2545,7 +2686,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         <span
                             class="site-search-status"
                         >
-                            ابحث داخل الصفحة
+                            ابحث داخل الموقع
                         </span>
 
                     </div>
@@ -2581,6 +2722,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 ></div>
 
             </div>
+
         `;
 
 
@@ -2645,99 +2787,97 @@ document.addEventListener("DOMContentLoaded", () => {
             const items = [];
 
 
-            const links =
-                document.querySelectorAll(
+            document
+                .querySelectorAll(
                     "a[href]"
-                );
+                )
+                .forEach((link) => {
 
-
-            links.forEach((link) => {
-
-                if (
-                    wrapper.contains(
-                        link
-                    )
-                ) {
-                    return;
-                }
-
-
-                const href =
-                    link.getAttribute(
-                        "href"
-                    );
-
-
-                if (
-                    !href ||
-                    href.startsWith(
-                        "#"
-                    ) ||
-                    href.startsWith(
-                        "javascript:"
-                    ) ||
-                    href.startsWith(
-                        "mailto:"
-                    )
-                ) {
-                    return;
-                }
-
-
-                const titleElement =
-                    link.querySelector(
-                        ".chapter-title, " +
-                        ".home-menu-title, " +
-                        ".world-main-card-title, " +
-                        ".techniques-category-title, " +
-                        ".continue-reading-title, " +
-                        ".character-info h3, " +
-                        ".world-region-header h3, " +
-                        ".chapter-number"
-                    );
-
-
-                const title =
-                    (
-                        titleElement ||
-                        link
-                    )
-                        .textContent
-                        .replace(
-                            /\s+/g,
-                            " "
+                    if (
+                        wrapper.contains(
+                            link
                         )
-                        .trim();
+                    ) {
+                        return;
+                    }
 
 
-                if (!title) {
-                    return;
-                }
+                    const href =
+                        link.getAttribute(
+                            "href"
+                        );
 
 
-                const snippet =
-                    link.textContent
-                        .replace(
-                            /\s+/g,
-                            " "
+                    if (
+                        !href ||
+                        href.startsWith(
+                            "#"
+                        ) ||
+                        href.startsWith(
+                            "javascript:"
+                        ) ||
+                        href.startsWith(
+                            "mailto:"
                         )
-                        .trim();
+                    ) {
+                        return;
+                    }
 
 
-                items.push({
+                    const titleElement =
+                        link.querySelector(
+                            ".chapter-title, " +
+                            ".home-menu-title, " +
+                            ".world-main-card-title, " +
+                            ".techniques-category-title, " +
+                            ".continue-reading-title, " +
+                            ".character-info h3, " +
+                            ".world-region-header h3, " +
+                            ".chapter-number"
+                        );
 
-                    title:
-                        title,
 
-                    href:
-                        href,
+                    const title =
+                        (
+                            titleElement ||
+                            link
+                        )
+                            .textContent
+                            .replace(
+                                /\s+/g,
+                                " "
+                            )
+                            .trim();
 
-                    snippet:
-                        snippet
+
+                    if (!title) {
+                        return;
+                    }
+
+
+                    const snippet =
+                        link.textContent
+                            .replace(
+                                /\s+/g,
+                                " "
+                            )
+                            .trim();
+
+
+                    items.push({
+
+                        title:
+                            title,
+
+                        href:
+                            href,
+
+                        snippet:
+                            snippet
+
+                    });
 
                 });
-
-            });
 
 
             return items;
@@ -2753,51 +2893,33 @@ document.addEventListener("DOMContentLoaded", () => {
                 collectSearchItems();
 
 
-            const normalizedQuery =
+            const normalized =
                 query
                     .trim()
                     .toLowerCase();
 
 
-            let filtered;
-
-
-            if (!normalizedQuery) {
-
-                filtered =
-                    items.slice(
-                        0,
-                        20
-                    );
-
-            } else {
-
-                filtered =
-                    items.filter(
-                        (item) => {
-
-                            const searchable =
+            const filtered =
+                (
+                    normalized
+                        ? items.filter(
+                            (item) =>
                                 (
                                     item.title +
                                     " " +
                                     item.snippet
                                 )
-                                    .toLowerCase();
-
-
-                            return searchable
-                                .includes(
-                                    normalizedQuery
-                                );
-
-                        }
-                    )
-                    .slice(
-                        0,
-                        20
-                    );
-
-            }
+                                    .toLowerCase()
+                                    .includes(
+                                        normalized
+                                    )
+                        )
+                        : items
+                )
+                .slice(
+                    0,
+                    20
+                );
 
 
             if (!filtered.length) {
@@ -2821,48 +2943,44 @@ document.addEventListener("DOMContentLoaded", () => {
             results.innerHTML =
                 filtered
                     .map(
-                        (item) => {
+                        (item) => `
 
-                            return `
+                            <a
+                                href="${escapeHTML(
+                                    item.href
+                                )}"
+                                class="site-search-result"
+                            >
 
-                                <a
-                                    href="${escapeHTML(
-                                        item.href
-                                    )}"
-                                    class="site-search-result"
+                                <span
+                                    class="site-search-result-title"
                                 >
-
-                                    <span
-                                        class="site-search-result-title"
-                                    >
-                                        ${escapeHTML(
-                                            item.title
-                                        )}
-                                    </span>
+                                    ${escapeHTML(
+                                        item.title
+                                    )}
+                                </span>
 
 
-                                    <span
-                                        class="site-search-result-path"
-                                    >
-                                        ${escapeHTML(
-                                            item.href
-                                        )}
-                                    </span>
+                                <span
+                                    class="site-search-result-path"
+                                >
+                                    ${escapeHTML(
+                                        item.href
+                                    )}
+                                </span>
 
 
-                                    <span
-                                        class="site-search-result-snippet"
-                                    >
-                                        ${escapeHTML(
-                                            item.snippet
-                                        )}
-                                    </span>
+                                <span
+                                    class="site-search-result-snippet"
+                                >
+                                    ${escapeHTML(
+                                        item.snippet
+                                    )}
+                                </span>
 
-                                </a>
+                            </a>
 
-                            `;
-
-                        }
+                        `
                     )
                     .join("");
 
@@ -2903,7 +3021,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     setTimeout(
                         () => input.focus(),
-                        50
+                        30
                     );
 
                 }
@@ -2967,16 +3085,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       تشغيل جميع الأنظمة
+       التشغيل
     ========================================= */
 
     loadFonts();
 
 
-    saveCurrentChapter();
-
-
-    addCurrentChapterToRecent();
+    saveLastChapter();
 
 
     createVolumeFolders();
@@ -2994,18 +3109,25 @@ document.addEventListener("DOMContentLoaded", () => {
     createSiteSearch();
 
 
-    createReadingProgress();
-
-
     applySiteSettings();
 
 
     applyReaderSettings();
 
 
+    createReadingProgress();
+
+
+    updateCompletedChapterMarks();
+
+
     createContinueReading();
 
 
-    createRecentChapters();
+    if (isChapterPage()) {
+
+        restoreChapterProgress();
+
+    }
 
 });
