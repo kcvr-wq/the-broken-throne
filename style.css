@@ -4802,3 +4802,781 @@ body.light-theme
     }
 
 }
+```css
+/* =========================================
+   الصفحة الرئيسية — الواجهة الجديدة
+========================================= */
+
+.home-hero {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(300px, 380px);
+
+    align-items: center;
+
+    gap: 70px;
+
+    width: min(1050px, 100%);
+
+    min-height: 620px;
+
+    margin: 0 auto;
+
+    padding:
+        55px 30px
+        45px;
+
+    overflow: hidden;
+}
+
+.home-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 500px;
+    height: 500px;
+
+    left: -180px;
+    bottom: -240px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(127, 17, 17, 0.12),
+            transparent 70%
+        );
+
+    pointer-events: none;
+}
+
+.home-hero-content {
+    position: relative;
+
+    z-index: 2;
+}
+
+.home-eyebrow {
+    display: inline-block;
+
+    margin-bottom: 16px;
+
+    padding:
+        5px 15px;
+
+    background: #160e0e;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 20px;
+
+    color: #b62121;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.home-hero h1 {
+    margin: 0;
+
+    color: #a51d1d;
+
+    font-size:
+        clamp(
+            52px,
+            7vw,
+            88px
+        );
+
+    line-height: 1.15;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    text-shadow:
+        0 0 18px rgba(165, 29, 29, 0.18),
+        0 12px 35px rgba(0, 0, 0, 0.85);
+}
+
+.home-tagline {
+    margin:
+        18px 0 8px;
+
+    color: #eeeeee;
+
+    font-size:
+        clamp(
+            21px,
+            3vw,
+            29px
+        );
+
+    font-weight: 800;
+
+    line-height: 1.7;
+}
+
+.home-intro {
+    max-width: 590px;
+
+    margin: 14px 0 0;
+
+    color: #a9a9a9;
+
+    font-size:
+        calc(
+            17px
+            * var(--site-text-scale)
+        );
+
+    line-height:
+        2;
+}
+
+
+/* =========================================
+   أزرار البداية
+========================================= */
+
+.home-actions {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+.home-primary-button,
+.home-secondary-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-height: 55px;
+
+    padding:
+        11px 20px;
+
+    border-radius: 8px;
+
+    text-decoration: none;
+
+    font-family: inherit;
+
+    font-weight: 800;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.home-primary-button {
+    gap: 18px;
+
+    min-width: 185px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #7f1111,
+            #4b0d0d
+        );
+
+    border: 1px solid #a51d1d;
+
+    color: #ffffff;
+
+    box-shadow:
+        0 12px 30px rgba(127, 17, 17, 0.18);
+}
+
+.home-primary-button:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #9a1717,
+            #5b0f0f
+        );
+
+    box-shadow:
+        0 16px 34px rgba(127, 17, 17, 0.25);
+}
+
+.home-button-arrow {
+    font-size: 20px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.home-primary-button:hover
+.home-button-arrow {
+    transform:
+        translateX(-4px);
+}
+
+.home-secondary-button {
+    min-width: 150px;
+
+    background: #111111;
+
+    border: 1px solid #5b1919;
+
+    color: #dddddd;
+}
+
+.home-secondary-button:hover {
+    transform:
+        translateY(-3px);
+
+    background: #1a1010;
+
+    border-color: #8f1c1c;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   الغلاف الرئيسي
+========================================= */
+
+.home-cover-wrapper {
+    position: relative;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    z-index: 2;
+}
+
+.home-cover-glow {
+    position: absolute;
+
+    width: 330px;
+    height: 430px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(127, 17, 17, 0.17),
+            transparent 70%
+        );
+
+    filter:
+        blur(12px);
+
+    pointer-events: none;
+}
+
+.home-cover {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            360px,
+            85vw
+        );
+
+    margin: 0;
+
+    border:
+        1px solid #6f1a1a;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 30px 70px rgba(0, 0, 0, 0.72),
+        0 0 45px rgba(127, 17, 17, 0.14);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+.home-cover:hover {
+    transform:
+        translateY(-6px);
+
+    box-shadow:
+        0 38px 80px rgba(0, 0, 0, 0.78),
+        0 0 55px rgba(127, 17, 17, 0.18);
+}
+
+.home-cover-caption {
+    position: relative;
+
+    z-index: 3;
+
+    margin-top: 14px;
+
+    color: #777777;
+
+    font-size: 12px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =========================================
+   أقسام الصفحة الرئيسية
+========================================= */
+
+.home-sections {
+    width: min(1000px, 100%);
+
+    margin: 20px auto 0;
+}
+
+.home-section-heading {
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.home-section-heading > span {
+    display: inline-block;
+
+    margin-bottom: 8px;
+
+    color: #a51d1d;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.home-section-heading h2 {
+    margin: 0;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            28px
+            * var(--site-text-scale)
+        );
+}
+
+.home-navigation {
+    width: 100%;
+
+    margin: 0;
+}
+
+.home-menu-card {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 18px;
+
+    min-height: 125px;
+
+    padding:
+        22px
+        55px
+        22px
+        50px;
+
+    text-align: right;
+}
+
+.home-menu-number {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 43px;
+    height: 43px;
+
+    background: #101010;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 8px;
+
+    color: #a51d1d;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.home-menu-content {
+    display: block;
+
+    flex: 1;
+}
+
+.home-menu-title {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            21px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+}
+
+.home-menu-description {
+    display: block;
+
+    color: #999999;
+
+    font-size:
+        calc(
+            14px
+            * var(--site-text-scale)
+        );
+
+    line-height: 1.7;
+}
+
+.home-menu-arrow {
+    position: absolute;
+
+    left: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    background: #101010;
+
+    border: 1px solid #4b1717;
+
+    border-radius: 50%;
+
+    color: #a51d1d;
+
+    font-size: 17px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.home-menu-card:hover
+.home-menu-arrow {
+    transform:
+        translateX(-4px);
+
+    border-color: #a51d1d;
+
+    color: #eeeeee;
+}
+
+
+/* =========================================
+   نبذة الرواية الجديدة
+========================================= */
+
+.home-about {
+    position: relative;
+
+    width: min(900px, 100%);
+
+    margin:
+        65px auto 0;
+
+    padding:
+        42px 40px;
+
+    overflow: hidden;
+}
+
+.home-about::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
+}
+
+.home-about-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #a51d1d;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.home-about h2 {
+    margin-bottom: 18px;
+
+    text-align: right;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            32px
+            * var(--site-text-scale)
+        );
+}
+
+.home-about-lead {
+    margin-bottom: 22px !important;
+
+    color: #efefef !important;
+
+    font-size:
+        calc(
+            20px
+            * var(--site-text-scale)
+        ) !important;
+
+    font-weight: 700;
+}
+
+.home-about p {
+    max-width: 780px;
+
+    color: #bdbdbd;
+}
+
+.home-about-ending {
+    margin-top: 25px;
+
+    padding-top: 18px;
+
+    border-top:
+        1px solid #351616;
+
+    color: #999999;
+
+    font-size: 16px;
+}
+
+.home-about-ending strong {
+    color: #b62121;
+}
+
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.home-tagline {
+    color: #222222;
+}
+
+body.light-theme
+.home-intro {
+    color: #555555;
+}
+
+body.light-theme
+.home-secondary-button {
+    background: #ffffff;
+
+    border-color: #d7bcbc;
+
+    color: #333333;
+}
+
+body.light-theme
+.home-secondary-button:hover {
+    background: #faf7f7;
+
+    border-color: #a98787;
+
+    color: #222222;
+}
+
+body.light-theme
+.home-section-heading h2,
+body.light-theme
+.home-menu-title,
+body.light-theme
+.home-about h2,
+body.light-theme
+.home-about-lead {
+    color: #222222 !important;
+}
+
+body.light-theme
+.home-menu-description {
+    color: #555555;
+}
+
+body.light-theme
+.home-menu-number,
+body.light-theme
+.home-menu-arrow {
+    background: #faf7f7;
+
+    border-color: #d7bcbc;
+}
+
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 760px) {
+
+    .home-hero {
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        min-height: auto;
+
+        padding:
+            30px 10px
+            40px;
+    }
+
+    .home-hero-content {
+        text-align: center;
+    }
+
+    .home-intro {
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .home-actions {
+        justify-content: center;
+    }
+
+    .home-cover-wrapper {
+        order: -1;
+    }
+
+    .home-cover {
+        width:
+            min(
+                320px,
+                78vw
+            );
+    }
+
+    .home-tagline {
+        font-size: 22px;
+    }
+
+    .home-sections {
+        margin-top: 10px;
+    }
+
+    .home-navigation {
+        grid-template-columns: 1fr;
+    }
+
+    .home-menu-card {
+        min-height: 110px;
+
+        padding:
+            20px
+            52px
+            20px
+            20px;
+    }
+
+    .home-menu-title {
+        font-size:
+            calc(
+                19px
+                * var(--site-text-scale)
+            );
+    }
+
+    .home-menu-description {
+        font-size:
+            calc(
+                13px
+                * var(--site-text-scale)
+            );
+    }
+
+    .home-about {
+        margin-top: 45px;
+
+        padding:
+            30px 22px;
+    }
+
+    .home-about h2 {
+        font-size:
+            calc(
+                27px
+                * var(--site-text-scale)
+            );
+    }
+
+    .home-about-lead {
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            ) !important;
+    }
+
+}
+```
