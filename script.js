@@ -1777,5 +1777,137 @@ document.addEventListener("DOMContentLoaded", () => {
     saveLastChapter();
 
     createContinueReading();
+   /* =========================================
+   شريط تقدم القراءة
+========================================= */
+
+function createReadingProgress() {
+
+    const reader =
+        document.querySelector(".chapter-reader");
+
+    if (!reader) {
+        return;
+    }
+
+    if (
+        document.querySelector(
+            ".reading-progress-wrapper"
+        )
+    ) {
+        return;
+    }
+
+
+    const wrapper =
+        document.createElement("div");
+
+    wrapper.className =
+        "reading-progress-wrapper";
+
+
+    wrapper.innerHTML = `
+
+        <div class="reading-progress-bar">
+
+            <div class="reading-progress-fill"></div>
+
+        </div>
+
+        <div class="reading-progress-info">
+
+            <span class="reading-progress-label">
+                تقدم القراءة
+            </span>
+
+            <span class="reading-progress-percent">
+                0%
+            </span>
+
+        </div>
+
+    `;
+
+
+    document.body.appendChild(wrapper);
+
+
+    const fill =
+        wrapper.querySelector(
+            ".reading-progress-fill"
+        );
+
+    const percent =
+        wrapper.querySelector(
+            ".reading-progress-percent"
+        );
+
+
+    function updateReadingProgress() {
+
+        const documentHeight =
+            document.documentElement.scrollHeight -
+            window.innerHeight;
+
+        if (documentHeight <= 0) {
+
+            fill.style.width = "100%";
+
+            percent.textContent = "100%";
+
+            return;
+
+        }
+
+
+        const scrollTop =
+            window.scrollY;
+
+
+        const progress =
+            Math.min(
+                Math.max(
+                    (scrollTop / documentHeight) * 100,
+                    0
+                ),
+                100
+            );
+
+
+        const roundedProgress =
+            Math.round(progress);
+
+
+        fill.style.width =
+            roundedProgress + "%";
+
+
+        percent.textContent =
+            roundedProgress + "%";
+
+    }
+
+
+    window.addEventListener(
+        "scroll",
+        updateReadingProgress,
+        { passive: true }
+    );
+
+
+    window.addEventListener(
+        "resize",
+        updateReadingProgress
+    );
+
+
+    updateReadingProgress();
+
+}
+
+
+/* تشغيل شريط القراءة */
+
+createReadingProgress(); 
 
 });
