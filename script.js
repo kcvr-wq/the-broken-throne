@@ -10,6 +10,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const READER_SETTINGS_KEY =
         "brokenThroneReaderSettings";
 
+    const LAST_CHAPTER_KEY =
+        "brokenThroneLastChapter";
+
     const RECENT_CHAPTERS_KEY =
         "brokenThroneRecentChapters";
 
@@ -17,13 +20,164 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       نظام المجلدات — فتح وإغلاق سلس
+       أدوات مساعدة
+    ========================================= */
+
+    function escapeHTML(text) {
+
+        return String(text || "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+
+    }
+
+
+    function safeLocalStorageGet(key) {
+
+        try {
+
+            return localStorage.getItem(key);
+
+        } catch (error) {
+
+            console.warn(
+                "تعذر قراءة التخزين المحلي:",
+                error
+            );
+
+            return null;
+
+        }
+
+    }
+
+
+    function safeLocalStorageSet(key, value) {
+
+        try {
+
+            localStorage.setItem(
+                key,
+                value
+            );
+
+            return true;
+
+        } catch (error) {
+
+            console.warn(
+                "تعذر حفظ البيانات:",
+                error
+            );
+
+            return false;
+
+        }
+
+    }
+
+
+    function isChapterPage() {
+
+        return Boolean(
+            document.querySelector(
+                ".chapter-reader"
+            )
+        );
+
+    }
+
+
+    function getCurrentChapterTitle() {
+
+        const heading =
+            document.querySelector(
+                ".chapter-reader h1"
+            );
+
+
+        if (
+            heading &&
+            heading.textContent.trim()
+        ) {
+
+            return heading.textContent
+                .replace(/\s+/g, " ")
+                .trim();
+
+        }
+
+
+        const title =
+            document.title
+                .replace(
+                    /—\s*العرش المكسور/gi,
+                    ""
+                )
+                .replace(
+                    /-\s*العرش المكسور/gi,
+                    ""
+                )
+                .trim();
+
+
+        return title || "الفصل";
+
+    }
+
+
+    /* =========================================
+       تحميل الخطوط
+    ========================================= */
+
+    function loadFonts() {
+
+        if (
+            document.querySelector(
+                "#broken-throne-fonts"
+            )
+        ) {
+            return;
+        }
+
+
+        const fontLink =
+            document.createElement("link");
+
+
+        fontLink.id =
+            "broken-throne-fonts";
+
+
+        fontLink.rel =
+            "stylesheet";
+
+
+        fontLink.href =
+            "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap";
+
+
+        document.head.appendChild(
+            fontLink
+        );
+
+    }
+
+
+    /* =========================================
+       نظام المجلدات
     ========================================= */
 
     function createVolumeFolders() {
 
         const folders =
-            document.querySelectorAll(".volume-folder");
+            document.querySelectorAll(
+                ".volume-folder"
+            );
+
 
         if (!folders.length) {
             return;
@@ -33,25 +187,45 @@ document.addEventListener("DOMContentLoaded", () => {
         folders.forEach((folder) => {
 
             const summary =
-                folder.querySelector("summary");
+                folder.querySelector(
+                    "summary"
+                );
+
 
             const content =
-                folder.querySelector(".chapter-list");
+                folder.querySelector(
+                    ".chapter-list"
+                );
+
 
             if (!summary || !content) {
                 return;
             }
 
 
-            folder.removeAttribute("open");
+            folder.removeAttribute(
+                "open"
+            );
 
-            content.style.overflow = "hidden";
-            content.style.maxHeight = "0px";
-            content.style.opacity = "0";
+
+            content.style.overflow =
+                "hidden";
+
+            content.style.maxHeight =
+                "0px";
+
+            content.style.opacity =
+                "0";
+
             content.style.transform =
                 "translateY(-10px)";
-            content.style.paddingTop = "0px";
-            content.style.paddingBottom = "0px";
+
+            content.style.paddingTop =
+                "0px";
+
+            content.style.paddingBottom =
+                "0px";
+
 
             content.style.transition =
                 "max-height 0.5s cubic-bezier(0.22, 1, 0.36, 1), " +
@@ -59,30 +233,49 @@ document.addEventListener("DOMContentLoaded", () => {
                 "transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), " +
                 "padding 0.5s ease";
 
+
             let closeTimer = null;
+
             let isAnimating = false;
 
 
             function openFolder() {
 
                 if (closeTimer) {
-                    clearTimeout(closeTimer);
+
+                    clearTimeout(
+                        closeTimer
+                    );
+
                     closeTimer = null;
+
                 }
 
+
                 isAnimating = true;
+
 
                 folder.setAttribute(
                     "open",
                     ""
                 );
 
-                content.style.maxHeight = "0px";
-                content.style.opacity = "0";
+
+                content.style.maxHeight =
+                    "0px";
+
+                content.style.opacity =
+                    "0";
+
                 content.style.transform =
                     "translateY(-10px)";
-                content.style.paddingTop = "0px";
-                content.style.paddingBottom = "0px";
+
+                content.style.paddingTop =
+                    "0px";
+
+                content.style.paddingBottom =
+                    "0px";
+
 
                 requestAnimationFrame(() => {
 
@@ -91,7 +284,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         content.style.maxHeight =
                             content.scrollHeight + "px";
 
-                        content.style.opacity = "1";
+                        content.style.opacity =
+                            "1";
 
                         content.style.transform =
                             "translateY(0)";
@@ -106,10 +300,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 });
 
+
                 setTimeout(() => {
 
                     if (
-                        folder.hasAttribute("open")
+                        folder.hasAttribute(
+                            "open"
+                        )
                     ) {
 
                         content.style.maxHeight =
@@ -127,16 +324,24 @@ document.addEventListener("DOMContentLoaded", () => {
             function closeFolder() {
 
                 if (closeTimer) {
-                    clearTimeout(closeTimer);
+
+                    clearTimeout(
+                        closeTimer
+                    );
+
                     closeTimer = null;
+
                 }
 
+
                 isAnimating = true;
+
 
                 content.style.maxHeight =
                     content.scrollHeight + "px";
 
-                content.style.opacity = "1";
+                content.style.opacity =
+                    "1";
 
                 content.style.transform =
                     "translateY(0)";
@@ -147,6 +352,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 content.style.paddingBottom =
                     "18px";
 
+
                 requestAnimationFrame(() => {
 
                     requestAnimationFrame(() => {
@@ -154,7 +360,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         content.style.maxHeight =
                             "0px";
 
-                        content.style.opacity = "0";
+                        content.style.opacity =
+                            "0";
 
                         content.style.transform =
                             "translateY(-10px)";
@@ -169,15 +376,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 });
 
-                closeTimer = setTimeout(() => {
 
-                    folder.removeAttribute(
-                        "open"
-                    );
+                closeTimer =
+                    setTimeout(() => {
 
-                    isAnimating = false;
+                        folder.removeAttribute(
+                            "open"
+                        );
 
-                }, 500);
+                        isAnimating = false;
+
+                    }, 500);
 
             }
 
@@ -188,12 +397,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     event.preventDefault();
 
+
                     if (isAnimating) {
                         return;
                     }
 
+
                     if (
-                        folder.hasAttribute("open")
+                        folder.hasAttribute(
+                            "open"
+                        )
                     ) {
 
                         closeFolder();
@@ -213,7 +426,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 () => {
 
                     if (
-                        folder.hasAttribute("open") &&
+                        folder.hasAttribute(
+                            "open"
+                        ) &&
                         !isAnimating
                     ) {
 
@@ -234,105 +449,89 @@ document.addEventListener("DOMContentLoaded", () => {
        نظام الحرق
     ========================================= */
 
-    const spoilerButtons =
-        document.querySelectorAll(
-            ".spoiler-button"
-        );
+    function createSpoilerSystem() {
 
-    spoilerButtons.forEach((button) => {
-
-        button.addEventListener(
-            "click",
-            (event) => {
-
-                event.preventDefault();
-                event.stopPropagation();
-
-                const characterCard =
-                    button.closest(
-                        ".character-card"
-                    );
-
-                const spoilerSection =
-                    button.closest(
-                        ".character-spoiler-section"
-                    );
-
-                const container =
-                    characterCard ||
-                    spoilerSection;
-
-                if (!container) {
-                    return;
-                }
-
-                const spoilerInfo =
-                    container.querySelector(
-                        ".spoiler-info"
-                    );
-
-                if (!spoilerInfo) {
-                    return;
-                }
-
-                spoilerInfo.classList.toggle(
-                    "show"
-                );
+        const spoilerButtons =
+            document.querySelectorAll(
+                ".spoiler-button"
+            );
 
 
-                if (
-                    spoilerInfo.classList.contains(
+        spoilerButtons.forEach((button) => {
+
+            button.addEventListener(
+                "click",
+                (event) => {
+
+                    event.preventDefault();
+
+                    event.stopPropagation();
+
+
+                    const characterCard =
+                        button.closest(
+                            ".character-card"
+                        );
+
+
+                    const spoilerSection =
+                        button.closest(
+                            ".character-spoiler-section"
+                        );
+
+
+                    const container =
+                        characterCard ||
+                        spoilerSection;
+
+
+                    if (!container) {
+                        return;
+                    }
+
+
+                    const spoilerInfo =
+                        container.querySelector(
+                            ".spoiler-info"
+                        );
+
+
+                    if (!spoilerInfo) {
+                        return;
+                    }
+
+
+                    spoilerInfo.classList.toggle(
                         "show"
-                    )
-                ) {
+                    );
 
-                    button.textContent =
-                        "إخفاء الحرق";
 
-                } else {
+                    if (
+                        spoilerInfo.classList.contains(
+                            "show"
+                        )
+                    ) {
 
-                    button.textContent =
-                        "حرق";
+                        button.textContent =
+                            "إخفاء الحرق";
+
+                    } else {
+
+                        button.textContent =
+                            "حرق";
+
+                    }
 
                 }
+            );
 
-            }
-        );
-
-    });
-
-
-    /* =========================================
-       تحميل الخطوط
-    ========================================= */
-
-    if (
-        !document.querySelector(
-            "#broken-throne-fonts"
-        )
-    ) {
-
-        const fontLink =
-            document.createElement("link");
-
-        fontLink.id =
-            "broken-throne-fonts";
-
-        fontLink.rel =
-            "stylesheet";
-
-        fontLink.href =
-            "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap";
-
-        document.head.appendChild(
-            fontLink
-        );
+        });
 
     }
 
 
     /* =========================================
-       الإعدادات الافتراضية للموقع
+       الإعدادات الافتراضية
     ========================================= */
 
     const defaultSiteSettings = {
@@ -347,10 +546,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     };
 
-
-    /* =========================================
-       الإعدادات الافتراضية للفصل
-    ========================================= */
 
     const defaultReaderSettings = {
 
@@ -369,10 +564,6 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 
-    /* =========================================
-       تحميل الإعدادات
-    ========================================= */
-
     function loadSettings(
         key,
         defaults
@@ -381,9 +572,8 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
 
             const saved =
-                localStorage.getItem(
-                    key
-                );
+                safeLocalStorageGet(key);
+
 
             if (!saved) {
 
@@ -393,9 +583,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+
+            const parsed =
+                JSON.parse(saved);
+
+
             return {
+
                 ...defaults,
-                ...JSON.parse(saved)
+
+                ...(parsed &&
+                typeof parsed === "object"
+                    ? parsed
+                    : {})
+
             };
 
         } catch (error) {
@@ -423,62 +624,38 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
 
-    /* =========================================
-       حفظ إعدادات الموقع
-    ========================================= */
-
     function saveSiteSettings() {
 
-        try {
+        safeLocalStorageSet(
 
-            localStorage.setItem(
-                SITE_SETTINGS_KEY,
-                JSON.stringify(
-                    siteSettings
-                )
-            );
+            SITE_SETTINGS_KEY,
 
-        } catch (error) {
+            JSON.stringify(
+                siteSettings
+            )
 
-            console.warn(
-                "تعذر حفظ إعدادات الموقع.",
-                error
-            );
-
-        }
+        );
 
     }
 
-
-    /* =========================================
-       حفظ إعدادات الفصل
-    ========================================= */
 
     function saveReaderSettings() {
 
-        try {
+        safeLocalStorageSet(
 
-            localStorage.setItem(
-                READER_SETTINGS_KEY,
-                JSON.stringify(
-                    readerSettings
-                )
-            );
+            READER_SETTINGS_KEY,
 
-        } catch (error) {
+            JSON.stringify(
+                readerSettings
+            )
 
-            console.warn(
-                "تعذر حفظ إعدادات الفصل.",
-                error
-            );
-
-        }
+        );
 
     }
 
 
     /* =========================================
-       إنشاء إعدادات الموقع
+       إعدادات الموقع
     ========================================= */
 
     function createSiteSettings() {
@@ -493,9 +670,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const wrapper =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
+
 
         wrapper.className =
             "site-settings-wrapper";
@@ -512,14 +688,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 ⚙
             </button>
 
+
             <div
                 class="site-settings-panel"
                 aria-hidden="true"
             >
 
-                <div class="settings-panel-header">
+                <div
+                    class="settings-panel-header"
+                >
 
-                    <h2>إعدادات الموقع</h2>
+                    <h2>
+                        إعدادات الموقع
+                    </h2>
+
 
                     <button
                         type="button"
@@ -534,7 +716,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>المظهر</h3>
+                    <h3>
+                        المظهر
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -546,6 +731,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             داكن
                         </button>
+
 
                         <button
                             type="button"
@@ -563,7 +749,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>نوع الخط</h3>
+                    <h3>
+                        نوع الخط
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -576,6 +765,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             Noto Naskh
                         </button>
 
+
                         <button
                             type="button"
                             class="settings-option"
@@ -585,6 +775,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             Cairo
                         </button>
 
+
                         <button
                             type="button"
                             class="settings-option"
@@ -593,6 +784,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             Tajawal
                         </button>
+
 
                         <button
                             type="button"
@@ -610,7 +802,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>حجم النص</h3>
+                    <h3>
+                        حجم النص
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -623,6 +818,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             صغير
                         </button>
 
+
                         <button
                             type="button"
                             class="settings-option"
@@ -632,6 +828,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             متوسط
                         </button>
 
+
                         <button
                             type="button"
                             class="settings-option"
@@ -640,6 +837,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             كبير
                         </button>
+
 
                         <button
                             type="button"
@@ -657,7 +855,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>تباعد السطور</h3>
+                    <h3>
+                        تباعد السطور
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -670,6 +871,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             ضيق
                         </button>
 
+
                         <button
                             type="button"
                             class="settings-option"
@@ -678,6 +880,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             متوسط
                         </button>
+
 
                         <button
                             type="button"
@@ -715,15 +918,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 ".site-settings-button"
             );
 
+
         const panel =
             wrapper.querySelector(
                 ".site-settings-panel"
             );
 
+
         const closeButton =
             wrapper.querySelector(
                 ".settings-panel-close"
             );
+
 
         const resetButton =
             wrapper.querySelector(
@@ -737,10 +943,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 "show"
             );
 
+
             panel.setAttribute(
                 "aria-hidden",
                 "true"
             );
+
 
             openButton.setAttribute(
                 "aria-expanded",
@@ -756,15 +964,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 event.stopPropagation();
 
+
                 const isOpen =
                     panel.classList.toggle(
                         "show"
                     );
 
+
                 panel.setAttribute(
                     "aria-hidden",
                     String(!isOpen)
                 );
+
 
                 openButton.setAttribute(
                     "aria-expanded",
@@ -813,12 +1024,15 @@ document.addEventListener("DOMContentLoaded", () => {
                             button.dataset
                                 .siteSetting;
 
+
                         const value =
                             button.dataset.value;
+
 
                         siteSettings[
                             setting
                         ] = value;
+
 
                         saveSiteSettings();
 
@@ -835,8 +1049,11 @@ document.addEventListener("DOMContentLoaded", () => {
             () => {
 
                 siteSettings = {
+
                     ...defaultSiteSettings
+
                 };
+
 
                 saveSiteSettings();
 
@@ -848,14 +1065,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       تطبيق إعدادات الموقع
-    ========================================= */
-
     function applySiteSettings() {
 
         const root =
             document.documentElement;
+
 
         const body =
             document.body;
@@ -906,8 +1120,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--site-font",
             fonts[
                 siteSettings.font
-            ] ||
-            fonts.naskh
+            ] || fonts.naskh
         );
 
 
@@ -915,8 +1128,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--site-text-scale",
             sizes[
                 siteSettings.size
-            ] ||
-            sizes.medium
+            ] || sizes.medium
         );
 
 
@@ -924,8 +1136,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--site-line-height",
             spacings[
                 siteSettings.spacing
-            ] ||
-            spacings.medium
+            ] || spacings.medium
         );
 
 
@@ -951,8 +1162,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     button.dataset
                         .siteSetting;
 
+
                 const value =
                     button.dataset.value;
+
 
                 button.classList.toggle(
                     "active",
@@ -967,7 +1180,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       إنشاء إعدادات الفصل
+       إعدادات القراءة
     ========================================= */
 
     function createReaderSettings() {
@@ -976,6 +1189,7 @@ document.addEventListener("DOMContentLoaded", () => {
             document.querySelector(
                 ".chapter-reader"
             );
+
 
         if (!reader) {
             return;
@@ -992,9 +1206,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         const wrapper =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
+
 
         wrapper.className =
             "reader-settings-wrapper";
@@ -1011,14 +1224,20 @@ document.addEventListener("DOMContentLoaded", () => {
                 Aa
             </button>
 
+
             <div
                 class="reader-settings-panel"
                 aria-hidden="true"
             >
 
-                <div class="settings-panel-header">
+                <div
+                    class="settings-panel-header"
+                >
 
-                    <h2>إعدادات الفصل</h2>
+                    <h2>
+                        إعدادات الفصل
+                    </h2>
+
 
                     <button
                         type="button"
@@ -1033,7 +1252,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>نوع الخط</h3>
+                    <h3>
+                        نوع الخط
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -1046,6 +1268,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             Noto Naskh
                         </button>
 
+
                         <button
                             type="button"
                             class="reader-option"
@@ -1055,6 +1278,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             Cairo
                         </button>
 
+
                         <button
                             type="button"
                             class="reader-option"
@@ -1063,6 +1287,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             Tajawal
                         </button>
+
 
                         <button
                             type="button"
@@ -1080,7 +1305,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>حجم النص</h3>
+                    <h3>
+                        حجم النص
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -1093,6 +1321,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             صغير
                         </button>
 
+
                         <button
                             type="button"
                             class="reader-option"
@@ -1102,6 +1331,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             متوسط
                         </button>
 
+
                         <button
                             type="button"
                             class="reader-option"
@@ -1110,6 +1340,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             كبير
                         </button>
+
 
                         <button
                             type="button"
@@ -1127,7 +1358,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>تباعد السطور</h3>
+                    <h3>
+                        تباعد السطور
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -1140,6 +1374,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             ضيق
                         </button>
 
+
                         <button
                             type="button"
                             class="reader-option"
@@ -1148,6 +1383,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             متوسط
                         </button>
+
 
                         <button
                             type="button"
@@ -1165,7 +1401,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>عرض القراءة</h3>
+                    <h3>
+                        عرض القراءة
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -1178,6 +1417,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             ضيق
                         </button>
 
+
                         <button
                             type="button"
                             class="reader-option"
@@ -1186,6 +1426,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             متوسط
                         </button>
+
 
                         <button
                             type="button"
@@ -1203,7 +1444,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>مسافة الفقرات</h3>
+                    <h3>
+                        مسافة الفقرات
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -1216,6 +1460,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             صغيرة
                         </button>
 
+
                         <button
                             type="button"
                             class="reader-option"
@@ -1224,6 +1469,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             متوسطة
                         </button>
+
 
                         <button
                             type="button"
@@ -1241,7 +1487,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 <div class="settings-group">
 
-                    <h3>محاذاة النص</h3>
+                    <h3>
+                        محاذاة النص
+                    </h3>
+
 
                     <div class="settings-options">
 
@@ -1254,6 +1503,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             يمين
                         </button>
 
+
                         <button
                             type="button"
                             class="reader-option"
@@ -1262,6 +1512,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         >
                             وسط
                         </button>
+
 
                         <button
                             type="button"
@@ -1299,15 +1550,18 @@ document.addEventListener("DOMContentLoaded", () => {
                 ".reader-settings-button"
             );
 
+
         const panel =
             wrapper.querySelector(
                 ".reader-settings-panel"
             );
 
+
         const closeButton =
             wrapper.querySelector(
                 ".reader-settings-close"
             );
+
 
         const resetButton =
             wrapper.querySelector(
@@ -1321,10 +1575,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 "show"
             );
 
+
             panel.setAttribute(
                 "aria-hidden",
                 "true"
             );
+
 
             openButton.setAttribute(
                 "aria-expanded",
@@ -1340,15 +1596,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 event.stopPropagation();
 
+
                 const isOpen =
                     panel.classList.toggle(
                         "show"
                     );
 
+
                 panel.setAttribute(
                     "aria-hidden",
                     String(!isOpen)
                 );
+
 
                 openButton.setAttribute(
                     "aria-expanded",
@@ -1397,12 +1656,15 @@ document.addEventListener("DOMContentLoaded", () => {
                             button.dataset
                                 .readerSetting;
 
+
                         const value =
                             button.dataset.value;
+
 
                         readerSettings[
                             setting
                         ] = value;
+
 
                         saveReaderSettings();
 
@@ -1419,8 +1681,11 @@ document.addEventListener("DOMContentLoaded", () => {
             () => {
 
                 readerSettings = {
+
                     ...defaultReaderSettings
+
                 };
+
 
                 saveReaderSettings();
 
@@ -1432,16 +1697,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
 
-    /* =========================================
-       تطبيق إعدادات الفصل
-    ========================================= */
-
     function applyReaderSettings() {
 
         const reader =
             document.querySelector(
                 ".chapter-reader"
             );
+
 
         if (!reader) {
             return;
@@ -1526,8 +1788,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--reader-font",
             fonts[
                 readerSettings.font
-            ] ||
-            fonts.naskh
+            ] || fonts.naskh
         );
 
 
@@ -1535,8 +1796,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--reader-text-size",
             sizes[
                 readerSettings.size
-            ] ||
-            sizes.medium
+            ] || sizes.medium
         );
 
 
@@ -1544,8 +1804,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--reader-line-height",
             spacings[
                 readerSettings.spacing
-            ] ||
-            spacings.medium
+            ] || spacings.medium
         );
 
 
@@ -1553,8 +1812,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--reader-width",
             widths[
                 readerSettings.width
-            ] ||
-            widths.medium
+            ] || widths.medium
         );
 
 
@@ -1562,8 +1820,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--reader-paragraph-spacing",
             paragraphSpacing[
                 readerSettings.paragraph
-            ] ||
-            paragraphSpacing.medium
+            ] || paragraphSpacing.medium
         );
 
 
@@ -1571,8 +1828,7 @@ document.addEventListener("DOMContentLoaded", () => {
             "--reader-text-align",
             alignments[
                 readerSettings.align
-            ] ||
-            alignments.right
+            ] || alignments.right
         );
 
 
@@ -1586,8 +1842,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     button.dataset
                         .readerSetting;
 
+
                 const value =
                     button.dataset.value;
+
 
                 button.classList.toggle(
                     "active",
@@ -1602,34 +1860,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =========================================
-       نظام تابع القراءة
+       تابع القراءة
     ========================================= */
-
-    function isChapterPage() {
-
-        return Boolean(
-            document.querySelector(
-                ".chapter-reader"
-            )
-        );
-
-    }
-
 
     function loadContinueReading() {
 
         try {
 
             const saved =
-                localStorage.getItem(
-                    "brokenThroneLastChapter"
+                safeLocalStorageGet(
+                    LAST_CHAPTER_KEY
                 );
+
 
             if (!saved) {
                 return null;
             }
 
-            return JSON.parse(saved);
+
+            const data =
+                JSON.parse(saved);
+
+
+            if (
+                !data ||
+                typeof data !== "object" ||
+                !data.url
+            ) {
+                return null;
+            }
+
+
+            return data;
 
         } catch (error) {
 
@@ -1645,66 +1907,22 @@ document.addEventListener("DOMContentLoaded", () => {
         url
     ) {
 
-        try {
+        safeLocalStorageSet(
 
-            localStorage.setItem(
-                "brokenThroneLastChapter",
-                JSON.stringify({
-                    title,
-                    url,
-                    updatedAt:
-                        Date.now()
-                })
-            );
+            LAST_CHAPTER_KEY,
 
-        } catch (error) {
+            JSON.stringify({
 
-            console.warn(
-                "تعذر حفظ آخر فصل.",
-                error
-            );
+                title: title,
 
-        }
+                url: url,
 
-    }
+                updatedAt:
+                    Date.now()
 
+            })
 
-    function getChapterTitle() {
-
-        const heading =
-            document.querySelector(
-                ".chapter-reader h1"
-            );
-
-        if (
-            heading &&
-            heading.textContent.trim()
-        ) {
-
-            return heading.textContent
-                .replace(
-                    /\s+/g,
-                    " "
-                )
-                .trim();
-
-        }
-
-
-        const title =
-            document.title
-                .replace(
-                    /—\s*العرش المكسور/gi,
-                    ""
-                )
-                .replace(
-                    /-\s*العرش المكسور/gi,
-                    ""
-                )
-                .trim();
-
-
-        return title || "الفصل";
+        );
 
     }
 
@@ -1717,9 +1935,119 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
         saveContinueReading(
-            getChapterTitle(),
+
+            getCurrentChapterTitle(),
+
             window.location.pathname
+
         );
+
+    }
+
+
+    function createContinueReading() {
+
+        const homeSections =
+            document.querySelector(
+                ".home-sections"
+            );
+
+
+        if (!homeSections) {
+            return;
+        }
+
+
+        const saved =
+            loadContinueReading();
+
+
+        if (
+            !saved ||
+            !saved.url
+        ) {
+            return;
+        }
+
+
+        let card =
+            homeSections.querySelector(
+                ".continue-reading-card"
+            );
+
+
+        if (!card) {
+
+            card =
+                document.createElement(
+                    "a"
+                );
+
+
+            card.className =
+                "continue-reading-card";
+
+
+            const navigation =
+                homeSections.querySelector(
+                    ".home-navigation"
+                );
+
+
+            if (navigation) {
+
+                homeSections.insertBefore(
+                    card,
+                    navigation
+                );
+
+            } else {
+
+                homeSections.prepend(
+                    card
+                );
+
+            }
+
+        }
+
+
+        card.href =
+            saved.url;
+
+
+        card.innerHTML = `
+
+            <span
+                class="continue-reading-label"
+            >
+                تابع القراءة
+            </span>
+
+
+            <span
+                class="continue-reading-title"
+            >
+                ${escapeHTML(
+                    saved.title || "الفصل"
+                )}
+            </span>
+
+
+            <span
+                class="continue-reading-number"
+            >
+                آخر فصل قرأته
+            </span>
+
+
+            <span
+                class="continue-reading-arrow"
+            >
+                ←
+            </span>
+
+        `;
 
     }
 
@@ -1733,22 +2061,30 @@ document.addEventListener("DOMContentLoaded", () => {
         try {
 
             const saved =
-                localStorage.getItem(
+                safeLocalStorageGet(
                     RECENT_CHAPTERS_KEY
                 );
+
 
             if (!saved) {
                 return [];
             }
 
+
             const data =
                 JSON.parse(saved);
+
 
             if (!Array.isArray(data)) {
                 return [];
             }
 
-            return data;
+
+            return data.filter(
+                (chapter) =>
+                    chapter &&
+                    chapter.url
+            );
 
         } catch (error) {
 
@@ -1763,54 +2099,15 @@ document.addEventListener("DOMContentLoaded", () => {
         chapters
     ) {
 
-        try {
+        safeLocalStorageSet(
 
-            localStorage.setItem(
-                RECENT_CHAPTERS_KEY,
-                JSON.stringify(
-                    chapters
-                )
-            );
+            RECENT_CHAPTERS_KEY,
 
-        } catch (error) {
-
-            console.warn(
-                "تعذر حفظ سجل الفصول.",
-                error
-            );
-
-        }
-
-    }
-
-
-    function escapeHTML(
-        text
-    ) {
-
-        return String(
-            text || ""
-        )
-            .replace(
-                /&/g,
-                "&amp;"
+            JSON.stringify(
+                chapters
             )
-            .replace(
-                /</g,
-                "&lt;"
-            )
-            .replace(
-                />/g,
-                "&gt;"
-            )
-            .replace(
-                /"/g,
-                "&quot;"
-            )
-            .replace(
-                /'/g,
-                "&#039;"
-            );
+
+        );
 
     }
 
@@ -1822,12 +2119,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
 
-        const url =
+        const currentUrl =
             window.location.pathname;
 
 
-        const title =
-            getChapterTitle();
+        const currentTitle =
+            getCurrentChapterTitle();
 
 
         let chapters =
@@ -1837,16 +2134,18 @@ document.addEventListener("DOMContentLoaded", () => {
         chapters =
             chapters.filter(
                 (chapter) =>
-                    chapter &&
-                    chapter.url !== url
+                    chapter.url !==
+                    currentUrl
             );
 
 
         chapters.unshift({
 
-            url: url,
+            url:
+                currentUrl,
 
-            title: title,
+            title:
+                currentTitle,
 
             visitedAt:
                 Date.now()
@@ -1875,18 +2174,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 ".home-sections"
             );
 
+
         if (!homeSections) {
             return;
         }
 
 
         const existing =
-            document.querySelector(
+            homeSections.querySelector(
                 ".recent-chapters-section"
             );
 
+
         if (existing) {
+
             existing.remove();
+
         }
 
 
@@ -1911,11 +2214,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
         section.innerHTML = `
 
-            <div class="recent-chapters-heading">
+            <div
+                class="recent-chapters-heading"
+            >
 
                 <span>
                     سجل القراءة
                 </span>
+
 
                 <h2>
                     آخر الفصول
@@ -1924,7 +2230,9 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
 
 
-            <div class="recent-chapters-list">
+            <div
+                class="recent-chapters-list"
+            >
 
                 ${chapters
                     .map(
@@ -1932,14 +2240,6 @@ document.addEventListener("DOMContentLoaded", () => {
                             chapter,
                             index
                         ) => {
-
-                            if (
-                                !chapter ||
-                                !chapter.url
-                            ) {
-                                return "";
-                            }
-
 
                             return `
 
@@ -1974,6 +2274,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                             )}
                                         </span>
 
+
                                         <span
                                             class="recent-chapter-path"
                                         >
@@ -2000,39 +2301,710 @@ document.addEventListener("DOMContentLoaded", () => {
                     .join("")}
 
             </div>
-
         `;
 
 
         /*
-           يظهر السجل في بداية قسم
-           المحتوى الرئيسي.
+           يوضع السجل بعد بطاقة
+           تابع القراءة إن وجدت.
         */
 
-        homeSections.prepend(
-            section
+        const continueCard =
+            homeSections.querySelector(
+                ".continue-reading-card"
+            );
+
+
+        if (continueCard) {
+
+            continueCard.after(
+                section
+            );
+
+        } else {
+
+            homeSections.prepend(
+                section
+            );
+
+        }
+
+    }
+
+
+    /* =========================================
+       شريط تقدم القراءة
+    ========================================= */
+
+    function createReadingProgress() {
+
+        if (!isChapterPage()) {
+            return;
+        }
+
+
+        if (
+            document.querySelector(
+                ".reading-progress-wrapper"
+            )
+        ) {
+            return;
+        }
+
+
+        const wrapper =
+            document.createElement(
+                "div"
+            );
+
+
+        wrapper.className =
+            "reading-progress-wrapper";
+
+
+        wrapper.innerHTML = `
+
+            <div
+                class="reading-progress-bar"
+            >
+
+                <div
+                    class="reading-progress-fill"
+                ></div>
+
+            </div>
+
+
+            <div
+                class="reading-progress-info"
+            >
+
+                <span>
+                    تقدم القراءة
+                </span>
+
+
+                <span
+                    class="reading-progress-percent"
+                >
+                    0%
+                </span>
+
+            </div>
+        `;
+
+
+        document.body.appendChild(
+            wrapper
+        );
+
+
+        const fill =
+            wrapper.querySelector(
+                ".reading-progress-fill"
+            );
+
+
+        const percent =
+            wrapper.querySelector(
+                ".reading-progress-percent"
+            );
+
+
+        function updateProgress() {
+
+            const totalHeight =
+                document.documentElement
+                    .scrollHeight -
+                window.innerHeight;
+
+
+            if (totalHeight <= 0) {
+
+                fill.style.width =
+                    "0%";
+
+
+                percent.textContent =
+                    "0%";
+
+
+                return;
+
+            }
+
+
+            const scrollTop =
+                window.scrollY ||
+                window.pageYOffset ||
+                0;
+
+
+            let progress =
+                (
+                    scrollTop /
+                    totalHeight
+                ) * 100;
+
+
+            progress =
+                Math.max(
+                    0,
+                    Math.min(
+                        100,
+                        progress
+                    )
+                );
+
+
+            fill.style.width =
+                progress + "%";
+
+
+            percent.textContent =
+                Math.round(
+                    progress
+                ) + "%";
+
+        }
+
+
+        window.addEventListener(
+            "scroll",
+            updateProgress,
+            {
+                passive: true
+            }
+        );
+
+
+        window.addEventListener(
+            "resize",
+            updateProgress
+        );
+
+
+        updateProgress();
+
+    }
+
+
+    /* =========================================
+       البحث الشامل
+    ========================================= */
+
+    function createSiteSearch() {
+
+        if (
+            document.querySelector(
+                ".site-search-wrapper"
+            )
+        ) {
+            return;
+        }
+
+
+        const wrapper =
+            document.createElement(
+                "div"
+            );
+
+
+        wrapper.className =
+            "site-search-wrapper";
+
+
+        wrapper.innerHTML = `
+
+            <button
+                type="button"
+                class="site-search-button"
+                aria-label="البحث"
+                aria-expanded="false"
+            >
+                بحث
+            </button>
+
+
+            <div
+                class="site-search-panel"
+                aria-hidden="true"
+            >
+
+                <div
+                    class="site-search-header"
+                >
+
+                    <div>
+
+                        <h2>
+                            البحث
+                        </h2>
+
+
+                        <span
+                            class="site-search-status"
+                        >
+                            ابحث داخل الصفحة
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="site-search-close"
+                        aria-label="إغلاق"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div
+                    class="site-search-input-wrapper"
+                >
+
+                    <input
+                        type="search"
+                        class="site-search-input"
+                        placeholder="ابحث عن فصل أو شخصية أو طائفة..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+
+                <div
+                    class="site-search-results"
+                ></div>
+
+            </div>
+        `;
+
+
+        document.body.appendChild(
+            wrapper
+        );
+
+
+        const openButton =
+            wrapper.querySelector(
+                ".site-search-button"
+            );
+
+
+        const panel =
+            wrapper.querySelector(
+                ".site-search-panel"
+            );
+
+
+        const closeButton =
+            wrapper.querySelector(
+                ".site-search-close"
+            );
+
+
+        const input =
+            wrapper.querySelector(
+                ".site-search-input"
+            );
+
+
+        const results =
+            wrapper.querySelector(
+                ".site-search-results"
+            );
+
+
+        function closeSearch() {
+
+            panel.classList.remove(
+                "show"
+            );
+
+
+            panel.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+
+            openButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+
+        function collectSearchItems() {
+
+            const items = [];
+
+
+            const links =
+                document.querySelectorAll(
+                    "a[href]"
+                );
+
+
+            links.forEach((link) => {
+
+                if (
+                    wrapper.contains(
+                        link
+                    )
+                ) {
+                    return;
+                }
+
+
+                const href =
+                    link.getAttribute(
+                        "href"
+                    );
+
+
+                if (
+                    !href ||
+                    href.startsWith(
+                        "#"
+                    ) ||
+                    href.startsWith(
+                        "javascript:"
+                    ) ||
+                    href.startsWith(
+                        "mailto:"
+                    )
+                ) {
+                    return;
+                }
+
+
+                const titleElement =
+                    link.querySelector(
+                        ".chapter-title, " +
+                        ".home-menu-title, " +
+                        ".world-main-card-title, " +
+                        ".techniques-category-title, " +
+                        ".continue-reading-title, " +
+                        ".character-info h3, " +
+                        ".world-region-header h3, " +
+                        ".chapter-number"
+                    );
+
+
+                const title =
+                    (
+                        titleElement ||
+                        link
+                    )
+                        .textContent
+                        .replace(
+                            /\s+/g,
+                            " "
+                        )
+                        .trim();
+
+
+                if (!title) {
+                    return;
+                }
+
+
+                const snippet =
+                    link.textContent
+                        .replace(
+                            /\s+/g,
+                            " "
+                        )
+                        .trim();
+
+
+                items.push({
+
+                    title:
+                        title,
+
+                    href:
+                        href,
+
+                    snippet:
+                        snippet
+
+                });
+
+            });
+
+
+            return items;
+
+        }
+
+
+        function renderResults(
+            query = ""
+        ) {
+
+            const items =
+                collectSearchItems();
+
+
+            const normalizedQuery =
+                query
+                    .trim()
+                    .toLowerCase();
+
+
+            let filtered;
+
+
+            if (!normalizedQuery) {
+
+                filtered =
+                    items.slice(
+                        0,
+                        20
+                    );
+
+            } else {
+
+                filtered =
+                    items.filter(
+                        (item) => {
+
+                            const searchable =
+                                (
+                                    item.title +
+                                    " " +
+                                    item.snippet
+                                )
+                                    .toLowerCase();
+
+
+                            return searchable
+                                .includes(
+                                    normalizedQuery
+                                );
+
+                        }
+                    )
+                    .slice(
+                        0,
+                        20
+                    );
+
+            }
+
+
+            if (!filtered.length) {
+
+                results.innerHTML = `
+
+                    <div
+                        class="site-search-empty"
+                    >
+                        لا توجد نتائج.
+                    </div>
+
+                `;
+
+
+                return;
+
+            }
+
+
+            results.innerHTML =
+                filtered
+                    .map(
+                        (item) => {
+
+                            return `
+
+                                <a
+                                    href="${escapeHTML(
+                                        item.href
+                                    )}"
+                                    class="site-search-result"
+                                >
+
+                                    <span
+                                        class="site-search-result-title"
+                                    >
+                                        ${escapeHTML(
+                                            item.title
+                                        )}
+                                    </span>
+
+
+                                    <span
+                                        class="site-search-result-path"
+                                    >
+                                        ${escapeHTML(
+                                            item.href
+                                        )}
+                                    </span>
+
+
+                                    <span
+                                        class="site-search-result-snippet"
+                                    >
+                                        ${escapeHTML(
+                                            item.snippet
+                                        )}
+                                    </span>
+
+                                </a>
+
+                            `;
+
+                        }
+                    )
+                    .join("");
+
+        }
+
+
+        openButton.addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+
+                const isOpen =
+                    panel.classList.toggle(
+                        "show"
+                    );
+
+
+                panel.setAttribute(
+                    "aria-hidden",
+                    String(!isOpen)
+                );
+
+
+                openButton.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+
+
+                if (isOpen) {
+
+                    renderResults(
+                        input.value
+                    );
+
+
+                    setTimeout(
+                        () => input.focus(),
+                        50
+                    );
+
+                }
+
+            }
+        );
+
+
+        closeButton.addEventListener(
+            "click",
+            closeSearch
+        );
+
+
+        input.addEventListener(
+            "input",
+            () => {
+
+                renderResults(
+                    input.value
+                );
+
+            }
+        );
+
+
+        document.addEventListener(
+            "click",
+            (event) => {
+
+                if (
+                    !wrapper.contains(
+                        event.target
+                    )
+                ) {
+
+                    closeSearch();
+
+                }
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            (event) => {
+
+                if (
+                    event.key === "Escape"
+                ) {
+
+                    closeSearch();
+
+                }
+
+            }
         );
 
     }
 
 
     /* =========================================
-       تشغيل
+       تشغيل جميع الأنظمة
     ========================================= */
+
+    loadFonts();
+
 
     saveCurrentChapter();
 
+
     addCurrentChapterToRecent();
+
 
     createVolumeFolders();
 
+
+    createSpoilerSystem();
+
+
     createSiteSettings();
+
 
     createReaderSettings();
 
+
+    createSiteSearch();
+
+
+    createReadingProgress();
+
+
     applySiteSettings();
 
+
     applyReaderSettings();
+
+
+    createContinueReading();
+
 
     createRecentChapters();
 
