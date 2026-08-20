@@ -5447,3 +5447,92 @@ body.light-theme .volume-folder .chapter-card:hover {
     }
 
 }
+/* =========================================
+   ضبط أرقام أيقونات الصفحة الرئيسية
+========================================= */
+
+.home-menu-number {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    width: 44px;
+    height: 44px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin: 0;
+    padding: 0;
+
+    box-sizing: border-box;
+
+    background: #101010;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 9px;
+
+    color: #b62121;
+
+    font-family: "Cairo", "Segoe UI", Tahoma, sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    text-align: center;
+
+    direction: ltr;
+
+    flex-shrink: 0;
+
+    z-index: 3;
+}
+
+.home-menu-card:hover
+.home-menu-number {
+    background: #1a1010;
+
+    border-color: #a51d1d;
+
+    color: #d02b2b;
+}
+
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.home-menu-number {
+    background: #faf7f7;
+
+    border-color: #d7bcbc;
+
+    color: #8f1c1c;
+}
+
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 760px) {
+
+    .home-menu-number {
+        top: 18px;
+        right: 18px;
+
+        width: 40px;
+        height: 40px;
+
+        font-size: 11px;
+    }
+
+}
