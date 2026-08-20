@@ -3596,3 +3596,351 @@ body.light-theme
     }
 
 }
+/* =========================================
+   تحسين نهائي لقسم التقنيات
+========================================= */
+
+/* منع اللون الأزرق من روابط قسم التقنيات */
+
+.techniques-category-card,
+.world-technique-profile a,
+.world-technique-profile a:visited,
+.world-technique-profile a:hover,
+.world-technique-profile a:active {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* صفحة الطوائف الرئيسية */
+
+.techniques-category-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    margin-top: 30px;
+}
+
+.techniques-category-card {
+    position: relative;
+
+    display: block;
+
+    min-height: 190px;
+
+    padding: 28px 60px 26px 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #161616,
+            #0d0d0d
+        );
+
+    border: 1px solid #401717;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.techniques-category-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
+}
+
+.techniques-category-card:hover {
+    transform:
+        translateY(-5px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1010,
+            #111111
+        );
+
+    border-color: #8f1c1c;
+
+    box-shadow:
+        0 18px 38px rgba(0, 0, 0, 0.42),
+        0 0 20px rgba(127, 17, 17, 0.10);
+}
+
+.techniques-category-number {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    background: #101010;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 8px;
+
+    color: #a51d1d;
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.techniques-category-title {
+    display: block;
+
+    margin-top: 38px;
+    margin-bottom: 10px;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            21px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+}
+
+.techniques-category-text {
+    display: block;
+
+    color: #aaaaaa;
+
+    font-size:
+        calc(
+            15px
+            * var(--site-text-scale)
+        );
+
+    line-height:
+        var(--site-line-height);
+}
+
+.techniques-category-arrow {
+    position: absolute;
+
+    left: 22px;
+    bottom: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    background: #101010;
+
+    border: 1px solid #4b1717;
+
+    border-radius: 50%;
+
+    color: #a51d1d;
+
+    font-size: 18px;
+}
+
+
+/* =========================================
+   تحسين صفحة التقنية نفسها
+========================================= */
+
+.world-technique-profile {
+    width: 100%;
+}
+
+.world-technique-info-item {
+    position: relative;
+
+    overflow: hidden;
+}
+
+.world-technique-info-item::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
+}
+
+.world-technique-item {
+    min-height: 70px;
+}
+
+.world-technique-level {
+    color: #b62121;
+}
+
+.world-technique-name {
+    text-align: right;
+}
+
+.world-technique-final {
+    transform: none;
+}
+
+.world-technique-final:hover {
+    transform:
+        translateX(-4px);
+}
+
+
+/* =========================================
+   إزالة أي ألوان روابط افتراضية
+========================================= */
+
+.techniques-category-card:visited {
+    color: inherit;
+}
+
+.techniques-category-card:hover {
+    color: #eeeeee;
+}
+
+.techniques-category-card:active {
+    color: #eeeeee;
+}
+
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.techniques-category-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #d8c2c2;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme
+.techniques-category-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf7f7
+        );
+
+    border-color: #a98787;
+}
+
+body.light-theme
+.techniques-category-title {
+    color: #222222;
+}
+
+body.light-theme
+.techniques-category-text {
+    color: #555555;
+}
+
+body.light-theme
+.techniques-category-number,
+body.light-theme
+.techniques-category-arrow {
+    background: #faf7f7;
+
+    border-color: #d7bcbc;
+
+    color: #8f1c1c;
+}
+
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 700px) {
+
+    .techniques-category-grid {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .techniques-category-card {
+        min-height: 170px;
+
+        padding:
+            24px
+            52px
+            22px
+            24px;
+    }
+
+    .techniques-category-title {
+        font-size:
+            calc(
+                19px
+                * var(--site-text-scale)
+            );
+    }
+
+    .techniques-category-text {
+        font-size:
+            calc(
+                14px
+                * var(--site-text-scale)
+            );
+    }
+
+}
