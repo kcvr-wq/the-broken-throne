@@ -5580,3 +5580,767 @@ body.light-theme
 
 }
 ```
+/* =========================================
+   الصفحة الرئيسية — الترتيب النهائي
+========================================= */
+
+.home-sections {
+    width: min(1000px, 100%);
+
+    margin:
+        45px auto 0;
+}
+
+
+/* =========================================
+   عنوان قسم الأقسام
+========================================= */
+
+.home-section-heading {
+    position: relative;
+
+    text-align: center;
+
+    margin-bottom: 28px;
+
+    padding-bottom: 18px;
+}
+
+.home-section-heading::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    right: 50%;
+
+    width: 90px;
+    height: 2px;
+
+    transform:
+        translateX(50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
+}
+
+.home-section-heading > span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #a51d1d;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.home-section-heading h2 {
+    margin: 0;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            29px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   شبكة الأقسام
+========================================= */
+
+.home-navigation {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+
+    width: 100%;
+
+    margin: 0;
+}
+
+
+/* =========================================
+   بطاقة القسم
+========================================= */
+
+.home-menu-card {
+    position: relative;
+
+    display: flex;
+
+    align-items: flex-end;
+
+    justify-content: flex-start;
+
+    width: 100%;
+
+    min-height: 185px;
+
+    padding:
+        30px
+        28px
+        27px
+        70px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #171717,
+            #0c0c0c
+        );
+
+    border:
+        1px solid #3d1717;
+
+    border-radius: 12px;
+
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 12px 28px
+        rgba(0, 0, 0, 0.28);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* الخط العلوي */
+
+.home-menu-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
+
+    opacity: 0.8;
+}
+
+
+/* الزخرفة الدائرية */
+
+.home-menu-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 170px;
+    height: 170px;
+
+    left: -105px;
+    bottom: -105px;
+
+    border:
+        1px solid
+        rgba(165, 29, 29, 0.08);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+
+    transition:
+        transform 0.45s ease,
+        border-color 0.45s ease;
+}
+
+
+/* الحركة */
+
+.home-menu-card:hover {
+    transform:
+        translateY(-6px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #1d1010,
+            #100d0d
+        );
+
+    border-color:
+        #8f1c1c;
+
+    box-shadow:
+        0 20px 42px
+        rgba(0, 0, 0, 0.42),
+        0 0 22px
+        rgba(127, 17, 17, 0.10);
+}
+
+.home-menu-card:hover::after {
+    transform:
+        scale(1.35);
+
+    border-color:
+        rgba(165, 29, 29, 0.14);
+}
+
+
+/* =========================================
+   رقم البطاقة
+========================================= */
+
+.home-menu-number {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    background:
+        #101010;
+
+    border:
+        1px solid #5b1919;
+
+    border-radius: 9px;
+
+    color: #a51d1d;
+
+    font-size: 12px;
+
+    font-weight: 900;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.home-menu-card:hover
+.home-menu-number {
+    background:
+        #1a1010;
+
+    border-color:
+        #a51d1d;
+
+    color:
+        #d02b2b;
+
+    box-shadow:
+        0 0 14px
+        rgba(165, 29, 29, 0.12);
+}
+
+
+/* =========================================
+   محتوى البطاقة
+========================================= */
+
+.home-menu-content {
+    position: relative;
+
+    z-index: 2;
+
+    display: block;
+
+    width: 100%;
+}
+
+.home-menu-title {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            23px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+
+    line-height: 1.35;
+}
+
+.home-menu-description {
+    display: block;
+
+    max-width: 92%;
+
+    color: #999999;
+
+    font-size:
+        calc(
+            14px
+            * var(--site-text-scale)
+        );
+
+    line-height: 1.8;
+}
+
+
+/* =========================================
+   سهم البطاقة
+========================================= */
+
+.home-menu-arrow {
+    position: absolute;
+
+    left: 22px;
+    bottom: 22px;
+
+    z-index: 2;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 38px;
+    height: 38px;
+
+    background:
+        #101010;
+
+    border:
+        1px solid #4b1717;
+
+    border-radius: 50%;
+
+    color:
+        #a51d1d;
+
+    font-size: 18px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.home-menu-card:hover
+.home-menu-arrow {
+    transform:
+        translateX(-5px);
+
+    background:
+        #1a1010;
+
+    border-color:
+        #a51d1d;
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================
+   تابع القراءة — البطاقة الرئيسية
+========================================= */
+
+.home-sections
+.continue-reading-card {
+    position: relative;
+
+    width: 100%;
+
+    min-height: 155px;
+
+    margin:
+        0 0 28px;
+
+    padding:
+        29px
+        88px
+        28px
+        30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #241010,
+            #0f0b0b
+        );
+
+    border:
+        1px solid #7f1111;
+
+    border-right:
+        4px solid #b62121;
+
+    border-radius: 14px;
+
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.42),
+        0 0 24px
+        rgba(165, 29, 29, 0.07);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.home-sections
+.continue-reading-card:hover {
+    transform:
+        translateY(-5px);
+
+    background:
+        linear-gradient(
+            135deg,
+            #2a1111,
+            #120c0c
+        );
+
+    border-color:
+        #a51d1d;
+
+    box-shadow:
+        0 24px 48px
+        rgba(0, 0, 0, 0.48),
+        0 0 30px
+        rgba(165, 29, 29, 0.11);
+}
+
+.home-sections
+.continue-reading-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #d02b2b;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+}
+
+.home-sections
+.continue-reading-title {
+    display: block;
+
+    color: #ffffff;
+
+    font-size:
+        calc(
+            24px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+
+    line-height: 1.45;
+}
+
+.home-sections
+.continue-reading-number {
+    display: block;
+
+    margin-top: 7px;
+
+    color: #999999;
+
+    font-size:
+        calc(
+            13px
+            * var(--site-text-scale)
+        );
+}
+
+.home-sections
+.continue-reading-arrow {
+    position: absolute;
+
+    left: 26px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 46px;
+    height: 46px;
+
+    background:
+        #120c0c;
+
+    border:
+        1px solid #6f1a1a;
+
+    border-radius: 50%;
+
+    color:
+        #d02b2b;
+
+    font-size: 20px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.home-sections
+.continue-reading-card:hover
+.continue-reading-arrow {
+    transform:
+        translateY(-50%)
+        translateX(-5px);
+
+    background:
+        #1d0e0e;
+
+    border-color:
+        #b62121;
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.home-section-heading h2 {
+    color: #222222;
+}
+
+body.light-theme
+.home-menu-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color:
+        #d8c2c2;
+
+    box-shadow:
+        0 12px 28px
+        rgba(0, 0, 0, 0.07);
+}
+
+body.light-theme
+.home-menu-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf7f7
+        );
+
+    border-color:
+        #a98787;
+}
+
+body.light-theme
+.home-menu-title {
+    color:
+        #222222;
+}
+
+body.light-theme
+.home-menu-description {
+    color:
+        #555555;
+}
+
+body.light-theme
+.home-menu-number,
+body.light-theme
+.home-menu-arrow {
+    background:
+        #faf7f7;
+
+    border-color:
+        #d7bcbc;
+
+    color:
+        #8f1c1c;
+}
+
+body.light-theme
+.home-sections
+.continue-reading-card {
+    background:
+        linear-gradient(
+            135deg,
+            #fff8f8,
+            #f7f1f1
+        );
+
+    border-color:
+        #c99f9f;
+
+    border-right-color:
+        #8f1c1c;
+
+    box-shadow:
+        0 18px 40px
+        rgba(0, 0, 0, 0.10);
+}
+
+body.light-theme
+.home-sections
+.continue-reading-title {
+    color:
+        #222222;
+}
+
+body.light-theme
+.home-sections
+.continue-reading-arrow {
+    background:
+        #faf7f7;
+
+    border-color:
+        #d7bcbc;
+
+    color:
+        #8f1c1c;
+}
+
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 760px) {
+
+    .home-sections {
+        margin-top: 30px;
+    }
+
+    .home-navigation {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .home-menu-card {
+        min-height: 155px;
+
+        padding:
+            25px
+            55px
+            24px
+            22px;
+    }
+
+    .home-menu-title {
+        font-size:
+            calc(
+                20px
+                * var(--site-text-scale)
+            );
+    }
+
+    .home-menu-description {
+        max-width: 100%;
+
+        font-size:
+            calc(
+                13px
+                * var(--site-text-scale)
+            );
+    }
+
+    .home-menu-arrow {
+        left: 18px;
+        bottom: 18px;
+
+        width: 36px;
+        height: 36px;
+    }
+
+    .home-sections
+    .continue-reading-card {
+        min-height: 145px;
+
+        padding:
+            25px
+            68px
+            24px
+            22px;
+
+        margin-bottom: 22px;
+    }
+
+    .home-sections
+    .continue-reading-title {
+        font-size:
+            calc(
+                20px
+                * var(--site-text-scale)
+            );
+    }
+
+    .home-sections
+    .continue-reading-arrow {
+        left: 17px;
+
+        width: 40px;
+        height: 40px;
+    }
+
+}
