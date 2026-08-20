@@ -3964,3 +3964,257 @@ body.light-theme
 .world-region-card:hover .world-region-header h3 {
     color: #ffffff;
 }
+/* =========================================
+   نظام تابع القراءة
+========================================= */
+
+.continue-reading-card {
+    position: relative;
+
+    display: block;
+
+    width: min(850px, 100%);
+
+    min-height: 145px;
+
+    margin: 35px auto 0;
+
+    padding: 24px 70px 24px 28px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a0d0d,
+            #0d0d0d
+        );
+
+    border: 1px solid #7f1111;
+
+    border-right: 4px solid #a51d1d;
+
+    border-radius: 10px;
+
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.40),
+        0 0 22px rgba(127, 17, 17, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.continue-reading-card:hover {
+    transform:
+        translateY(-4px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #211010,
+            #111111
+        );
+
+    border-color: #a51d1d;
+
+    box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.48),
+        0 0 25px rgba(165, 29, 29, 0.12);
+}
+
+.continue-reading-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #b62121;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.continue-reading-title {
+    display: block;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            21px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+}
+
+.continue-reading-number {
+    display: block;
+
+    margin-top: 8px;
+
+    color: #999999;
+
+    font-size:
+        calc(
+            14px
+            * var(--site-text-scale)
+        );
+}
+
+.continue-reading-arrow {
+    position: absolute;
+
+    left: 24px;
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    background: #101010;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 50%;
+
+    color: #b62121;
+
+    font-size: 20px;
+
+    transition:
+        transform 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease;
+}
+
+.continue-reading-card:hover
+.continue-reading-arrow {
+    transform:
+        translateY(-50%)
+        translateX(-4px);
+
+    background: #1a1010;
+
+    border-color: #a51d1d;
+
+    color: #ffffff;
+}
+
+
+/* =========================================
+   تابع القراءة — الوضع الفاتح
+========================================= */
+
+body.light-theme
+.continue-reading-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f0f0
+        );
+
+    border-color: #c99f9f;
+
+    border-right-color: #8f1c1c;
+
+    box-shadow:
+        0 14px 32px rgba(0, 0, 0, 0.10);
+}
+
+body.light-theme
+.continue-reading-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf7f7
+        );
+
+    border-color: #a98787;
+}
+
+body.light-theme
+.continue-reading-title {
+    color: #222222;
+}
+
+body.light-theme
+.continue-reading-number {
+    color: #666666;
+}
+
+body.light-theme
+.continue-reading-arrow {
+    background: #faf7f7;
+
+    border-color: #d7bcbc;
+
+    color: #8f1c1c;
+}
+
+
+/* =========================================
+   تابع القراءة — الهاتف
+========================================= */
+
+@media (max-width: 700px) {
+
+    .continue-reading-card {
+        min-height: 135px;
+
+        margin-top: 25px;
+
+        padding:
+            22px
+            55px
+            22px
+            20px;
+    }
+
+    .continue-reading-label {
+        font-size: 13px;
+    }
+
+    .continue-reading-title {
+        font-size:
+            calc(
+                18px
+                * var(--site-text-scale)
+            );
+    }
+
+    .continue-reading-number {
+        font-size:
+            calc(
+                13px
+                * var(--site-text-scale)
+            );
+    }
+
+    .continue-reading-arrow {
+        left: 16px;
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 18px;
+    }
+
+}
