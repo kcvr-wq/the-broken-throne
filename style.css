@@ -2170,3 +2170,9 @@ body.light-theme .volume-folder .chapter-card:hover {
 
 }
 ```
+/* اختبار خريطة العالم */
+
+.world-region-card {
+    background: red !important;
+    border: 5px solid white !important;
+}
