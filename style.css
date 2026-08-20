@@ -6336,3 +6336,407 @@ body.light-theme
 
 }
 ```
+/* =========================================
+   سجل آخر الفصول
+========================================= */
+
+.recent-chapters-section {
+    width: 100%;
+    margin: 0 0 30px;
+}
+
+
+/* =========================================
+   عنوان السجل
+========================================= */
+
+.recent-chapters-heading {
+    position: relative;
+
+    text-align: center;
+
+    margin-bottom: 20px;
+
+    padding-bottom: 14px;
+}
+
+.recent-chapters-heading::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: 0;
+    right: 50%;
+
+    width: 70px;
+    height: 2px;
+
+    transform:
+        translateX(50%);
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
+}
+
+.recent-chapters-heading > span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color: #8f1c1c;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.recent-chapters-heading h2 {
+    margin: 0;
+
+    color: #dddddd;
+
+    font-size:
+        calc(
+            24px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   قائمة آخر الفصول
+========================================= */
+
+.recent-chapters-list {
+    display: grid;
+
+    grid-template-columns:
+        repeat(5, minmax(0, 1fr));
+
+    gap: 10px;
+
+    width: 100%;
+}
+
+
+/* =========================================
+   بطاقة الفصل
+========================================= */
+
+.recent-chapter-card {
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    min-width: 0;
+
+    min-height: 85px;
+
+    padding:
+        14px
+        40px
+        14px
+        12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #141414,
+            #0d0d0d
+        );
+
+    border:
+        1px solid #351616;
+
+    border-radius: 9px;
+
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.recent-chapter-card:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #1a1010,
+            #111111
+        );
+
+    border-color:
+        #8f1c1c;
+
+    box-shadow:
+        0 10px 24px
+        rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================
+   رقم الفصل في السجل
+========================================= */
+
+.recent-chapter-number {
+    position: absolute;
+
+    top: 9px;
+    right: 9px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    background: #101010;
+
+    border:
+        1px solid #4b1717;
+
+    border-radius: 6px;
+
+    color: #8f1c1c;
+
+    font-family:
+        "Cairo",
+        "Segoe UI",
+        sans-serif;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    line-height: 1;
+
+    direction: ltr;
+}
+
+
+/* =========================================
+   محتوى الفصل
+========================================= */
+
+.recent-chapter-content {
+    display: block;
+
+    width: 100%;
+
+    min-width: 0;
+}
+
+.recent-chapter-title {
+    display: block;
+
+    overflow: hidden;
+
+    color: #dddddd;
+
+    font-size:
+        calc(
+            14px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+
+    line-height: 1.5;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+.recent-chapter-path {
+    display: block;
+
+    margin-top: 3px;
+
+    overflow: hidden;
+
+    color: #777777;
+
+    font-size: 9px;
+
+    direction: ltr;
+
+    text-align: right;
+
+    white-space: nowrap;
+
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================
+   سهم الانتقال
+========================================= */
+
+.recent-chapter-arrow {
+    position: absolute;
+
+    left: 9px;
+    bottom: 9px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 25px;
+    height: 25px;
+
+    background: #101010;
+
+    border:
+        1px solid #431818;
+
+    border-radius: 50%;
+
+    color: #8f1c1c;
+
+    font-size: 12px;
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease;
+}
+
+.recent-chapter-card:hover
+.recent-chapter-arrow {
+    transform:
+        translateX(-3px);
+
+    border-color:
+        #8f1c1c;
+
+    color:
+        #eeeeee;
+}
+
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.recent-chapters-heading h2 {
+    color: #222222;
+}
+
+body.light-theme
+.recent-chapter-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color:
+        #d8c2c2;
+}
+
+body.light-theme
+.recent-chapter-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf7f7
+        );
+
+    border-color:
+        #a98787;
+}
+
+body.light-theme
+.recent-chapter-title {
+    color: #222222;
+}
+
+body.light-theme
+.recent-chapter-path {
+    color: #666666;
+}
+
+body.light-theme
+.recent-chapter-number,
+body.light-theme
+.recent-chapter-arrow {
+    background:
+        #faf7f7;
+
+    border-color:
+        #d7bcbc;
+
+    color:
+        #8f1c1c;
+}
+
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 900px) {
+
+    .recent-chapters-list {
+        grid-template-columns:
+            repeat(
+                3,
+                minmax(0, 1fr)
+            );
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .recent-chapters-list {
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+
+        gap: 10px;
+    }
+
+    .recent-chapter-card {
+        min-height: 88px;
+    }
+
+}
+
+@media (max-width: 430px) {
+
+    .recent-chapters-list {
+        grid-template-columns: 1fr;
+    }
+
+}
