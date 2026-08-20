@@ -2787,3 +2787,426 @@ body.light-theme .world-culture-card p {
     }
 
 }
+/* =========================================
+   الصفحة الرئيسية لعالم الموريم
+========================================= */
+
+.world-hero {
+    padding-bottom: 20px;
+}
+
+.world-overview {
+    width: min(1000px, 100%);
+
+    margin: 45px auto 0;
+
+    padding: 40px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #121212,
+            #0c0c0c
+        );
+
+    border: 1px solid #351616;
+
+    border-radius: 14px;
+
+    box-shadow:
+        0 25px 55px rgba(0, 0, 0, 0.42);
+}
+
+.world-overview-header {
+    text-align: center;
+
+    max-width: 760px;
+
+    margin: 0 auto 40px;
+}
+
+.world-overview-label {
+    display: inline-block;
+
+    margin-bottom: 12px;
+
+    padding: 5px 14px;
+
+    background: #1a1010;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 20px;
+
+    color: #b62121;
+
+    font-size: 14px;
+
+    font-weight: 800;
+}
+
+.world-overview-header h2 {
+    margin-bottom: 12px;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            34px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+}
+
+.world-overview-header p {
+    margin: 0;
+
+    color: #bdbdbd;
+
+    font-size:
+        calc(
+            17px
+            * var(--site-text-scale)
+        );
+
+    line-height:
+        var(--site-line-height);
+}
+
+/* =========================================
+   بطاقات أقسام عالم الموريم
+========================================= */
+
+.world-sections-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.world-main-card {
+    position: relative;
+
+    display: block;
+
+    min-height: 190px;
+
+    padding: 25px 28px 25px 58px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #161616,
+            #0d0d0d
+        );
+
+    border: 1px solid #401717;
+
+    border-radius: 10px;
+
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        background 0.3s ease;
+}
+
+.world-main-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    width: 100%;
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #8f1c1c,
+            transparent
+        );
+
+    opacity: 0.6;
+
+    transition:
+        opacity 0.3s ease;
+}
+
+.world-main-card:hover {
+    transform:
+        translateY(-5px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #1b1010,
+            #111111
+        );
+
+    border-color: #8f1c1c;
+
+    box-shadow:
+        0 18px 38px rgba(0, 0, 0, 0.42),
+        0 0 22px rgba(127, 17, 17, 0.10);
+}
+
+.world-main-card:hover::before {
+    opacity: 1;
+}
+
+.world-main-card-number {
+    position: absolute;
+
+    top: 20px;
+    right: 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 42px;
+    height: 42px;
+
+    background: #101010;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 8px;
+
+    color: #a51d1d;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.world-main-card:hover
+.world-main-card-number {
+    background: #1a1010;
+
+    border-color: #a51d1d;
+
+    color: #d02b2b;
+}
+
+.world-main-card-title {
+    display: block;
+
+    margin-top: 42px;
+
+    margin-bottom: 10px;
+
+    color: #eeeeee;
+
+    font-size:
+        calc(
+            21px
+            * var(--site-text-scale)
+        );
+
+    font-weight: 800;
+}
+
+.world-main-card-text {
+    display: block;
+
+    color: #aaaaaa;
+
+    font-size:
+        calc(
+            15px
+            * var(--site-text-scale)
+        );
+
+    line-height:
+        var(--site-line-height);
+}
+
+.world-main-card-arrow {
+    position: absolute;
+
+    left: 24px;
+    bottom: 22px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 34px;
+    height: 34px;
+
+    background: #101010;
+
+    border: 1px solid #4b1717;
+
+    border-radius: 50%;
+
+    color: #a51d1d;
+
+    font-size: 18px;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.world-main-card:hover
+.world-main-card-arrow {
+    transform:
+        translateX(-4px);
+
+    background: #1a1010;
+
+    border-color: #a51d1d;
+
+    color: #eeeeee;
+}
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme .world-overview {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #dbc5c5;
+
+    box-shadow:
+        0 25px 55px rgba(0, 0, 0, 0.10);
+}
+
+body.light-theme .world-overview-header h2 {
+    color: #222222;
+}
+
+body.light-theme .world-overview-header p {
+    color: #555555;
+}
+
+body.light-theme .world-main-card {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f7f4f2
+        );
+
+    border-color: #d8c2c2;
+
+    box-shadow:
+        0 10px 25px rgba(0, 0, 0, 0.06);
+}
+
+body.light-theme .world-main-card:hover {
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #faf7f7
+        );
+
+    border-color: #a98787;
+}
+
+body.light-theme .world-main-card-number,
+body.light-theme .world-main-card-arrow {
+    background: #faf7f7;
+
+    border-color: #d7bcbc;
+}
+
+body.light-theme .world-main-card-title {
+    color: #222222;
+}
+
+body.light-theme .world-main-card-text {
+    color: #555555;
+}
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 700px) {
+
+    .world-overview {
+        margin-top: 30px;
+
+        padding: 25px 18px;
+    }
+
+    .world-overview-header {
+        margin-bottom: 28px;
+    }
+
+    .world-overview-header h2 {
+        font-size:
+            calc(
+                27px
+                * var(--site-text-scale)
+            );
+    }
+
+    .world-sections-grid {
+        grid-template-columns: 1fr;
+
+        gap: 14px;
+    }
+
+    .world-main-card {
+        min-height: 175px;
+
+        padding:
+            22px
+            24px
+            22px
+            52px;
+    }
+
+    .world-main-card-title {
+        font-size:
+            calc(
+                19px
+                * var(--site-text-scale)
+            );
+    }
+
+    .world-main-card-text {
+        font-size:
+            calc(
+                14px
+                * var(--site-text-scale)
+            );
+    }
+
+}
