@@ -1,5 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    /* =========================================
+       نظام الحرق — كما كان
+    ========================================= */
+
     const spoilerButtons = document.querySelectorAll(".spoiler-button");
 
     spoilerButtons.forEach((button) => {
@@ -31,5 +35,1075 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
     });
+
+
+    /* =========================================
+       الخطوط
+    ========================================= */
+
+    if (!document.querySelector("#broken-throne-fonts")) {
+
+        const fontLink = document.createElement("link");
+
+        fontLink.id = "broken-throne-fonts";
+        fontLink.rel = "stylesheet";
+        fontLink.href =
+            "https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cairo:wght@400;600;700;800&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&display=swap";
+
+        document.head.appendChild(fontLink);
+    }
+
+
+    /* =========================================
+       مفاتيح التخزين
+    ========================================= */
+
+    const SITE_SETTINGS_KEY = "brokenThroneSiteSettings";
+    const READER_SETTINGS_KEY = "brokenThroneReaderSettings";
+
+
+    /* =========================================
+       الإعدادات الافتراضية للموقع
+    ========================================= */
+
+    const defaultSiteSettings = {
+        theme: "dark",
+        font: "naskh",
+        size: "medium",
+        spacing: "medium"
+    };
+
+
+    /* =========================================
+       الإعدادات الافتراضية للقراءة
+    ========================================= */
+
+    const defaultReaderSettings = {
+        size: "medium",
+        spacing: "medium",
+        width: "medium",
+        paragraph: "medium",
+        align: "right"
+    };
+
+
+    /* =========================================
+       تحميل الإعدادات
+    ========================================= */
+
+    function loadSettings(key, defaults) {
+
+        try {
+
+            const saved = localStorage.getItem(key);
+
+            if (!saved) {
+                return { ...defaults };
+            }
+
+            return {
+                ...defaults,
+                ...JSON.parse(saved)
+            };
+
+        } catch (error) {
+
+            return {
+                ...defaults
+            };
+
+        }
+
+    }
+
+
+    let siteSettings =
+        loadSettings(
+            SITE_SETTINGS_KEY,
+            defaultSiteSettings
+        );
+
+
+    let readerSettings =
+        loadSettings(
+            READER_SETTINGS_KEY,
+            defaultReaderSettings
+        );
+
+
+    /* =========================================
+       حفظ الإعدادات
+    ========================================= */
+
+    function saveSiteSettings() {
+
+        localStorage.setItem(
+            SITE_SETTINGS_KEY,
+            JSON.stringify(siteSettings)
+        );
+
+    }
+
+
+    function saveReaderSettings() {
+
+        localStorage.setItem(
+            READER_SETTINGS_KEY,
+            JSON.stringify(readerSettings)
+        );
+
+    }
+
+
+    /* =========================================
+       إنشاء إعدادات الموقع
+    ========================================= */
+
+    function createSiteSettings() {
+
+        if (document.querySelector(".site-settings-wrapper")) {
+            return;
+        }
+
+        const wrapper = document.createElement("div");
+
+        wrapper.className = "site-settings-wrapper";
+
+        wrapper.innerHTML = `
+            <button
+                type="button"
+                class="site-settings-button"
+                aria-label="الإعدادات"
+                aria-expanded="false"
+            >
+                ⚙
+            </button>
+
+            <div
+                class="site-settings-panel"
+                aria-hidden="true"
+            >
+
+                <div class="settings-panel-header">
+
+                    <h2>إعدادات الموقع</h2>
+
+                    <button
+                        type="button"
+                        class="settings-panel-close"
+                        aria-label="إغلاق"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>المظهر</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="theme"
+                            data-value="dark"
+                        >
+                            داكن
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="theme"
+                            data-value="light"
+                        >
+                            فاتح
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>نوع الخط</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="font"
+                            data-value="naskh"
+                        >
+                            Noto Naskh
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="font"
+                            data-value="cairo"
+                        >
+                            Cairo
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="font"
+                            data-value="tajawal"
+                        >
+                            Tajawal
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="font"
+                            data-value="amiri"
+                        >
+                            Amiri
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>حجم النص</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="size"
+                            data-value="small"
+                        >
+                            صغير
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="size"
+                            data-value="medium"
+                        >
+                            متوسط
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="size"
+                            data-value="large"
+                        >
+                            كبير
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="size"
+                            data-value="xlarge"
+                        >
+                            كبير جدًا
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>تباعد السطور</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="spacing"
+                            data-value="tight"
+                        >
+                            ضيق
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="spacing"
+                            data-value="medium"
+                        >
+                            متوسط
+                        </button>
+
+                        <button
+                            type="button"
+                            class="settings-option"
+                            data-site-setting="spacing"
+                            data-value="wide"
+                        >
+                            واسع
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="settings-reset"
+                    data-reset-site
+                >
+                    إعادة إعدادات الموقع
+                </button>
+
+            </div>
+        `;
+
+
+        document.body.appendChild(wrapper);
+
+
+        const openButton =
+            wrapper.querySelector(".site-settings-button");
+
+        const panel =
+            wrapper.querySelector(".site-settings-panel");
+
+        const closeButton =
+            wrapper.querySelector(".settings-panel-close");
+
+        const resetButton =
+            wrapper.querySelector("[data-reset-site]");
+
+
+        function closePanel() {
+
+            panel.classList.remove("show");
+
+            panel.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            openButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+
+        openButton.addEventListener("click", (event) => {
+
+            event.stopPropagation();
+
+            const isOpen =
+                panel.classList.toggle("show");
+
+            panel.setAttribute(
+                "aria-hidden",
+                String(!isOpen)
+            );
+
+            openButton.setAttribute(
+                "aria-expanded",
+                String(isOpen)
+            );
+
+        });
+
+
+        closeButton.addEventListener(
+            "click",
+            closePanel
+        );
+
+
+        document.addEventListener("click", (event) => {
+
+            if (!wrapper.contains(event.target)) {
+                closePanel();
+            }
+
+        });
+
+
+        wrapper
+            .querySelectorAll("[data-site-setting]")
+            .forEach((button) => {
+
+                button.addEventListener("click", () => {
+
+                    const setting =
+                        button.dataset.siteSetting;
+
+                    const value =
+                        button.dataset.value;
+
+                    siteSettings[setting] = value;
+
+                    saveSiteSettings();
+
+                    applySiteSettings();
+
+                });
+
+            });
+
+
+        resetButton.addEventListener("click", () => {
+
+            siteSettings = {
+                ...defaultSiteSettings
+            };
+
+            saveSiteSettings();
+
+            applySiteSettings();
+
+        });
+
+    }
+
+
+    /* =========================================
+       تطبيق إعدادات الموقع
+    ========================================= */
+
+    function applySiteSettings() {
+
+        const root =
+            document.documentElement;
+
+        const body =
+            document.body;
+
+
+        const fonts = {
+
+            naskh:
+                '"Noto Naskh Arabic", "Segoe UI", Tahoma, sans-serif',
+
+            cairo:
+                '"Cairo", "Segoe UI", Tahoma, sans-serif',
+
+            tajawal:
+                '"Tajawal", "Segoe UI", Tahoma, sans-serif',
+
+            amiri:
+                '"Amiri", "Noto Naskh Arabic", serif'
+
+        };
+
+
+        const sizes = {
+
+            small: "0.92",
+            medium: "1",
+            large: "1.10",
+            xlarge: "1.20"
+
+        };
+
+
+        const spacings = {
+
+            tight: "1.75",
+            medium: "1.9",
+            wide: "2.15"
+
+        };
+
+
+        root.style.setProperty(
+            "--site-font",
+            fonts[siteSettings.font]
+        );
+
+
+        root.style.setProperty(
+            "--site-text-scale",
+            sizes[siteSettings.size]
+        );
+
+
+        root.style.setProperty(
+            "--site-line-height",
+            spacings[siteSettings.spacing]
+        );
+
+
+        body.classList.toggle(
+            "light-theme",
+            siteSettings.theme === "light"
+        );
+
+
+        body.classList.toggle(
+            "dark-theme",
+            siteSettings.theme === "dark"
+        );
+
+
+        document
+            .querySelectorAll("[data-site-setting]")
+            .forEach((button) => {
+
+                const setting =
+                    button.dataset.siteSetting;
+
+                const value =
+                    button.dataset.value;
+
+                button.classList.toggle(
+                    "active",
+                    siteSettings[setting] === value
+                );
+
+            });
+
+    }
+
+
+    /* =========================================
+       إعدادات القراءة
+       تظهر فقط داخل الفصل
+    ========================================= */
+
+    function createReaderSettings() {
+
+        const reader =
+            document.querySelector(".chapter-reader");
+
+        if (!reader) {
+            return;
+        }
+
+
+        if (
+            document.querySelector(
+                ".reader-settings-wrapper"
+            )
+        ) {
+            return;
+        }
+
+
+        const wrapper =
+            document.createElement("div");
+
+        wrapper.className =
+            "reader-settings-wrapper";
+
+
+        wrapper.innerHTML = `
+
+            <button
+                type="button"
+                class="reader-settings-button"
+                aria-label="إعدادات القراءة"
+                aria-expanded="false"
+            >
+                Aa
+            </button>
+
+
+            <div
+                class="reader-settings-panel"
+                aria-hidden="true"
+            >
+
+                <div class="settings-panel-header">
+
+                    <h2>إعدادات القراءة</h2>
+
+                    <button
+                        type="button"
+                        class="reader-settings-close"
+                        aria-label="إغلاق"
+                    >
+                        ×
+                    </button>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>حجم النص</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="size"
+                            data-value="small"
+                        >
+                            صغير
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="size"
+                            data-value="medium"
+                        >
+                            متوسط
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="size"
+                            data-value="large"
+                        >
+                            كبير
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="size"
+                            data-value="xlarge"
+                        >
+                            كبير جدًا
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>تباعد السطور</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="spacing"
+                            data-value="tight"
+                        >
+                            ضيق
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="spacing"
+                            data-value="medium"
+                        >
+                            متوسط
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="spacing"
+                            data-value="wide"
+                        >
+                            واسع
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>عرض القراءة</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="width"
+                            data-value="narrow"
+                        >
+                            ضيق
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="width"
+                            data-value="medium"
+                        >
+                            متوسط
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="width"
+                            data-value="wide"
+                        >
+                            واسع
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>مسافة الفقرات</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="paragraph"
+                            data-value="small"
+                        >
+                            صغيرة
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="paragraph"
+                            data-value="medium"
+                        >
+                            متوسطة
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="paragraph"
+                            data-value="large"
+                        >
+                            كبيرة
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="settings-group">
+
+                    <h3>محاذاة النص</h3>
+
+                    <div class="settings-options">
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="align"
+                            data-value="right"
+                        >
+                            يمين
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="align"
+                            data-value="center"
+                        >
+                            وسط
+                        </button>
+
+                        <button
+                            type="button"
+                            class="reader-option"
+                            data-reader-setting="align"
+                            data-value="justify"
+                        >
+                            ضبط
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="settings-reset"
+                    data-reset-reader
+                >
+                    إعادة إعدادات القراءة
+                </button>
+
+            </div>
+        `;
+
+
+        document.body.appendChild(wrapper);
+
+
+        const openButton =
+            wrapper.querySelector(
+                ".reader-settings-button"
+            );
+
+
+        const panel =
+            wrapper.querySelector(
+                ".reader-settings-panel"
+            );
+
+
+        const closeButton =
+            wrapper.querySelector(
+                ".reader-settings-close"
+            );
+
+
+        const resetButton =
+            wrapper.querySelector(
+                "[data-reset-reader]"
+            );
+
+
+        function closePanel() {
+
+            panel.classList.remove("show");
+
+            panel.setAttribute(
+                "aria-hidden",
+                "true"
+            );
+
+            openButton.setAttribute(
+                "aria-expanded",
+                "false"
+            );
+
+        }
+
+
+        openButton.addEventListener(
+            "click",
+            (event) => {
+
+                event.stopPropagation();
+
+                const isOpen =
+                    panel.classList.toggle("show");
+
+                panel.setAttribute(
+                    "aria-hidden",
+                    String(!isOpen)
+                );
+
+                openButton.setAttribute(
+                    "aria-expanded",
+                    String(isOpen)
+                );
+
+            }
+        );
+
+
+        closeButton.addEventListener(
+            "click",
+            closePanel
+        );
+
+
+        document.addEventListener("click", (event) => {
+
+            if (!wrapper.contains(event.target)) {
+                closePanel();
+            }
+
+        });
+
+
+        wrapper
+            .querySelectorAll("[data-reader-setting]")
+            .forEach((button) => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        const setting =
+                            button.dataset.readerSetting;
+
+                        const value =
+                            button.dataset.value;
+
+                        readerSettings[setting] =
+                            value;
+
+                        saveReaderSettings();
+
+                        applyReaderSettings();
+
+                    }
+                );
+
+            });
+
+
+        resetButton.addEventListener(
+            "click",
+            () => {
+
+                readerSettings = {
+                    ...defaultReaderSettings
+                };
+
+                saveReaderSettings();
+
+                applyReaderSettings();
+
+            }
+        );
+
+    }
+
+
+    /* =========================================
+       تطبيق إعدادات القراءة
+    ========================================= */
+
+    function applyReaderSettings() {
+
+        const reader =
+            document.querySelector(".chapter-reader");
+
+        if (!reader) {
+            return;
+        }
+
+
+        const sizes = {
+
+            small: "16px",
+            medium: "18px",
+            large: "20px",
+            xlarge: "22px"
+
+        };
+
+
+        const spacings = {
+
+            tight: "1.75",
+            medium: "2",
+            wide: "2.25"
+
+        };
+
+
+        const widths = {
+
+            narrow: "680px",
+            medium: "760px",
+            wide: "900px"
+
+        };
+
+
+        const paragraphSpacing = {
+
+            small: "12px",
+            medium: "18px",
+            large: "26px"
+
+        };
+
+
+        const alignments = {
+
+            right: "right",
+            center: "center",
+            justify: "justify"
+
+        };
+
+
+        reader.style.setProperty(
+            "--reader-text-size",
+            sizes[readerSettings.size]
+        );
+
+
+        reader.style.setProperty(
+            "--reader-line-height",
+            spacings[readerSettings.spacing]
+        );
+
+
+        reader.style.setProperty(
+            "--reader-width",
+            widths[readerSettings.width]
+        );
+
+
+        reader.style.setProperty(
+            "--reader-paragraph-spacing",
+            paragraphSpacing[
+                readerSettings.paragraph
+            ]
+        );
+
+
+        reader.style.setProperty(
+            "--reader-text-align",
+            alignments[
+                readerSettings.align
+            ]
+        );
+
+
+        document
+            .querySelectorAll(
+                "[data-reader-setting]"
+            )
+            .forEach((button) => {
+
+                const setting =
+                    button.dataset.readerSetting;
+
+                const value =
+                    button.dataset.value;
+
+                button.classList.toggle(
+                    "active",
+                    readerSettings[setting] === value
+                );
+
+            });
+
+    }
+
+
+    /* =========================================
+       تشغيل الأنظمة
+    ========================================= */
+
+    createSiteSettings();
+
+    createReaderSettings();
+
+    applySiteSettings();
+
+    applyReaderSettings();
 
 });
