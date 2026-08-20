@@ -1,4 +1,248 @@
+```javascript
 document.addEventListener("DOMContentLoaded", () => {
+
+    /* =========================================
+       نظام المجلدات — فتح وإغلاق سلس
+    ========================================= */
+
+    function createVolumeFolders() {
+
+        const folders =
+            document.querySelectorAll(".volume-folder");
+
+        if (!folders.length) {
+            return;
+        }
+
+
+        folders.forEach((folder) => {
+
+            const summary =
+                folder.querySelector("summary");
+
+            const content =
+                folder.querySelector(".chapter-list");
+
+            if (!summary || !content) {
+                return;
+            }
+
+
+            /* -----------------------------------------
+               الحالة الابتدائية
+            ----------------------------------------- */
+
+            folder.removeAttribute("open");
+
+            content.style.overflow = "hidden";
+
+            content.style.maxHeight = "0px";
+
+            content.style.opacity = "0";
+
+            content.style.transform =
+                "translateY(-10px)";
+
+            content.style.paddingTop = "0px";
+
+            content.style.paddingBottom = "0px";
+
+            content.style.borderTopColor =
+                "transparent";
+
+            content.style.transition =
+                "max-height 0.45s ease, " +
+                "opacity 0.30s ease, " +
+                "transform 0.45s ease, " +
+                "padding 0.45s ease, " +
+                "border-color 0.30s ease";
+
+
+            let animationTimer = null;
+
+
+            /* -----------------------------------------
+               فتح المجلد
+            ----------------------------------------- */
+
+            function openFolder() {
+
+                if (animationTimer) {
+                    clearTimeout(animationTimer);
+                }
+
+
+                folder.setAttribute(
+                    "open",
+                    ""
+                );
+
+
+                content.style.maxHeight =
+                    "0px";
+
+                content.style.opacity =
+                    "0";
+
+                content.style.transform =
+                    "translateY(-10px)";
+
+                content.style.paddingTop =
+                    "0px";
+
+                content.style.paddingBottom =
+                    "0px";
+
+                content.style.borderTopColor =
+                    "transparent";
+
+
+                requestAnimationFrame(() => {
+
+                    requestAnimationFrame(() => {
+
+                        content.style.maxHeight =
+                            content.scrollHeight + "px";
+
+                        content.style.opacity =
+                            "1";
+
+                        content.style.transform =
+                            "translateY(0)";
+
+                        content.style.paddingTop =
+                            "18px";
+
+                        content.style.paddingBottom =
+                            "18px";
+
+                        content.style.borderTopColor =
+                            "#351616";
+
+                    });
+
+                });
+
+            }
+
+
+            /* -----------------------------------------
+               إغلاق المجلد
+            ----------------------------------------- */
+
+            function closeFolder() {
+
+                if (animationTimer) {
+                    clearTimeout(animationTimer);
+                }
+
+
+                content.style.maxHeight =
+                    content.scrollHeight + "px";
+
+                content.style.opacity =
+                    "1";
+
+                content.style.transform =
+                    "translateY(0)";
+
+                content.style.paddingTop =
+                    "18px";
+
+                content.style.paddingBottom =
+                    "18px";
+
+
+                requestAnimationFrame(() => {
+
+                    requestAnimationFrame(() => {
+
+                        content.style.maxHeight =
+                            "0px";
+
+                        content.style.opacity =
+                            "0";
+
+                        content.style.transform =
+                            "translateY(-10px)";
+
+                        content.style.paddingTop =
+                            "0px";
+
+                        content.style.paddingBottom =
+                            "0px";
+
+                        content.style.borderTopColor =
+                            "transparent";
+
+                    });
+
+                });
+
+
+                animationTimer = setTimeout(() => {
+
+                    folder.removeAttribute(
+                        "open"
+                    );
+
+                }, 450);
+
+            }
+
+
+            /* -----------------------------------------
+               الضغط على عنوان المجلد
+            ----------------------------------------- */
+
+            summary.addEventListener(
+                "click",
+                (event) => {
+
+                    event.preventDefault();
+
+                    const isOpen =
+                        folder.hasAttribute("open");
+
+
+                    if (isOpen) {
+
+                        closeFolder();
+
+                    } else {
+
+                        openFolder();
+
+                    }
+
+                }
+            );
+
+
+            /* -----------------------------------------
+               تحديث الارتفاع إذا تغير المحتوى
+            ----------------------------------------- */
+
+            window.addEventListener(
+                "resize",
+                () => {
+
+                    if (
+                        folder.hasAttribute("open")
+                    ) {
+
+                        content.style.maxHeight =
+                            content.scrollHeight + "px";
+
+                    }
+
+                }
+            );
+
+        });
+
+    }
+
 
     /* =========================================
        نظام الحرق
@@ -33,9 +277,15 @@ document.addEventListener("DOMContentLoaded", () => {
             spoilerInfo.classList.toggle("show");
 
             if (spoilerInfo.classList.contains("show")) {
-                button.textContent = "إخفاء الحرق";
+
+                button.textContent =
+                    "إخفاء الحرق";
+
             } else {
-                button.textContent = "حرق";
+
+                button.textContent =
+                    "حرق";
+
             }
 
         });
@@ -1264,6 +1514,8 @@ document.addEventListener("DOMContentLoaded", () => {
        تشغيل الأنظمة
     ========================================= */
 
+    createVolumeFolders();
+
     createSiteSettings();
 
     createReaderSettings();
@@ -1273,3 +1525,4 @@ document.addEventListener("DOMContentLoaded", () => {
     applyReaderSettings();
 
 });
+```
