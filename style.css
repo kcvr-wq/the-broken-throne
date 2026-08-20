@@ -4360,3 +4360,445 @@ body.light-theme
     }
 
 }
+/* =========================================
+   البحث الشامل
+========================================= */
+
+.site-search-wrapper {
+    position: fixed;
+
+    top: 20px;
+    right: 78px;
+
+    z-index: 10001;
+}
+
+.site-search-button {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 0;
+
+    background: #111111;
+
+    color: #b62121;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 50%;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.45);
+
+    transition:
+        background 0.25s ease,
+        border-color 0.25s ease,
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+.site-search-button:hover {
+    transform:
+        translateY(-2px);
+
+    background: #1a1010;
+
+    border-color: #a51d1d;
+
+    color: #eeeeee;
+}
+
+
+/* =========================================
+   لوحة البحث
+========================================= */
+
+.site-search-panel {
+    position: absolute;
+
+    top: 58px;
+    right: 0;
+
+    width: 430px;
+
+    max-width:
+        calc(
+            100vw - 28px
+        );
+
+    max-height:
+        calc(
+            100vh - 100px
+        );
+
+    overflow: hidden;
+
+    display: flex;
+
+    flex-direction: column;
+
+    padding: 20px;
+
+    background: #111111;
+
+    border: 1px solid #431818;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.65);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transform:
+        translateY(-10px)
+        scale(0.97);
+
+    transform-origin:
+        top right;
+
+    transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease;
+}
+
+.site-search-panel.show {
+    opacity: 1;
+
+    visibility: visible;
+
+    transform:
+        translateY(0)
+        scale(1);
+}
+
+
+/* =========================================
+   رأس البحث
+========================================= */
+
+.site-search-header {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    padding-bottom: 14px;
+
+    margin-bottom: 14px;
+
+    border-bottom:
+        1px solid #351616;
+}
+
+.site-search-header h2 {
+    margin: 0 0 3px;
+
+    color: #a51d1d;
+
+    font-size: 22px;
+}
+
+.site-search-status {
+    color: #777777;
+
+    font-size: 11px;
+}
+
+.site-search-close {
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    padding: 0;
+
+    background: #101010;
+
+    color: #b62121;
+
+    border: 1px solid #5b1919;
+
+    border-radius: 6px;
+
+    font-family: inherit;
+
+    font-size: 21px;
+
+    cursor: pointer;
+}
+
+.site-search-close:hover {
+    background: #1a1010;
+
+    border-color: #a51d1d;
+
+    color: #eeeeee;
+}
+
+
+/* =========================================
+   حقل البحث
+========================================= */
+
+.site-search-input-wrapper {
+    margin-bottom: 14px;
+}
+
+.site-search-input {
+    width: 100%;
+
+    padding:
+        12px
+        14px;
+
+    background: #0d0d0d;
+
+    color: #eeeeee;
+
+    border: 1px solid #451818;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+.site-search-input::placeholder {
+    color: #666666;
+}
+
+.site-search-input:focus {
+    border-color: #a51d1d;
+
+    box-shadow:
+        0 0 15px rgba(165, 29, 29, 0.10);
+}
+
+
+/* =========================================
+   النتائج
+========================================= */
+
+.site-search-results {
+    overflow-y: auto;
+
+    display: grid;
+
+    gap: 9px;
+
+    padding-right: 2px;
+}
+
+.site-search-result {
+    display: block;
+
+    padding: 13px 14px;
+
+    background: #151515;
+
+    border: 1px solid #351616;
+
+    border-radius: 8px;
+
+    color: inherit;
+
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.site-search-result:hover {
+    transform:
+        translateX(-3px);
+
+    background: #1a1010;
+
+    border-color: #8f1c1c;
+}
+
+.site-search-result-title {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: #eeeeee;
+
+    font-size: 16px;
+
+    font-weight: 800;
+}
+
+.site-search-result-path {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #a51d1d;
+
+    font-size: 10px;
+
+    direction: ltr;
+
+    text-align: right;
+}
+
+.site-search-result-snippet {
+    display: block;
+
+    color: #a9a9a9;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+.site-search-empty {
+    padding: 25px 10px;
+
+    text-align: center;
+
+    color: #777777;
+
+    font-size: 14px;
+}
+
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.site-search-button {
+    background: #ffffff;
+
+    border-color: #d7bcbc;
+
+    color: #8f1c1c;
+}
+
+body.light-theme
+.site-search-panel {
+    background: #ffffff;
+
+    border-color: #d7bcbc;
+
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.18);
+}
+
+body.light-theme
+.site-search-header {
+    border-bottom-color: #e4d6d6;
+}
+
+body.light-theme
+.site-search-close {
+    background: #f7f4f2;
+
+    border-color: #dbc5c5;
+
+    color: #8f1c1c;
+}
+
+body.light-theme
+.site-search-input {
+    background: #f7f4f2;
+
+    color: #222222;
+
+    border-color: #dbc5c5;
+}
+
+body.light-theme
+.site-search-result {
+    background: #faf8f6;
+
+    border-color: #dbc5c5;
+}
+
+body.light-theme
+.site-search-result:hover {
+    background: #fffafa;
+
+    border-color: #a98787;
+}
+
+body.light-theme
+.site-search-result-title {
+    color: #222222;
+}
+
+body.light-theme
+.site-search-result-snippet {
+    color: #555555;
+}
+
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 700px) {
+
+    .site-search-wrapper {
+        top: 12px;
+
+        right: 64px;
+    }
+
+    .site-search-button {
+        width: 44px;
+        height: 44px;
+
+        font-size: 12px;
+    }
+
+    .site-search-panel {
+        top: 52px;
+
+        right: -52px;
+
+        width:
+            calc(
+                100vw - 24px
+            );
+
+        padding: 18px;
+    }
+
+}
