@@ -5536,3 +5536,803 @@ body.light-theme
     }
 
 }
+```css
+/* =========================================
+   الواجهة الافتتاحية — العرش المكسور
+========================================= */
+
+.home-hero {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1.05fr)
+        minmax(320px, 400px);
+
+    align-items: center;
+
+    gap: 75px;
+
+    width: min(1080px, 100%);
+
+    min-height: 680px;
+
+    margin: 0 auto;
+
+    padding:
+        65px 35px
+        55px;
+
+    overflow: hidden;
+}
+
+
+/* =========================================
+   الإضاءة الخلفية
+========================================= */
+
+.home-hero::before {
+    content: "";
+
+    position: absolute;
+
+    width: 650px;
+    height: 650px;
+
+    left: -220px;
+    bottom: -300px;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(127, 17, 17, 0.16),
+            rgba(127, 17, 17, 0.05) 35%,
+            transparent 72%
+        );
+
+    filter:
+        blur(8px);
+
+    pointer-events: none;
+}
+
+.home-hero::after {
+    content: "";
+
+    position: absolute;
+
+    top: 50%;
+    left: 50%;
+
+    width: 1px;
+    height: 72%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(127, 17, 17, 0.18),
+            transparent
+        );
+
+    opacity: 0.55;
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   النص الرئيسي
+========================================= */
+
+.home-hero-content {
+    position: relative;
+
+    z-index: 3;
+
+    max-width: 610px;
+}
+
+.home-eyebrow {
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-bottom: 18px;
+
+    padding:
+        6px 16px;
+
+    background:
+        rgba(22, 14, 14, 0.92);
+
+    border:
+        1px solid #5b1919;
+
+    border-radius: 30px;
+
+    color: #c52a2a;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 6px 20px
+        rgba(0, 0, 0, 0.22);
+}
+
+
+/* =========================================
+   اسم الرواية
+========================================= */
+
+.home-hero h1 {
+    margin: 0;
+
+    color: #b62121;
+
+    font-size:
+        clamp(
+            60px,
+            8vw,
+            100px
+        );
+
+    line-height: 1.05;
+
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    text-shadow:
+        0 0 16px
+        rgba(165, 29, 29, 0.16),
+
+        0 12px 35px
+        rgba(0, 0, 0, 0.85);
+}
+
+
+/* =========================================
+   الجملة الرئيسية
+========================================= */
+
+.home-tagline {
+    max-width: 560px;
+
+    margin:
+        22px 0 10px;
+
+    color: #f0f0f0;
+
+    font-size:
+        clamp(
+            22px,
+            3vw,
+            30px
+        );
+
+    font-weight: 800;
+
+    line-height: 1.65;
+}
+
+
+/* =========================================
+   النبذة القصيرة
+========================================= */
+
+.home-intro {
+    max-width: 560px;
+
+    margin-top: 15px;
+
+    color: #a7a7a7;
+
+    font-size:
+        calc(
+            17px
+            * var(--site-text-scale)
+        );
+
+    line-height: 2;
+
+    text-wrap: balance;
+}
+
+
+/* =========================================
+   أزرار الواجهة
+========================================= */
+
+.home-actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+
+    margin-top: 32px;
+}
+
+.home-primary-button {
+    position: relative;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 18px;
+
+    min-width: 205px;
+
+    min-height: 60px;
+
+    padding:
+        12px 24px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #8f1616,
+            #580d0d
+        );
+
+    border:
+        1px solid #b62121;
+
+    border-radius: 9px;
+
+    color: #ffffff;
+
+    text-decoration: none;
+
+    font-family: inherit;
+
+    font-size: 17px;
+
+    font-weight: 800;
+
+    box-shadow:
+        0 14px 30px
+        rgba(127, 17, 17, 0.20),
+
+        0 0 20px
+        rgba(165, 29, 29, 0.06);
+
+    overflow: hidden;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.home-primary-button::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+    bottom: 0;
+    right: -40%;
+
+    width: 35%;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.14),
+            transparent
+        );
+
+    transform:
+        translateX(0);
+
+    transition:
+        transform 0.55s ease;
+}
+
+.home-primary-button:hover {
+    transform:
+        translateY(-4px);
+
+    background:
+        linear-gradient(
+            145deg,
+            #a61b1b,
+            #650f0f
+        );
+
+    border-color:
+        #d02b2b;
+
+    box-shadow:
+        0 18px 38px
+        rgba(127, 17, 17, 0.28),
+
+        0 0 25px
+        rgba(165, 29, 29, 0.11);
+}
+
+.home-primary-button:hover::before {
+    transform:
+        translateX(-400%);
+}
+
+.home-button-arrow {
+    position: relative;
+
+    z-index: 2;
+
+    font-size: 21px;
+
+    transition:
+        transform 0.3s ease;
+}
+
+.home-primary-button:hover
+.home-button-arrow {
+    transform:
+        translateX(-5px);
+}
+
+.home-secondary-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 145px;
+
+    min-height: 60px;
+
+    padding:
+        12px 20px;
+
+    background:
+        rgba(17, 17, 17, 0.92);
+
+    border:
+        1px solid #4d1717;
+
+    border-radius: 9px;
+
+    color: #d3d3d3;
+
+    text-decoration: none;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease;
+}
+
+.home-secondary-button:hover {
+    transform:
+        translateY(-3px);
+
+    background:
+        #1a1010;
+
+    border-color:
+        #8f1c1c;
+
+    color:
+        #ffffff;
+}
+
+
+/* =========================================
+   منطقة الغلاف
+========================================= */
+
+.home-cover-wrapper {
+    position: relative;
+
+    z-index: 3;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    min-width: 0;
+}
+
+.home-cover-glow {
+    position: absolute;
+
+    width: 420px;
+    height: 500px;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(127, 17, 17, 0.21),
+            rgba(127, 17, 17, 0.06) 40%,
+            transparent 72%
+        );
+
+    filter:
+        blur(16px);
+
+    pointer-events: none;
+}
+
+
+/* =========================================
+   الغلاف
+========================================= */
+
+.home-cover {
+    position: relative;
+
+    z-index: 2;
+
+    width:
+        min(
+            380px,
+            100%
+        );
+
+    margin: 0;
+
+    background: #0d0d0d;
+
+    border:
+        1px solid #6f1a1a;
+
+    border-radius: 14px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 35px 85px
+        rgba(0, 0, 0, 0.78),
+
+        0 0 55px
+        rgba(127, 17, 17, 0.14);
+
+    transform:
+        translateY(0);
+
+    transition:
+        transform 0.4s ease,
+        box-shadow 0.4s ease;
+}
+
+.home-cover:hover {
+    transform:
+        translateY(-8px);
+
+    box-shadow:
+        0 42px 95px
+        rgba(0, 0, 0, 0.82),
+
+        0 0 65px
+        rgba(127, 17, 17, 0.18);
+}
+
+.home-cover img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+}
+
+.home-cover-caption {
+    position: relative;
+
+    z-index: 3;
+
+    margin-top: 15px;
+
+    color: #777777;
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 3px;
+}
+
+
+/* =========================================
+   تحسين المسافة قبل الأقسام
+========================================= */
+
+.home-sections {
+    margin-top: 10px;
+}
+
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.home-hero::after {
+    background:
+        linear-gradient(
+            180deg,
+            transparent,
+            rgba(143, 28, 28, 0.12),
+            transparent
+        );
+}
+
+body.light-theme
+.home-eyebrow {
+    background:
+        #fff6f6;
+
+    border-color:
+        #d7bcbc;
+
+    color:
+        #8f1c1c;
+}
+
+body.light-theme
+.home-hero h1 {
+    color:
+        #8f1c1c;
+
+    text-shadow:
+        0 8px 25px
+        rgba(0, 0, 0, 0.12);
+}
+
+body.light-theme
+.home-tagline {
+    color:
+        #222222;
+}
+
+body.light-theme
+.home-intro {
+    color:
+        #555555;
+}
+
+body.light-theme
+.home-secondary-button {
+    background:
+        #ffffff;
+
+    border-color:
+        #d7bcbc;
+
+    color:
+        #444444;
+}
+
+body.light-theme
+.home-secondary-button:hover {
+    background:
+        #faf7f7;
+
+    border-color:
+        #a98787;
+
+    color:
+        #222222;
+}
+
+body.light-theme
+.home-cover {
+    background:
+        #ffffff;
+
+    border-color:
+        #c99f9f;
+
+    box-shadow:
+        0 35px 75px
+        rgba(0, 0, 0, 0.14),
+
+        0 0 45px
+        rgba(143, 28, 28, 0.08);
+}
+
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 760px) {
+
+    .home-hero {
+        grid-template-columns:
+            1fr;
+
+        gap: 38px;
+
+        min-height:
+            auto;
+
+        padding:
+            28px 8px
+            42px;
+
+        text-align:
+            center;
+    }
+
+    .home-hero::after {
+        display:
+            none;
+    }
+
+    .home-hero-content {
+        display:
+            flex;
+
+        flex-direction:
+            column;
+
+        align-items:
+            center;
+    }
+
+    .home-eyebrow {
+        margin-bottom:
+            14px;
+    }
+
+    .home-hero h1 {
+        font-size:
+            clamp(
+                48px,
+                13vw,
+                68px
+            );
+
+        letter-spacing:
+            1px;
+    }
+
+    .home-tagline {
+        margin-top:
+            16px;
+
+        font-size:
+            20px;
+    }
+
+    .home-intro {
+        max-width:
+            520px;
+
+        font-size:
+            calc(
+                15px
+                * var(--site-text-scale)
+            );
+    }
+
+    .home-actions {
+        width:
+            100%;
+
+        justify-content:
+            center;
+    }
+
+    .home-primary-button,
+    .home-secondary-button {
+        min-height:
+            55px;
+    }
+
+    .home-primary-button {
+        width:
+            min(
+                280px,
+                100%
+            );
+    }
+
+    .home-secondary-button {
+        width:
+            min(
+                280px,
+                100%
+            );
+    }
+
+    .home-cover-wrapper {
+        order:
+            -1;
+
+        width:
+            100%;
+    }
+
+    .home-cover-glow {
+        width:
+            320px;
+
+        height:
+            400px;
+    }
+
+    .home-cover {
+        width:
+            min(
+                320px,
+                82vw
+            );
+    }
+
+    .home-cover-caption {
+        font-size:
+            10px;
+    }
+
+}
+
+
+/* =========================================
+   شاشات صغيرة جدًا
+========================================= */
+
+@media (max-width: 420px) {
+
+    .home-hero {
+        padding:
+            22px 4px
+            35px;
+    }
+
+    .home-hero h1 {
+        font-size:
+            45px;
+    }
+
+    .home-tagline {
+        font-size:
+            18px;
+    }
+
+    .home-intro {
+        font-size:
+            14px;
+    }
+
+    .home-cover {
+        width:
+            min(
+                290px,
+                82vw
+            );
+    }
+
+}
+```
