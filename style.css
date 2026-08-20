@@ -4218,3 +4218,145 @@ body.light-theme
     }
 
 }
+/* =========================================
+   شريط تقدم القراءة
+========================================= */
+
+.reading-progress-wrapper {
+    position: fixed;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 10000;
+
+    pointer-events: none;
+}
+
+.reading-progress-bar {
+    width: 100%;
+
+    height: 4px;
+
+    background: #171717;
+
+    overflow: hidden;
+}
+
+.reading-progress-fill {
+    width: 0%;
+
+    height: 100%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #5b1919,
+            #a51d1d,
+            #d02b2b
+        );
+
+    box-shadow:
+        0 0 10px rgba(165, 29, 29, 0.35);
+
+    transition:
+        width 0.12s ease;
+}
+
+.reading-progress-info {
+    position: absolute;
+
+    top: 8px;
+    right: 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding:
+        4px 10px;
+
+    background:
+        rgba(12, 12, 12, 0.88);
+
+    border:
+        1px solid #431818;
+
+    border-radius: 20px;
+
+    color: #bbbbbb;
+
+    font-size: 11px;
+
+    backdrop-filter:
+        blur(8px);
+
+    opacity: 0;
+
+    transform:
+        translateY(-5px);
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease;
+}
+
+.reading-progress-wrapper:hover
+.reading-progress-info {
+    opacity: 1;
+
+    transform:
+        translateY(0);
+}
+
+.reading-progress-percent {
+    color: #d02b2b;
+
+    font-weight: 800;
+}
+
+/* =========================================
+   الوضع الفاتح
+========================================= */
+
+body.light-theme
+.reading-progress-bar {
+    background: #e6dfdf;
+}
+
+body.light-theme
+.reading-progress-info {
+    background:
+        rgba(255, 255, 255, 0.92);
+
+    border-color: #d7bcbc;
+
+    color: #555555;
+}
+
+/* =========================================
+   الهاتف
+========================================= */
+
+@media (max-width: 700px) {
+
+    .reading-progress-bar {
+        height: 3px;
+    }
+
+    .reading-progress-info {
+        top: 7px;
+
+        right: 10px;
+
+        font-size: 10px;
+
+        padding:
+            3px 8px;
+    }
+
+}
