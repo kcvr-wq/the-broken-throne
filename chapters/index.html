@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#050505"
+    >
+
+    <title>
+        الفصول — THE BROKEN THRONE
+    </title>
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="../assets/favicon/favicon.svg"
+    >
+
+    <link
+        rel="stylesheet"
+        href="../assets/css/style.css"
+    >
+
+</head>
+
+
+<body data-page="chapters">
+
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            <span data-short-name>TBT</span>
+        </div>
+
+        <div
+            class="sidebar-title"
+            data-site-name
+        >
+            THE BROKEN THRONE
+        </div>
+
+        <nav>
+
+            <a
+                class="nav-link"
+                href="../index.html"
+            >
+                <span>01</span>
+                الرئيسية
+            </a>
+
+            <a
+                class="nav-link active"
+                href="index.html"
+            >
+                <span>02</span>
+                الفصول
+            </a>
+
+            <a
+                class="nav-link"
+                href="../index.html#world"
+            >
+                <span>03</span>
+                عالم الرواية
+            </a>
+
+            <a
+                class="nav-link"
+                href="../settings/index.html"
+            >
+                <span>04</span>
+                إعدادات الموقع
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <span></span>
+
+            <span data-site-name>
+                THE BROKEN THRONE
+            </span>
+
+        </div>
+
+    </aside>
+
+
+    <main class="inner-page">
+
+        <div class="inner-content">
+
+
+            <header class="inner-header">
+
+                <p class="eyebrow">
+                    THE CHRONICLES
+                </p>
+
+                <h1 class="inner-title">
+                    الفصول
+                </h1>
+
+                <p class="inner-description">
+                    اختر المجلد الذي تريد قراءته،
+                    وتابع تقدمك في الفصول من مكان واحد.
+                </p>
+
+            </header>
+
+
+            <section class="quick-panel">
+
+                <input
+                    id="chapterSearch"
+                    class="search-input"
+                    type="search"
+                    placeholder="ابحث عن فصل..."
+                    autocomplete="off"
+                    aria-label="البحث عن فصل"
+                >
+
+                <select
+                    id="chapterSort"
+                    class="sort-select"
+                    aria-label="ترتيب الفصول"
+                >
+
+                    <option value="number-asc">
+                        ترتيب الفصول: تصاعدي
+                    </option>
+
+                    <option value="number-desc">
+                        ترتيب الفصول: تنازلي
+                    </option>
+
+                    <option value="progress-desc">
+                        حسب التقدم
+                    </option>
+
+                    <option value="progress-asc">
+                        الأقل تقدمًا أولًا
+                    </option>
+
+                </select>
+
+                <button
+                    id="resetFilters"
+                    class="reset-button"
+                    type="button"
+                >
+                    إعادة ضبط
+                </button>
+
+            </section>
+
+
+            <section class="reading-summary">
+
+                <div class="reading-summary-top">
+
+                    <div>
+
+                        <div class="reading-summary-label">
+                            CONTINUE READING
+                        </div>
+
+                        <div
+                            id="summaryTitle"
+                            class="reading-summary-title"
+                        >
+                            لم تبدأ القراءة بعد
+                        </div>
+
+                        <div
+                            id="summaryText"
+                            class="reading-summary-text"
+                        >
+                            ابدأ الفصل الأول للبدء.
+                        </div>
+
+                    </div>
+
+
+                    <a
+                        id="summaryButton"
+                        class="primary-button reading-summary-link"
+                        href="../PATH%20OF%20THE%20VOID/chapter-01.html"
+                    >
+                        ابدأ القراءة
+                    </a>
+
+                </div>
+
+
+                <div class="summary-progress">
+
+                    <div
+                        id="summaryProgressBar"
+                        class="summary-progress-bar"
+                    ></div>
+
+                </div>
+
+            </section>
+
+
+            <section class="volume-list">
+
+                <div
+                    class="volume-item open"
+                    data-volume="1"
+                >
+
+                    <button
+                        class="volume-header"
+                        type="button"
+                        aria-expanded="true"
+                    >
+
+                        <span class="volume-number">
+                            01
+                        </span>
+
+                        <span class="volume-info">
+
+                            <span class="volume-name">
+                                PATH OF THE VOID
+                            </span>
+
+                            <span class="volume-meta">
+                                المجلد الأول
+                            </span>
+
+                            <span
+                                class="volume-status"
+                                id="volumeStatus"
+                            >
+                                1 فصل متاح
+                            </span>
+
+                        </span>
+
+                        <span class="volume-arrow">
+                            +
+                        </span>
+
+                    </button>
+
+
+                    <div class="volume-chapters">
+
+                        <div
+                            class="volume-chapters-inner"
+                            id="chapterList"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <div
+                id="emptyState"
+                class="empty-state"
+            >
+                لا توجد نتائج مطابقة للبحث.
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script
+        type="module"
+        src="../assets/js/app.js"
+    ></script>
+
+    <script
+        type="module"
+        src="../assets/js/chapters.js"
+    ></script>
+
+</body>
+
+</html>
