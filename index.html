@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#050505"
+    >
+
+    <title>THE BROKEN THRONE</title>
+
+    <script>
+        (() => {
+            try {
+                if (
+                    sessionStorage.getItem("sov_intro_seen") === "true"
+                ) {
+                    document.documentElement.classList.add(
+                        "intro-seen"
+                    );
+                }
+            } catch {}
+        })();
+    </script>
+
+    <link
+        rel="icon"
+        type="image/svg+xml"
+        href="assets/favicon/favicon.svg"
+    >
+
+    <link
+        rel="stylesheet"
+        href="assets/css/style.css"
+    >
+</head>
+
+<body data-page="home">
+
+    <div id="intro">
+
+        <div class="intro-glow"></div>
+
+        <div class="intro-content">
+
+            <div class="intro-line"></div>
+
+            <p class="intro-small">
+                A TALE OF
+            </p>
+
+            <h1>
+                THE BROKEN
+                <br>
+                <span>THRONE</span>
+            </h1>
+
+            <div class="intro-line"></div>
+
+            <p class="intro-subtitle">
+                حين يبدأ الانهيار... تبدأ الحكاية.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div id="site">
+
+        <aside class="sidebar">
+
+            <div class="logo">
+                <span data-short-name>TBT</span>
+            </div>
+
+            <div
+                class="sidebar-title"
+                data-site-name
+            >
+                THE BROKEN THRONE
+            </div>
+
+            <nav>
+
+                <a
+                    class="nav-link active"
+                    href="#home"
+                    data-section="home"
+                >
+                    <span>01</span>
+                    الرئيسية
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="chapters/index.html"
+                >
+                    <span>02</span>
+                    الفصول
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="#world"
+                    data-section="world"
+                >
+                    <span>03</span>
+                    عالم الرواية
+                </a>
+
+                <a
+                    class="nav-link"
+                    href="settings/index.html"
+                >
+                    <span>04</span>
+                    إعدادات الموقع
+                </a>
+
+            </nav>
+
+            <div class="sidebar-footer">
+
+                <span></span>
+
+                <span data-site-name>
+                    THE BROKEN THRONE
+                </span>
+
+            </div>
+
+        </aside>
+
+
+        <main class="main-content">
+
+
+            <!-- HOME -->
+
+            <section
+                id="home"
+                class="page-section active-section"
+            >
+
+                <div class="hero">
+
+                    <div class="hero-content">
+
+                        <div class="cover-area">
+
+                            <div class="cover-frame">
+
+                                <img
+                                    src="assets/images/cover.jpg"
+                                    alt="غلاف رواية THE BROKEN THRONE"
+                                >
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="hero-info">
+
+                            <p class="eyebrow">
+                                THE STORY BEGINS
+                            </p>
+
+                            <h2>
+                                THE BROKEN
+                                <span>THRONE</span>
+                            </h2>
+
+                            <div class="hero-divider"></div>
+
+                            <p class="hero-intro">
+                                حكاية عن عالمٍ لا تكشف الحقيقة فيه عن نفسها بسهولة،
+                                وعن بداية قد تكون مختلفة عمّا ظنه الجميع.
+                            </p>
+
+
+                            <div class="novel-information">
+
+                                <div class="information-block">
+
+                                    <div class="information-top">
+
+                                        <span class="information-number">
+                                            01
+                                        </span>
+
+                                        <span class="information-label">
+                                            GENRES
+                                        </span>
+
+                                    </div>
+
+                                    <div class="information-content">
+
+                                        <h3>
+                                            النوع
+                                        </h3>
+
+                                        <div class="genre-list">
+
+                                            <span>أكشن</span>
+                                            <span>فانتازيا</span>
+                                            <span>دراما</span>
+                                            <span>موريوم</span>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                <div class="information-block">
+
+                                    <div class="information-top">
+
+                                        <span class="information-number">
+                                            02
+                                        </span>
+
+                                        <span class="information-label">
+                                            CHAPTERS
+                                        </span>
+
+                                    </div>
+
+                                    <div class="information-content">
+
+                                        <h3>
+                                            عدد الفصول
+                                        </h3>
+
+                                        <strong
+                                            class="chapter-count"
+                                            id="chapterCount"
+                                        >
+                                            01
+                                        </strong>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="hero-buttons">
+
+                                <a
+                                    class="primary-button"
+                                    id="startReading"
+                                    href="PATH%20OF%20THE%20VOID/chapter-01.html"
+                                >
+                                    ابدأ القراءة
+                                </a>
+
+                                <a
+                                    class="secondary-button"
+                                    id="continueReading"
+                                    href="PATH%20OF%20THE%20VOID/chapter-01.html"
+                                >
+                                    تابع القراءة
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="about-novel">
+
+                    <div class="about-top-line">
+
+                        <span class="about-number">
+                            03
+                        </span>
+
+                        <div class="about-title">
+
+                            <p class="eyebrow">
+                                ABOUT THE NOVEL
+                            </p>
+
+                            <h3>
+                                عن الرواية
+                            </h3>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="about-main">
+
+                        <div class="about-quote">
+
+                            <span class="quote-mark">
+                                “
+                            </span>
+
+                            <p>
+                                ليس كل ما يحدث في هذا العالم يُرى،
+                                وليس كل ما يُرى هو الحقيقة.
+                            </p>
+
+                        </div>
+
+
+                        <div class="about-text">
+
+                            <p>
+                                في عالمٍ تتقاطع فيه طرق الطوائف والعشائر،
+                                يعيش طفلٌ صغير حياةً هادئة في ظاهرها،
+                                بينما يمضي العالم من حوله في اتجاهاتٍ
+                                لا يفهمها بعد.
+                            </p>
+
+                            <p>
+                                وجوهٌ تخفي أكثر مما تُظهر، لقاءاتٌ تبدو
+                                عابرة، وأحداثٌ صغيرة لا يدرك أحدٌ قيمتها
+                                في لحظتها.
+                            </p>
+
+                            <p>
+                                لا يعرف الطفل إلى أين ستقوده خطواته،
+                                ولا يعرف أن بعض الطرق، ما إن يبدأ السير
+                                فيها، يصبح الرجوع منها مستحيلًا.
+                            </p>
+
+                            <p>
+                                ومع كل يومٍ يمر، تتسع دائرة الأشياء
+                                التي لا يفهمها...
+                            </p>
+
+                            <p class="about-final">
+                                حتى يصبح السؤال الحقيقي ليس عمّا سيحدث،
+                                بل:
+
+                                <strong>
+                                    ماذا لو كانت البداية مختلفة عمّا ظن الجميع؟
+                                </strong>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- WORLD -->
+
+            <section
+                id="world"
+                class="page-section"
+            >
+
+                <div class="section-header">
+
+                    <p class="eyebrow">
+                        THE WORLD
+                    </p>
+
+                    <h2>
+                        عالم الرواية
+                    </h2>
+
+                    <p>
+                        المعلومات الخاصة بعالم THE BROKEN THRONE.
+                    </p>
+
+                </div>
+
+
+                <div class="world-box">
+
+                    <div>
+
+                        <span class="world-number">
+                            01
+                        </span>
+
+                        <h3>
+                            العالم
+                        </h3>
+
+                    </div>
+
+                    <p>
+                        هنا سنبني لاحقًا تاريخ العالم،
+                        المناطق، القوى، الجماعات،
+                        الشخصيات والأحداث المهمة.
+                    </p>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script
+        type="module"
+        src="assets/js/app.js"
+    ></script>
+
+</body>
+</html>
